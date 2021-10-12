@@ -20,6 +20,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import { FilterByYear } from "./FilterByYear";
+import { FilterByGenre } from "./FilterByGenre";
 
 /**
  * Global SideBar
@@ -50,7 +51,7 @@ const SideBar: FunctionComponent = () => {
         <SidebarContent>
           <Menu iconShape="square">
             <SubMenu title="Genre" icon={<MovieFilterIcon />}>
-              {/*insert genre options here*/}
+              <FilterByGenre genres={["Må", "settes", "inn"]} />
             </SubMenu>
             <SubMenu title="Year" icon={<CalendarTodayIcon />}>
               <FilterByYear />

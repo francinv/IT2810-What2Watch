@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import { Col, Form } from "react-bootstrap";
+import { Col, Form, Button } from "react-bootstrap";
 
 export const FilterByYear: FunctionComponent = () => {
   const [startYear, setStartYear] = useState<number>(0);
@@ -32,6 +32,9 @@ export const FilterByYear: FunctionComponent = () => {
             required
           />
         </Form.Group>
+        <Button variant="primary" type="submit">
+          Filter
+        </Button>
       </Form>
     </div>
   );
