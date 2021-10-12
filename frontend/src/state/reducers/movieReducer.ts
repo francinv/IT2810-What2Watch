@@ -1,8 +1,10 @@
+import { Action } from "../action/actions"
+import { ActionType } from "../action/actiontypes"
 
-const initialState = "";
+const initialState = Movie[];
 
-const reducer = (state: string = initialState): string => {
-    return state
+const reducer = (state: Movie[] = initialState, action: Action): Movie[] => {
+    switch(action.type)
 }
 
 export default reducer
