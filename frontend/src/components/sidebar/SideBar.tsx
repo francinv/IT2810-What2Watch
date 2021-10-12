@@ -19,6 +19,7 @@ import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
+import { FilterByYear } from "./FilterByYear";
 
 /**
  * Global SideBar
@@ -52,7 +53,7 @@ const SideBar: FunctionComponent = () => {
               {/*insert genre options here*/}
             </SubMenu>
             <SubMenu title="Year" icon={<CalendarTodayIcon />}>
-              {/*insert year options here*/}
+              <FilterByYear />
             </SubMenu>
           </Menu>
         </SidebarContent>
