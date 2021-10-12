@@ -1,13 +1,25 @@
+import { Movie } from "../movieType";
 import { ActionType } from "./actiontypes";
+
 
 interface GetMoviesAction {
     type: ActionType.GET_MOVIES,
-    payload: object;
+    payload: Movie[];
 }
 
 interface PostReviewAction {
     type: ActionType.POST_REVIEW,
-    payload: object;
+    payload: string;
 }
 
-export type Action = GetMoviesAction | PostReviewAction
+interface SearchAction {
+    type: ActionType.SEARCH_MOVIES,
+    payload: string;
+}
+
+interface FilterAction {
+    type: ActionType.FILTER_MOVIES,
+    payload: string;
+}
+
+export type Action = GetMoviesAction | PostReviewAction | SearchAction | FilterAction
