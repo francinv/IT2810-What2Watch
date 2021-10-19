@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@date-io/date-fns": "^2.11.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -23,6 +24,7 @@
     "boostrap": "^2.0.0",
     "bootstrap": "5.1.1",
     "date-fns": "^2.25.0",
+    "graphql": "^15.6.1",
     "material-ui-icons": "^1.0.0-beta.36",
     "material-ui-pickers": "^2.2.4",
     "react": "^17.0.2",
