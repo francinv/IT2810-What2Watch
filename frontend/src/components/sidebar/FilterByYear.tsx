@@ -1,41 +1,37 @@
+import Box from "@mui/material/Box";
 import { FunctionComponent, useState } from "react";
-import { Col, Form, Button } from "react-bootstrap";
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import Stack from '@mui/material/Stack';
 
 export const FilterByYear: FunctionComponent = () => {
-  const [startYear, setStartYear] = useState<number>(0);
-  const [endYear, setEndYear] = useState<number>(new Date().getFullYear());
+  const [startYear, setStartYear] = useState(new Date());
+  const [endYear, setEndYear] = useState(new Date());
 
   return (
     <div>
-      <Form>
-        <Form.Group as={Col} controlId="form-signup-first-name">
-          <Form.Label>Start year: </Form.Label>
-          <Form.Control
-            autoFocus
-            type="number"
-            pattern="^[12][0-9]{3}$"
-            minLength={4}
-            placeholder="ex. 2000"
-            onChange={(e) => setStartYear(parseInt(e.target.value, 10))}
-            required
-          />
-        </Form.Group>
+      <DatePicker
+        views={['year']}
+        label='From year'
+        value={startYear}
+        onChange={(newValue) => {
+          setStartYear(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} helperText={null} />}
+      />
+      <DatePicker
+        views={['year']}
+        label='From year'
+        value={endYear}
+        onChange={(newValue) => {
+          setEndYear(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} helperText={null} />}
+      />
+      
 
-        <Form.Group as={Col} controlId="form-signup-last-name">
-          <Form.Label>End year: </Form.Label>
-          <Form.Control
-            type="number"
-            pattern="^[12][0-9]{3}$"
-            minLength={4}
-            placeholder="ex. 2020"
-            onChange={(e) => setEndYear(parseInt(e.target.value, 10))}
-            required
-          />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Filter
-        </Button>
-      </Form>
     </div>
   );
 };
