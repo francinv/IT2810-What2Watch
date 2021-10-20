@@ -5,6 +5,20 @@ export const FilterByYear: FunctionComponent = () => {
   const [startYear, setStartYear] = useState<number>(0);
   const [endYear, setEndYear] = useState<number>(new Date().getFullYear());
 
+  function convertUnixDateToDate(unixNumber: number) {
+    const date = new Date(unixNumber * 1000);
+    //console.log(date.getFullYear());
+    return date;
+  }
+
+  function convertDateToUnixDate(date: Date) {
+    const unixTimeStamp = date.getTime() / 1000;
+    return unixTimeStamp;
+  }
+
+  console.log(convertUnixDateToDate(1551830400));
+  console.log(convertDateToUnixDate(new Date(1551830400)));
+
   return (
     <div>
       <Form>
