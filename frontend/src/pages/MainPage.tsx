@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react";
 
 import { Row, Col } from "react-bootstrap";
+import CustomizedTables from "../components/movies";
 import NavBar from "../components/navbar";
 
 import SideBar from "../components/sidebar/SideBar";
@@ -23,8 +24,10 @@ export const MainPage: FunctionComponent = () => {
         </Col>
       </Row>
       <div>
+        <CustomizedTables />
         <SideBar />
       </div>
+      
     </>
   );
 };
