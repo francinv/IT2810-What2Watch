@@ -6,4 +6,5 @@
 
 .navBar {
     background-color: black !important;
+    position: relative !important;
 }
