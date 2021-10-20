@@ -1,6 +1,5 @@
 .sidebar {
-  height: 100vh !important;
-  margin-top: 4.45rem;
+  height: calc(100vh - 72px);
 }
 
 .closemenu {
@@ -15,7 +14,12 @@
   top: 0px;
   cursor: pointer;
 }
-
+.pro-sidebar{
+  color:white;
+}
+.pro-sidebar-inner{
+  background-color: black !important;
+}
 .pro-sidebar.collapsed {
   width: 80px;
   min-width: 80px;
@@ -43,6 +47,15 @@
 
 .logo {
   padding: 20px;
+}
+
+.form-check{
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.2rem;
+  border-bottom: .5px solid gray;
+}
+input[type='checkbox']{
+  margin-right: 2rem;
 }
 
 @media only screen and (max-width: 600px) {
