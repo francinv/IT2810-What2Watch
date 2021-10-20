@@ -10,6 +10,8 @@ const typeDefs = gql`
 
     type Query {
         getAllMovies: [Movie]
+        getMovieById(id: ID): Movie
     }
+
 `
 module.exports = typeDefs;

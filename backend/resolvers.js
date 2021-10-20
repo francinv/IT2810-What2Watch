@@ -5,7 +5,11 @@ const resolvers = {
             const movies = await Movie.find()
             return movies
         },
+        getMovieById: async (_parent, { id }, _context, _info) => {
+            return await Movie.findById(id);
+        }
     },
 };
+
 
 module.exports = resolvers;
