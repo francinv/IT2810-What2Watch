@@ -8,6 +8,9 @@ const MovieSchema = new mongoose.Schema({
     },
     release_date: {
         type: Number,
+    },
+    genres: {
+        type: [String]
     }
 
 })

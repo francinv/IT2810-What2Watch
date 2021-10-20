@@ -6,11 +6,13 @@ const typeDefs = gql`
         id:ID
         title: String
         release_date: Float
+        genres: [String]
     }
 
     type Query {
         getAllMovies: [Movie]
-        getMovieById(id: ID): Movie
+        getMovieById(id: ID!): Movie
+        getMoviesBySearch(searchQuery: String, searchGenre: String): [Movie]
     }
 
 `
