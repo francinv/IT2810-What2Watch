@@ -1,5 +1,5 @@
 import { apolloClient } from "../graphql";
-import { getAllMovies } from "./--tagname=gql/getAllMovies";
+import { getAllMovies } from "./__generated__/getAllMovies";
 import { GET_ALL_MOVIES } from "./movieQueries";
 
 class MovieService {
