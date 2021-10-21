@@ -1,10 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import reducers from "./state/reducers";
+import mainPageReducer from "./pages/mainPageSlice";
 
 const initialState = {}
 
 export const store = configureStore({
-    reducer: reducers,
+    reducer: {
+        mainPage: mainPageReducer,
+    },
 })
 
 export type AppDispatch = typeof store.dispatch

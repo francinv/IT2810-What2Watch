@@ -21,6 +21,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.7",
     "antd": "^4.16.13",
+    "apollo": "^2.33.6",
     "apollo-codegen": "^0.20.2",
     "boostrap": "^2.0.0",
     "bootstrap": "5.1.1",
@@ -44,7 +45,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "schema:download": "apollo-codegen download-schema http://localhost:4000/graphql/schema --output schema.json",
-    "schema:generate-watch": "npx apollo codegen:generate --localSchemaFile=./src/graphql/schema.json --target=typescript --tagname=gql --watch" 
+    "schema:generate-watch": "npx apollo codegen:generate --localSchemaFile=./src/graphql/schema.json --target=typescript generated --watch"
   },
   "eslintConfig": {
     "extends": "react-app"
