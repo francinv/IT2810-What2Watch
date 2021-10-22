@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import mainPageReducer from "./pages/mainPageSlice";
+import mainPageReducer from "../pages/mainPageSlice";
 
 const initialState = {}
 

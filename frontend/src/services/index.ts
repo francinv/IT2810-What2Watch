@@ -10,7 +10,7 @@ class MovieService {
             if(!response || !response.data) {
                 throw new Error("Cannot get movies")
             }
-            return response.data;
+            return response.data.getAllMovies;
         } catch(error) {
             throw(error)
         }
