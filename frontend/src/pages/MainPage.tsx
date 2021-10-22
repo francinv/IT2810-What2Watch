@@ -1,16 +1,15 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import React, { useEffect } from "react";
 import MovieService from "../services/index";
-import { Row, Col } from "react-bootstrap";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
 import { setMovies } from "./mainPageSlice"
-import { getAllMovies } from "../services/__generated__/getAllMovies"
+import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Layout } from 'antd';
 import { Row, Col, Nav } from "react-bootstrap";
-import CustomizedTables from "../components/movies";
+import { MovieTable } from "../components/movies";
 
 const { Header, Content, Sider } = Layout;
 
@@ -19,20 +18,20 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 export const MainPage: FunctionComponent = () => {
-  const { setMovies } = actionDispatch(useAppDispatch())
+  const { setMovies } = actionDispatch(useAppDispatch());
 
   const fetchMovies = async () => {
     const movies = await MovieService.getAllMovies().catch((error) => {
       console.log("Error", error);
     });
 
-    
-
     if(movies) {
       setMovies(movies);
-      console.log(movies[1]);
+      console.log(movies)
     }
   }
+
+  fetchMovies();
 
   useEffect(() => {
     fetchMovies();
@@ -51,7 +50,7 @@ export const MainPage: FunctionComponent = () => {
       <div className ="innercontainer">
         <SideBar />
         <div className="moviecontainer">
-          <CustomizedTables />
+          <MovieTable/>
         </div>
       </div>
     </>

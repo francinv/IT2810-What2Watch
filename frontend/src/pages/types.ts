@@ -1,5 +1,5 @@
 import { getAllMovies } from "../services/__generated__/getAllMovies";
 
-export interface IMoviesList {
+export default interface IMoviesList {
     movies: getAllMovies["getAllMovies"];
 }
