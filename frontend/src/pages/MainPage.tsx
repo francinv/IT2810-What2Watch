@@ -1,29 +1,29 @@
 import { FunctionComponent } from "react";
 
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Nav } from "react-bootstrap";
+import CustomizedTables from "../components/movies";
 import NavBar from "../components/navbar";
+import { Layout } from 'antd';
 
 import SideBar from "../components/sidebar/SideBar";
+import './MainPage.css';
 
-const styles = {
-  contentDiv: {
-    display: "flex",
-  },
-  contentMargin: {
-    marginLeft: "10px",
-    width: "100%",
-  },
-};
+
+const { Header, Content, Sider } = Layout;
+
 export const MainPage: FunctionComponent = () => {
   return (
     <>
       <Row>
         <Col>
-          <NavBar />
+          <NavBar/>
         </Col>
       </Row>
-      <div>
+      <div className ="innercontainer">
         <SideBar />
+        <div className="moviecontainer">
+          <CustomizedTables />
+        </div>
       </div>
     </>
   );
