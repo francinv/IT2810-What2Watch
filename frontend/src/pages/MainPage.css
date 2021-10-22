@@ -1,8 +1,11 @@
-
 .innercontainer {
     display: flex;
 }
 
 .moviecontainer {
     width: 100%;
+}
+
+.moviecontainer td{
+    display: none;
 }
