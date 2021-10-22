@@ -9,8 +9,8 @@ import { setMovies } from "./mainPageSlice"
 import { getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Layout } from 'antd';
+import { Row, Col, Nav } from "react-bootstrap";
 import CustomizedTables from "../components/movies";
-import './MainPage.css';
 
 const { Header, Content, Sider } = Layout;
 
