@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { IMoviesList } from "./types"
+import IMoviesList from "./types"
 
 const initialState: IMoviesList = {
     movies: null
