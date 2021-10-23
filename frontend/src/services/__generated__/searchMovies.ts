@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getAllMovies
+// GraphQL query operation: searchMovies
 // ====================================================
 
-export interface getAllMovies_getAllMovies {
+export interface searchMovies_getMoviesBySearch {
   __typename: "Movie";
   id: string | null;
   title: string | null;
@@ -15,6 +15,12 @@ export interface getAllMovies_getAllMovies {
   genres: (string | null)[] | null;
 }
 
-export interface getAllMovies {
-  getAllMovies: (getAllMovies_getAllMovies | null)[] | null;
+export interface searchMovies {
+  getMoviesBySearch: (searchMovies_getMoviesBySearch | null)[] | null;
+}
+
+export interface searchMoviesVariables {
+  searchGenre?: string | null;
+  page?: number | null;
+  searchQuery?: string | null;
 }
