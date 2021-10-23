@@ -1,5 +1,5 @@
-
-import * as React from 'react';
+import { FunctionComponent, useEffect, useState } from "react";
+import { useSelector } from "react-redux"
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +9,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './index.css';
+import { useAppDispatch } from "../../services/hooks"
+import { createSelector } from "reselect"
+import { selectMovies } from "../../pages/selectors"
+import { getAllMovies, getAllMovies_getAllMovies } from "../../services/__generated__/getAllMovies";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,16 +34,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function MovieTable() {
-    const data = 
-        [
-            {title:"Shazam!", release_date:1553299200, genres:["Action","Comedy","Fantasy"]},
-            {title:"Captain Marvel", release_date:1551830400, genres:["Action","Adventure","Science Fiction"]},
-            {title:"Escape Room", release_date:1546473600, genres:["Thriller","Action","Horror","Science Fiction"]},
-            {title:"How to Train Your Dragon: The Hidden World",release_date:1546473600,genres:["Animation ","Family","Adventure"]},
-            {title:"Glass",release_date:1547596800,genres:["Documentary"]},
-            {title:"Doraemon the Movie: Nobita's Treasure Island",release_date:1520035200,genres:["Animation"]},
-        ];
+export function MovieTable() {
+  const movies = useSelector(selectMovies)
+    const sliced = movies?.slice(0,10) ?? null
+
   return (
     <TableContainer component={Paper} className="tablecontainer">
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -52,13 +50,13 @@ export default function MovieTable() {
         </TableHead>
         <TableBody>
             {
-                data.map((movie) => (
-                    <StyledTableRow key={movie.title}>
+              sliced?.map((movie: getAllMovies_getAllMovies | null) => (
+                <StyledTableRow key={movie?.title}>
                         <StyledTableCell component="th" scope="row">
-                            {movie.title}
+                            {movie?.title}
                         </StyledTableCell>
-                        <StyledTableCell align="right">{movie.release_date}</StyledTableCell>
-                        <StyledTableCell align="right">{movie.genres}</StyledTableCell>
+                        <StyledTableCell align="right">{movie?.release_date}</StyledTableCell>
+                        <StyledTableCell align="right">{movie?.genres}</StyledTableCell>
                     </StyledTableRow> 
                 ))
             },

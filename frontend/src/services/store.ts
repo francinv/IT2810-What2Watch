@@ -1,9 +1,11 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { configureStore, ThunkAction, Action,  getDefaultMiddleware } from "@reduxjs/toolkit";
 import mainPageReducer from "../pages/mainPageSlice";
+import ReduxLogger from "redux-logger"
 
-const initialState = {}
+const middleware = (getDefaultMiddleware: any) => getDefaultMiddleware().concat(ReduxLogger)
 
 export const store = configureStore({
+    middleware,
     reducer: {
         mainPage: mainPageReducer,
     },
