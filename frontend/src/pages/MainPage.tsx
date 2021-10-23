@@ -27,7 +27,6 @@ export const MainPage: FunctionComponent = () => {
 
     if(movies) {
       setMovies(movies);
-      console.log(movies)
     }
   }
 
@@ -35,7 +34,6 @@ export const MainPage: FunctionComponent = () => {
 
   useEffect(() => {
     fetchMovies();
-    console.log("useEffect")
   }, [])
 
 

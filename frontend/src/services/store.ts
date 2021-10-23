@@ -19,4 +19,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
     unknown,
     Action<string>
 >
-export const selectMovies = (state: RootState) => state.mainPage.movies;

@@ -1,9 +1,3 @@
-import { createSelector } from "reselect";
-import IRootState from "./types";
+import { RootState } from "../services/store"
 
-const selectMovies = (state: IRootState) => state.movies;
-
-export const makeSelectMovies = createSelector(
-  selectMovies,
-  (mainPage) => mainPage
-);
+export const selectMovies = (state: RootState) => state.mainPage.movies;
