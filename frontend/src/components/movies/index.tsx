@@ -10,10 +10,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './index.css';
 import { useAppDispatch } from "../../services/hooks"
-import { makeSelectMovies } from "../../pages/selectors"
 import { createSelector } from "reselect"
-import { selectMovies } from "../../services/store"
-import { getAllMovies } from "../../services/__generated__/getAllMovies";
+import { selectMovies } from "../../pages/selectors"
+import { getAllMovies, getAllMovies_getAllMovies } from "../../services/__generated__/getAllMovies";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -51,7 +50,7 @@ export function MovieTable() {
         </TableHead>
         <TableBody>
             {
-              sliced?.map((movie) => (
+              sliced?.map((movie: getAllMovies_getAllMovies | null) => (
                 <StyledTableRow key={movie?.title}>
                         <StyledTableCell component="th" scope="row">
                             {movie?.title}
