@@ -16,12 +16,18 @@ const MainPageSlice = createSlice({
     reducers: {
         setMovies(state, action) {
             state.nextPage += 1
-            state.movies = [state.movies, ...action.payload]
+            if (state.movies !== null) {
+                state.movies = state.movies.concat(action.payload)
+                console.log("did it")
+            }
             console.log("concat", state.movies?.length, "and", action.payload.length)
             
+        },
+        setLoading(state, action) {
+            state.loading = action.payload
         },
     },
 })
 
-export const { setMovies } = MainPageSlice.actions
+export const { setMovies, setLoading } = MainPageSlice.actions
 export default MainPageSlice.reducer
