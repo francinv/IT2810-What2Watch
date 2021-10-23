@@ -36,7 +36,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export function MovieTable() {
   const movies = useSelector(selectMovies)
-    const sliced = movies?.slice(0,10) ?? null
 
   return (
     <TableContainer component={Paper} className="tablecontainer">
@@ -50,7 +49,7 @@ export function MovieTable() {
         </TableHead>
         <TableBody>
             {
-              sliced?.map((movie: getAllMovies_getAllMovies | null) => (
+              movies?.map((movie: getAllMovies_getAllMovies | null) => (
                 <StyledTableRow key={movie?.title}>
                         <StyledTableCell component="th" scope="row">
                             {movie?.title}

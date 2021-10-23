@@ -50,7 +50,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "schema:download": "apollo-codegen download-schema http://localhost:4000/graphql/schema --output schema.json",
-    "schema:generate-watch": "npx apollo codegen:generate --localSchemaFile=./src/graphql/schema.json --target=typescript generated --watch"
+    "schema:generate-watch": "npx apollo codegen:generate --localSchemaFile=./src/graphql/schema.json --target=typescript __generated__ --watch"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -68,6 +68,7 @@
     ]
   },
   "devDependencies": {
-    "@types/redux-logger": "^3.0.9"
+    "@types/redux-logger": "^3.0.9",
+    "redux-devtools-extension": "^2.13.9"
   }
 }

@@ -21,16 +21,15 @@ export const MainPage: FunctionComponent = () => {
   const { setMovies } = actionDispatch(useAppDispatch());
 
   const fetchMovies = async () => {
-    const movies = await MovieService.getAllMovies().catch((error) => {
+    const movies = await MovieService.getMoviesBySearch("", "Action", 1).catch((error) => {
       console.log("Error", error);
     });
 
     if(movies) {
+      console.log("setting movies")
       setMovies(movies);
     }
   }
-
-  fetchMovies();
 
   useEffect(() => {
     fetchMovies();
