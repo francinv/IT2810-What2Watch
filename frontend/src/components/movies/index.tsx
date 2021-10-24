@@ -49,14 +49,14 @@ export default function MovieTable() {
                 movies?.map((movie: any) => (
                     <StyledTableRow key={movie.title}>
                         <StyledTableCell component="th" scope="row">
-                            {movie.title}
+                            {movie?.title}
                         </StyledTableCell>
-                        <StyledTableCell align="right">{movie.release_date}</StyledTableCell>
-                        <StyledTableCell align="right">{movie.genres}</StyledTableCell>
+                        <StyledTableCell align="right">{movie?.release_date}</StyledTableCell>
+                        <StyledTableCell align="right">{movie?.genres}</StyledTableCell>
                     </StyledTableRow> 
                 ))
             }
-            
+
         </TableBody>
       </Table>
     </TableContainer>
