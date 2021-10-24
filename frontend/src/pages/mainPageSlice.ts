@@ -4,7 +4,7 @@ import IMoviesList from "../services/types"
 const initialState: IMoviesList = {
     movies: [],
     loading: false,
-    nextPage: 2,
+    nextPage: 0,
     filterSearch: "",
     filterGenre: "Action",
     filterDate: 0
@@ -17,10 +17,10 @@ const MainPageSlice = createSlice({
         setMovies(state, action) {
             state.nextPage += 1
             if (state.movies !== null) {
+                console.log("concat", state.movies?.length, "and", action.payload.length)
                 state.movies = state.movies.concat(action.payload)
-                console.log("did it")
             }
-            console.log("concat", state.movies?.length, "and", action.payload.length)
+            
             
         },
         setLoading(state, action) {

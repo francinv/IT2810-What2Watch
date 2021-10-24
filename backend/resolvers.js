@@ -15,8 +15,8 @@ const resolvers = {
             return await Movie.findById(id);
         },
         getMoviesBySearch: async (_parent, args, _context, _info) => {
-            const limit = 15
-            const offset = limit * (args.page - 1)
+            const limit = 30
+            const offset = limit * (args.page)
             if (args.searchQuery && args.searchGenre) {
                 return await (Movie.find({ genres: String(args.searchGenre), title: { $regex: String(args.searchQuery), $options: "i" } })
                 .limit(parseInt(limit))

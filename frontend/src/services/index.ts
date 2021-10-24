@@ -11,20 +11,20 @@ class MovieService {
             if(!response || !response.data) {
                 throw new Error("Cannot get movies")
             }
-            return response.data.getAllMovies;
+            return response.data.getAllMovies
         } catch(error) {
             throw(error)
         }
     } 
 
-    async getMoviesBySearch(searchQuery: String, searchGenre: String, page: number):
+    async getMoviesBySearch(page: number):
         Promise<searchMovies["getMoviesBySearch"]> {
         try { 
             const response = await apolloClient.query({
                 query: GET_MOVIES_BY_SEARCH,
                 variables: { 
-                    searchQuery: searchQuery,
-                    searchGenre: searchGenre,
+                    searchQuery: "",
+                    searchGenre: "Action",
                     page: page
                 }
             })
