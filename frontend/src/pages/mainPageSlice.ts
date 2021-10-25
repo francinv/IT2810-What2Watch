@@ -2,7 +2,12 @@ import { createSlice } from "@reduxjs/toolkit"
 import IMoviesList from "../services/types"
 
 const initialState: IMoviesList = {
-    movies: null
+    movies: [],
+    loading: false,
+    nextPage: 0,
+    filterSearch: "",
+    filterGenre: "Action",
+    filterDate: 0
 }
 
 const MainPageSlice = createSlice({
@@ -10,10 +15,19 @@ const MainPageSlice = createSlice({
     initialState,
     reducers: {
         setMovies(state, action) {
-            state.movies = action.payload;
+            state.nextPage += 1
+            if (state.movies !== null) {
+                console.log("concat", state.movies?.length, "and", action.payload.length)
+                state.movies = state.movies.concat(action.payload)
+            }
+            
+            
+        },
+        setLoading(state, action) {
+            state.loading = action.payload
         },
     },
 })
 
-export const { setMovies } = MainPageSlice.actions
+export const { setMovies, setLoading } = MainPageSlice.actions
 export default MainPageSlice.reducer

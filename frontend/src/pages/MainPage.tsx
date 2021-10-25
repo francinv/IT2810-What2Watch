@@ -1,42 +1,48 @@
 import { FunctionComponent, useState } from "react";
+import { Row, Col, Nav } from "react-bootstrap"
 import React, { useEffect } from "react";
+import { selectNext } from './selectors';
+import { useSelector } from "react-redux"
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
-import { setMovies } from "./mainPageSlice"
+import { setMovies, setLoading } from "./mainPageSlice"
 import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Layout } from 'antd';
-import { Row, Col, Nav } from "react-bootstrap";
-import { MovieTable } from "../components/movies";
+import CustomizedTables from "../components/movies";
+import './MainPage.css';
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 const { Header, Content, Sider } = Layout;
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies))
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  setLoading: (loading: boolean) => dispatch(setLoading(loading))
 });
-
 export const MainPage: FunctionComponent = () => {
-  const { setMovies } = actionDispatch(useAppDispatch());
-
+  const { setMovies } = actionDispatch(useAppDispatch())
+  const nextPage = useSelector(selectNext)
   const fetchMovies = async () => {
-    const movies = await MovieService.getAllMovies().catch((error) => {
+    const movies = await MovieService.getMoviesBySearch(nextPage).catch((error) => {
       console.log("Error", error);
     });
-
     if(movies) {
+      console.log("setting movies")
+      setLoading(false);
       setMovies(movies);
     }
   }
-
-  fetchMovies();
-
   useEffect(() => {
+    console.log("UseEffect was triggered")
     fetchMovies();
-  }, [])
+  }, []) 
 
-
+  const fetchMore = async () => {
+    console.log("fetchMore was triggered")
+    fetchMovies();
+  };
 
   return (
     <>
@@ -48,11 +54,13 @@ export const MainPage: FunctionComponent = () => {
       <div className ="innercontainer">
         <SideBar />
         <div className="moviecontainer">
-          <MovieTable/>
+          <BottomScrollListener onBottom={fetchMovies}/>
+          <CustomizedTables/>
         </div>
       </div>
     </>
   );
 };
+
 
 export default MainPage;

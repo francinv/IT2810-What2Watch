@@ -10,9 +10,10 @@ const typeDefs = gql`
     }
 
     type Query {
+        getMoviePage(page: Int): [Movie]
         getAllMovies: [Movie]
         getMovieById(id: ID!): Movie
-        getMoviesBySearch(searchQuery: String, searchGenre: String): [Movie]
+        getMoviesBySearch(searchQuery: String, searchGenre: String, page: Int): [Movie]
     }
 
 `
