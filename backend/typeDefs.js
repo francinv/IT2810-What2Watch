@@ -9,12 +9,14 @@ const typeDefs = gql`
         genres: [String]
     }
 
-    type Query {
-        getMoviePage(page: Int): [Movie]
-        getAllMovies: [Movie]
-        getMovieById(id: ID!): Movie
-        getMoviesBySearch(searchQuery: String, searchGenre: String, page: Int): [Movie]
+    type fullMovie {
+        id: ID
+        overview: String
     }
 
+    type Query {
+        getMovieById(id: ID!): fullMovie 
+        getMoviesBySearch(searchDateStart: Int, searchDateEnd: Int, searchQuery: String, searchGenre: [String], page: Int): [Movie]
+    }
 `
 module.exports = typeDefs;
