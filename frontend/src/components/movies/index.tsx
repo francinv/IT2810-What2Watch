@@ -8,48 +8,63 @@ import { useState } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
+import BaseModalWrapper from '../moviedetail/BaseModalWrapper';
 
 export default function MovieTable() {
   const movies = useSelector(selectMovies)
   const [favorited, setFavorited] = useState(false);
+  const [modalMovie, setModalMovie] = useState(null!);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => {
+    setIsModalVisible(wasModalVisible => !wasModalVisible);
+  }
+
+  const handleAction = (movie:any) => {
+    setModalMovie(movie);
+    toggleModal();
+  }
 
   return (
-    <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
-      {
-      movies?.map((movie: any) => (
-        <Grid item xs={2} sm={4} md={4} key={movie.title}>
-          <Card sx={{ maxWidth: 345, height:'100%'}}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="auto"
-                width="auto"
-                image="https://m.media-amazon.com/images/I/91WNnQZdybL._AC_SL1500_.jpg"
-                alt="Movie poster"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {movie?.title}
-                </Typography>
-                <IconButton
-                >
-                  { favorited
-                    ? <FavoriteIcon color="error"/>
-                    : <FavoriteBorderIcon/>
-                  }
-                </IconButton>
-                <Typography variant="body2" color="text.secondary">
-                  {movie?.release_date}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {movie?.genres}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-      ))}
+    <div>
+      <BaseModalWrapper isModalVisible={isModalVisible} onBackDropClick={toggleModal} movies={movies}/>
+      <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
+        {
+        movies?.map((movie: any) => (
+          <Grid item xs={2} sm={4} md={4} key={movie.title}>
+            <Card sx={{ maxWidth: 345, height:'100%'}}>
+              <CardActionArea onClick={handleAction(movie)}>
+                <CardMedia
+                  component="img"
+                  height="auto"
+                  width="auto"
+                  image="https://m.media-amazon.com/images/I/91WNnQZdybL._AC_SL1500_.jpg"
+                  alt="Movie poster"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {movie?.title}
+                  </Typography>
+                  <IconButton
+                  >
+                    { favorited
+                      ? <FavoriteIcon color="error"/>
+                      : <FavoriteBorderIcon/>
+                    }
+                  </IconButton>
+                  <Typography variant="body2" color="text.secondary">
+                    {movie?.release_date}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {movie?.genres}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
 
-    </Grid>
+      </Grid>
+    </div>
   )
 }
