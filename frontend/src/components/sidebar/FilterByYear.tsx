@@ -7,6 +7,19 @@ import Box from '@mui/material/Box';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";   
 import Button, { ButtonProps } from '@mui/material/Button';
+import { Col, Form, Button } from "react-bootstrap";
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from '../../pages/selectors';
+import { useAppDispatch } from "../../services/hooks"
+import { Dispatch } from "redux";
+import MovieService from "../../services/index";
+import { getAllMovies } from "../../services/__generated__/getAllMovies"
+import { useSelector } from "react-redux"
+import { setMovies, setFilterGenres, emptyMovies, removeFilterGenres } from "../../pages/mainPageSlice"
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  emptyMovies: () => dispatch(emptyMovies())
+});
 
 export const FilterByYear: FunctionComponent = () => {
 
