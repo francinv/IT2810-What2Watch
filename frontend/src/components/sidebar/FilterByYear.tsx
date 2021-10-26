@@ -1,5 +1,17 @@
 import { FunctionComponent, useState } from "react";
 import { Col, Form, Button } from "react-bootstrap";
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from '../../pages/selectors';
+import { useAppDispatch } from "../../services/hooks"
+import { Dispatch } from "redux";
+import MovieService from "../../services/index";
+import { getAllMovies } from "../../services/__generated__/getAllMovies"
+import { useSelector } from "react-redux"
+import { setMovies, setFilterGenres, emptyMovies, removeFilterGenres } from "../../pages/mainPageSlice"
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  emptyMovies: () => dispatch(emptyMovies())
+});
 
 export const FilterByYear: FunctionComponent = () => {
 
