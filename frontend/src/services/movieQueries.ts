@@ -12,12 +12,11 @@ export const GET_ALL_MOVIES = gql`
 `;
 
 export const GET_MOVIES_BY_SEARCH = gql`
-    query searchMovies($searchGenre: String, $page: Int, $searchQuery: String) {
-        getMoviesBySearch(searchGenre: $searchGenre, page: $page, searchQuery: $searchQuery) {
-            id
+    query searchMovies($page: Int, $searchGenre: [String], $searchQuery: String, $searchDateStart: Int, $searchDateEnd: Int) {
+        getMoviesBySearch(page: $page, searchGenre: $searchGenre, searchQuery: $searchQuery, searchDateStart: $searchDateStart, searchDateEnd: $searchDateEnd) {
             title
-            release_date
             genres
+            release_date
         }
     }
 `;

@@ -51,7 +51,7 @@ const SideBar: FunctionComponent = () => {
         <SidebarContent>
           <Menu iconShape="square">
             <SubMenu title="Genre" icon={<MovieFilterIcon />}>
-              <FilterByGenre genres={["Må", "settes", "inn"]} />
+              <FilterByGenre genres={["Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Horror", "Music", "Mystery", "Romance", "Science", "Fiction", "Thriller", "TV Movie", "War", "Western"]} />
             </SubMenu>
             <SubMenu title="Year" icon={<CalendarTodayIcon />}>
               <FilterByYear />

@@ -6,9 +6,9 @@ const initialState: IMoviesList = {
     loading: false,
     nextPage: 0,
     filterSearch: "",
-    filterGenre: "Action",
-    filterDateStart: 0,
-    filterDateEnd: 0
+    filterGenre: ["Action", "Adventure"],
+    filterDateStart: -1635203598,
+    filterDateEnd: 1635203598
 }
 
 const MainPageSlice = createSlice({
@@ -18,7 +18,6 @@ const MainPageSlice = createSlice({
         setMovies(state, action) {
             state.nextPage += 1
             if (state.movies !== null) {
-                console.log("concat", state.movies?.length, "and", action.payload.length)
                 state.movies = state.movies.concat(action.payload)
             }
         },

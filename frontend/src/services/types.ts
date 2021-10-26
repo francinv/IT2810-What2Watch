@@ -5,7 +5,7 @@ export default interface IMoviesList {
     loading: boolean;
     nextPage: number;
     filterSearch: String;
-    filterGenre: String;
+    filterGenre: String[];
     filterDateStart: number;
     filterDateEnd: number;
 }
