@@ -34,7 +34,6 @@ export const FilterByYear: FunctionComponent = () => {
 
   console.log(convertUnixDateToDate(1551830400));
   console.log(convertDateToUnixDate(new Date(1551830400)));
-
   return (
     <>
       <Box sx={{display:'flex'}}>
