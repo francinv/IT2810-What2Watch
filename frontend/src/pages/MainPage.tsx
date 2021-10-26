@@ -7,7 +7,7 @@ import MovieService from "../services/index";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
-import { setMovies, setLoading } from "./mainPageSlice"
+import { setMovies } from "./mainPageSlice"
 import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Layout } from 'antd';
@@ -18,8 +18,7 @@ import { BottomScrollListener } from "react-bottom-scroll-listener";
 const { Header, Content, Sider } = Layout;
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
-  setLoading: (loading: boolean) => dispatch(setLoading(loading))
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies))
 });
 
 export const MainPage: FunctionComponent = () => {
