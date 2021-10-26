@@ -1,64 +1,55 @@
 
 import * as React from 'react';
 import { useSelector } from "react-redux"
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import './index.css';
 import { selectMovies } from '../../pages/selectors';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { useState } from 'react';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
 
 export default function MovieTable() {
   const movies = useSelector(selectMovies)
-  return (
-    <TableContainer component={Paper} className="tablecontainer">
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Movie Title</StyledTableCell>
-            <StyledTableCell align="right">Release Date</StyledTableCell>
-            <StyledTableCell align="right">Genre</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {
-                movies?.map((movie: any) => (
-                    <StyledTableRow key={movie.title}>
-                        <StyledTableCell component="th" scope="row">
-                            {movie?.title}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">{movie?.release_date}</StyledTableCell>
-                        <StyledTableCell align="right">{movie?.genres}</StyledTableCell>
-                    </StyledTableRow> 
-                ))
-            }
+  const [favorited, setFavorited] = useState(false);
 
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  return (
+    <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
+      {
+      movies?.map((movie: any) => (
+        <Grid item xs={2} sm={4} md={4} key={movie.title}>
+          <Card sx={{ maxWidth: 345, height:'100%'}}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="auto"
+                width="auto"
+                image="https://m.media-amazon.com/images/I/91WNnQZdybL._AC_SL1500_.jpg"
+                alt="Movie poster"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {movie?.title}
+                </Typography>
+                <IconButton
+                >
+                  { favorited
+                    ? <FavoriteIcon color="error"/>
+                    : <FavoriteBorderIcon/>
+                  }
+                </IconButton>
+                <Typography variant="body2" color="text.secondary">
+                  {movie?.release_date}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {movie?.genres}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      ))}
+
+    </Grid>
+  )
 }
