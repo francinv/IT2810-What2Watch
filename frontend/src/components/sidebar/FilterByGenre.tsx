@@ -12,7 +12,7 @@ import { Dispatch } from "redux";
 import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { useSelector } from "react-redux"
-import { setMovies, setFilterGenres, emptyMovies } from "../../pages/mainPageSlice"
+import { setMovies, setFilterGenres, emptyMovies, removeFilterGenres } from "../../pages/mainPageSlice"
 
 
 export interface FilterByGenreProps {
@@ -30,7 +30,8 @@ const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
-  setFilter: (filter: string[]) => dispatch(setFilterGenres(filter)),
+  setFilter: (filter: string) => dispatch(setFilterGenres(filter)),
+  removeFilter: (filter: string) => dispatch(removeFilterGenres(filter)),
   emptyMovies: () => dispatch(emptyMovies())
 });
 
@@ -38,12 +39,14 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
 
-  const { setMovies, setFilter, emptyMovies } = actionDispatch(useAppDispatch())
+  const { setMovies, setFilter, emptyMovies, removeFilter } = actionDispatch(useAppDispatch())
+  
   const nextPage = useSelector(selectNextPage)
   const searchQuery = useSelector(selectFilterSearch)
   const searchGenre = useSelector(selectFilterGenre)
   const dateStart = useSelector(selectFilterDateStart)
   const dateEnd = useSelector(selectFilterDateEnd)
+
   const fetchMovies = async () => {
     emptyMovies();
     console.log("Caller fetch i filterkomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
@@ -57,7 +60,10 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
 
   const changeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      setFilter([event.target.name])
+      setFilter(event.target.name)
+    }
+    if (!event.target.checked) {
+      removeFilter(event.target.name)
     }
   }
 

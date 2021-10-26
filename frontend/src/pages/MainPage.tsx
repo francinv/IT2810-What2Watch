@@ -43,9 +43,6 @@ export const MainPage: FunctionComponent = () => {
     fetchMovies();
   }, []) 
 
-  const fetchMore = async () => {
-    fetchMovies();
-  };
 
   return (
     <>

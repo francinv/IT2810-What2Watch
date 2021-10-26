@@ -6,7 +6,7 @@ const initialState: IMoviesList = {
     loading: false,
     nextPage: 0,
     filterSearch: "",
-    filterGenre: ["Action", "Adventure"],
+    filterGenre: [],
     filterDateStart: -1635203598,
     filterDateEnd: 1635203598
 }
@@ -29,7 +29,13 @@ const MainPageSlice = createSlice({
         },
         setFilterGenres(state, action) {
             console.log("Payload", action.payload)
-            state.filterGenre = action.payload
+            state.filterGenre = [...state.filterGenre, action.payload]
+        },
+        removeFilterGenres(state, action) {
+            const index = state.filterGenre.indexOf(action.payload)
+            if (index > -1) {
+                state.filterGenre = state.filterGenre.splice(index, 1)
+            }  
         },
         emptyMovies(state) {
             console.log("Emptying movies")
@@ -39,5 +45,5 @@ const MainPageSlice = createSlice({
     },
 })
 
-export const { setMovies, setLoading, setFilterGenres, emptyMovies } = MainPageSlice.actions
+export const { setMovies, setLoading, setFilterGenres, emptyMovies, removeFilterGenres } = MainPageSlice.actions
 export default MainPageSlice.reducer
