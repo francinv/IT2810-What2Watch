@@ -26,9 +26,13 @@ const MainPageSlice = createSlice({
         },
         setSearchQuery(state, action) {
             state.filterSearch = action.payload
+        },
+        setFilterGenres(state, action) {
+            console.log("Payload", action.payload)
+            state.filterGenre = action.payload
         }
     },
 })
 
-export const { setMovies, setLoading } = MainPageSlice.actions
+export const { setMovies, setLoading, setFilterGenres } = MainPageSlice.actions
 export default MainPageSlice.reducer

@@ -23,9 +23,11 @@ class MovieService {
             const response = await apolloClient.query({
                 query: GET_MOVIES_BY_SEARCH,
                 variables: { 
-                    searchQuery: "",
-                    searchGenre: "Action",
-                    page: page
+                    page: page,
+                    searchGenre: ["Action", "Adventure"],
+                    searchQuery: "", 
+                    searchDateStart: -1635203598,
+                    searchDateEnd: 1635203598
                 }
             })
             if(!response || !response.data) {

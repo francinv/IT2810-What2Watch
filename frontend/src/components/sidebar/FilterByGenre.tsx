@@ -12,7 +12,7 @@ import { Dispatch } from "redux";
 import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { useSelector } from "react-redux"
-import { setMovies } from "../../pages/mainPageSlice"
+import { setMovies, setFilterGenres } from "../../pages/mainPageSlice"
 
 
 export interface FilterByGenreProps {
@@ -30,13 +30,14 @@ const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  setFilter: (filter: string[]) => dispatch(setFilterGenres(filter))
 });
 
 export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
 
-  const { setMovies } = actionDispatch(useAppDispatch())
+  const { setMovies, setFilter } = actionDispatch(useAppDispatch())
   const nextPage = useSelector(selectNextPage)
   const searchQuery = useSelector(selectFilterSearch)
   const searchGenre = useSelector(selectFilterGenre)
@@ -48,7 +49,14 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
       console.log("Error", error);
     });
     if(movies) {
+      setMovies([]);
       setMovies(movies);
+    }
+  }
+
+  const changeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      setFilter([event.target.name])
     }
   }
 
@@ -59,7 +67,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
             genres.map((genre: string) => ( 
               <FormControlLabel 
                 control={
-                  <Checkbox name={genre} sx={{
+                  <Checkbox name={genre} onChange={(e) => {changeBox(e)}} sx={{
                     color: '#fff',
                     '&.Mui-checked': {
                       color: '#fff',
@@ -72,7 +80,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
                 label={genre}
               /> ))
           }
-        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>}>Filter</FilterButton>
+        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton>
       </FormGroup>
       
     </Box>
