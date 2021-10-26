@@ -1,9 +1,16 @@
 import { FunctionComponent, useState } from "react";
-import { Col, Form, Button } from "react-bootstrap";
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import Box from '@mui/material/Box';
+import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
+import { styled } from "@mui/material/styles";   
+import Button, { ButtonProps } from '@mui/material/Button';
 
 export const FilterByYear: FunctionComponent = () => {
-  const [startYear, setStartYear] = useState<number>(0);
-  const [endYear, setEndYear] = useState<number>(new Date().getFullYear());
+  const [startYear, setStartYear] = useState<Date | null>(new Date());
+  const [endYear, setEndYear] = useState<Date | null>(new Date());
 
   function convertUnixDateToDate(unixNumber: number) {
     const date = new Date(unixNumber * 1000);
@@ -15,38 +22,48 @@ export const FilterByYear: FunctionComponent = () => {
     const unixTimeStamp = date.getTime() / 1000;
     return unixTimeStamp;
   }
+  
+  const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
+    backgroundColor: '#fff',
+    color: '#000',
+    '&:hover': {
+      backgroundColor: '#cccccc',
+      color:'#000'
+    },
+  }));
+
+  console.log(convertUnixDateToDate(1551830400));
+  console.log(convertDateToUnixDate(new Date(1551830400)));
 
   return (
-    <div>
-      <Form>
-        <Form.Group as={Col} controlId="form-signup-first-name">
-          <Form.Label>Start year: </Form.Label>
-          <Form.Control
-            autoFocus
-            type="number"
-            pattern="^[12][0-9]{3}$"
-            minLength={4}
-            placeholder="ex. 2000"
-            onChange={(e) => setStartYear(parseInt(e.target.value, 10))}
-            required
+    <>
+      <Box sx={{display:'flex'}}>
+        <LocalizationProvider dateAdapter={AdapterDateFns} > 
+          <DatePicker
+            views={['year']}
+            label='From year'
+            value={startYear}
+            onChange={(newValue) => {
+              setStartYear(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} helperText={null} />}
+            className='date-picker-class'
           />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="form-signup-last-name">
-          <Form.Label>End year: </Form.Label>
-          <Form.Control
-            type="number"
-            pattern="^[12][0-9]{3}$"
-            minLength={4}
-            placeholder="ex. 2020"
-            onChange={(e) => setEndYear(parseInt(e.target.value, 10))}
-            required
+          <DatePicker
+            views={['year']}
+            label='To year'
+            value={endYear}
+            onChange={(newValue) => {
+              setEndYear(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} helperText={null} />}
+            className='date-picker-class'
           />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Filter
-        </Button>
-      </Form>
-    </div>
+        </LocalizationProvider>
+      </Box>
+      <div className="button-container">
+        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>}>Filter</FilterButton>
+      </div>
+    </>
   );
 };

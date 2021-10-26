@@ -11,6 +11,7 @@ import { setMovies, setLoading } from "./mainPageSlice"
 import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Layout } from 'antd';
+import { Row, Col, Nav } from "react-bootstrap";
 import CustomizedTables from "../components/movies";
 import './MainPage.css';
 import { BottomScrollListener } from "react-bottom-scroll-listener";
