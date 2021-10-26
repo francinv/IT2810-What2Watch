@@ -13,17 +13,14 @@ import MovieService from "../services/index";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
-import { setMovies, setLoading } from "./mainPageSlice";
-import {
-  getAllMovies,
-  getAllMovies_getAllMovies,
-} from "../services/__generated__/getAllMovies";
-import { useAppDispatch } from "../services/hooks";
-import { Layout } from "antd";
-
+import { setMovies, setLoading } from "./mainPageSlice"
+import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
+import { useAppDispatch } from "../services/hooks"
+import { Layout } from 'antd';
 import CustomizedTables from "../components/movies";
 import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import SortDropDown from "../components/sortdropdown";
 
 const { Header, Content, Sider } = Layout;
 
@@ -78,8 +75,9 @@ export const MainPage: FunctionComponent = () => {
       <div className="innercontainer">
         <SideBar />
         <div className="moviecontainer">
-          <BottomScrollListener onBottom={fetchMovies} />
-          <CustomizedTables />
+          <SortDropDown />
+          <BottomScrollListener onBottom={fetchMovies}/>
+          <CustomizedTables/>
         </div>
       </div>
     </>

@@ -8,8 +8,12 @@
     display: flex;
     justify-content: center;
     align-items: center;     
+    position: relative;
 }
 
-.moviecontainer td{
-    display: none;
+@media (max-width:375px){
+    .moviecontainer{
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
