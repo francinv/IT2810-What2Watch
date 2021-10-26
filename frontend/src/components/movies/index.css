@@ -1,3 +1,30 @@
 .tablecontainer{
     border-radius: 0px !important;
 }
+
+@media (min-width:900px) {
+    .css-1xgjpwf-MuiGrid-root {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
+@media (min-width:900px) {
+    .css-1xgjpwf-MuiGrid-root {
+     margin-top:0px !important;
+    }
+}
+   
+
+.css-1xgjpwf-MuiGrid-root{
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width:0px){
+    .css-1i6vwqu-MuiGrid-root{
+        width: 100% !important;
+        margin-top: 0px !important;
+    }
+}
+    
