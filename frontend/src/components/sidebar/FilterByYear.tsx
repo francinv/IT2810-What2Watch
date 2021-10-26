@@ -2,18 +2,22 @@ import { FunctionComponent, useState } from "react";
 import { Col, Form, Button } from "react-bootstrap";
 
 export const FilterByYear: FunctionComponent = () => {
-  const [startYear, setStartYear] = useState<number>(0);
-  const [endYear, setEndYear] = useState<number>(new Date().getFullYear());
+
 
   function convertUnixDateToDate(unixNumber: number) {
     const date = new Date(unixNumber * 1000);
     //console.log(date.getFullYear());
     return date;
   }
-
   function convertDateToUnixDate(date: Date) {
     const unixTimeStamp = date.getTime() / 1000;
     return unixTimeStamp;
+  }
+  function setStartYear(year: number) {
+    console.log(year)
+  }
+  function setEndYear(year: number) {
+    console.log(year)
   }
 
   return (
