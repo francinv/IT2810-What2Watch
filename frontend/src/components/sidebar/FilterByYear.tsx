@@ -7,8 +7,7 @@ import Box from '@mui/material/Box';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";   
 import Button, { ButtonProps } from '@mui/material/Button';
-import { Col, Form, Button } from "react-bootstrap";
-import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from '../../pages/selectors';
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd, selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
 import MovieService from "../../services/index";
@@ -26,6 +25,18 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export const FilterByYear: FunctionComponent = () => { 
 
   const { setMovies, emptyMovies, setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
+
+  const state = useSelector(selectStateExceptMovies)
+
+  const fetchMovies = async () => {
+    emptyMovies();
+    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
+      console.log("Error", error);
+    });
+    if(movies) {
+      setMovies(movies);
+    }
+  }
 
   function convertUnixDateToDate(unixNumber: number) {
     const date = new Date(unixNumber * 1000);
@@ -46,11 +57,12 @@ export const FilterByYear: FunctionComponent = () => {
     },
   }));
 
-  function setStartYear(year: number) {
-    setStateStartDate(convertDateToUnixDate(new Date(year, 0)));
+  function setStartYear(year: number | null) {
+    if (year !== null) {setStateStartDate(convertDateToUnixDate(new Date(year, 0)));}
+    
   }
-  function setEndYear(year: number) {
-    setStateEndDate(convertDateToUnixDate(new Date(year, 0)));
+  function setEndYear(year: number | null) {
+    if (year !== null) {setStateEndDate(convertDateToUnixDate(new Date(year, 0)));}
   }
 
   return (
@@ -60,7 +72,7 @@ export const FilterByYear: FunctionComponent = () => {
           <DatePicker
             views={['year']}
             label='From year'
-            value={startYear}
+            value={2021}
             onChange={(newValue) => {
               setStartYear(newValue);
             }}
@@ -70,7 +82,7 @@ export const FilterByYear: FunctionComponent = () => {
           <DatePicker
             views={['year']}
             label='To year'
-            value={endYear}
+            value={2021}
             onChange={(newValue) => {
               setEndYear(newValue);
             }}

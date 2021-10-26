@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Button, { ButtonProps } from '@mui/material/Button';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";
-import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from '../../pages/selectors';
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd, selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
 import MovieService from "../../services/index";
@@ -46,11 +46,10 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   const searchGenre = useSelector(selectFilterGenre)
   const dateStart = useSelector(selectFilterDateStart)
   const dateEnd = useSelector(selectFilterDateEnd)
-
+  const state = useSelector(selectStateExceptMovies)
   const fetchMovies = async () => {
     emptyMovies();
-    console.log("Caller fetch i filterkomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
-    const movies = await MovieService.getMoviesBySearch(nextPage, searchGenre).catch((error) => {
+    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
       console.log("Error", error);
     });
     if(movies) {

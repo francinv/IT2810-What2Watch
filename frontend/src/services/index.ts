@@ -17,17 +17,19 @@ class MovieService {
         }
     } 
 
-    async getMoviesBySearch(page: number, searchGenre: String[]):
+    async getMoviesBySearch(args: (number | String | String[])[]):
         Promise<searchMovies["getMoviesBySearch"]> {
         try { 
+            console.log(args)
             const response = await apolloClient.query({
                 query: GET_MOVIES_BY_SEARCH,
                 variables: { 
-                    page: page,
-                    searchGenre: (searchGenre.length ? searchGenre : ["Action"]),
-                    searchQuery: "", 
-                    searchDateStart: -1635203598,
-                    searchDateEnd: 1635203598
+                    page: args[0],
+                    searchQuery: args[1],
+                    searchGenre: args[2],
+                    searchDateStart: args[3],
+                    searchDateEnd: args[4]
+                    /* 1635203598 */
                 }
             })
             if(!response || !response.data) {

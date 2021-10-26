@@ -1,7 +1,6 @@
 import { FunctionComponent, useState } from "react";
-import { Row, Col, Nav } from "react-bootstrap"
 import React, { useEffect } from "react";
-import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from './selectors';
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd, selectStateExceptMovies } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
@@ -29,10 +28,9 @@ export const MainPage: FunctionComponent = () => {
   const searchGenre = useSelector(selectFilterGenre)
   const dateStart = useSelector(selectFilterDateStart)
   const dateEnd = useSelector(selectFilterDateEnd)
+  const state = useSelector(selectStateExceptMovies)
   const fetchMovies = async () => {
-    console.log("Caller fetch i mainpagekomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
-
-    const movies = await MovieService.getMoviesBySearch(nextPage, searchGenre).catch((error) => {
+    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
       console.log("Error", error);
     });
     if(movies) {
