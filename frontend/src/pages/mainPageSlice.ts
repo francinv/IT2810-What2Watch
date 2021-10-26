@@ -33,6 +33,7 @@ const MainPageSlice = createSlice({
         },
         emptyMovies(state) {
             console.log("Emptying movies")
+            state.nextPage = 0
             state.movies = []
         }
     },

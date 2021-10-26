@@ -30,9 +30,9 @@ export const MainPage: FunctionComponent = () => {
   const dateStart = useSelector(selectFilterDateStart)
   const dateEnd = useSelector(selectFilterDateEnd)
   const fetchMovies = async () => {
-    console.log("Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
+    console.log("Caller fetch i mainpagekomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
 
-    const movies = await MovieService.getMoviesBySearch(nextPage).catch((error) => {
+    const movies = await MovieService.getMoviesBySearch(nextPage, searchGenre).catch((error) => {
       console.log("Error", error);
     });
     if(movies) {
@@ -40,7 +40,6 @@ export const MainPage: FunctionComponent = () => {
     }
   }
   useEffect(() => {
-    console.log("fetching movies")
     fetchMovies();
   }, []) 
 

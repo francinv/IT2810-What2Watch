@@ -45,12 +45,12 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   const dateStart = useSelector(selectFilterDateStart)
   const dateEnd = useSelector(selectFilterDateEnd)
   const fetchMovies = async () => {
-    console.log("Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
-    const movies = await MovieService.getMoviesBySearch(nextPage).catch((error) => {
+    emptyMovies();
+    console.log("Caller fetch i filterkomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
+    const movies = await MovieService.getMoviesBySearch(nextPage, searchGenre).catch((error) => {
       console.log("Error", error);
     });
     if(movies) {
-      emptyMovies();
       setMovies(movies);
     }
   }
