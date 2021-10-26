@@ -11,8 +11,8 @@ export interface searchMovies_getMoviesBySearch {
   __typename: "Movie";
   id: string | null;
   title: string | null;
-  release_date: number | null;
   genres: (string | null)[] | null;
+  release_date: number | null;
 }
 
 export interface searchMovies {
@@ -20,7 +20,9 @@ export interface searchMovies {
 }
 
 export interface searchMoviesVariables {
-  searchGenre?: string | null;
   page?: number | null;
+  searchGenre?: (string | null)[] | null;
   searchQuery?: string | null;
+  searchDateStart?: number | null;
+  searchDateEnd?: number | null;
 }

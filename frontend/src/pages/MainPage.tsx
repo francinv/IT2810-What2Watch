@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { Row, Col, Nav } from "react-bootstrap"
 import React, { useEffect } from "react";
-import { selectNext } from './selectors';
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
@@ -21,28 +21,28 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
   setLoading: (loading: boolean) => dispatch(setLoading(loading))
 });
+
 export const MainPage: FunctionComponent = () => {
   const { setMovies } = actionDispatch(useAppDispatch())
-  const nextPage = useSelector(selectNext)
+  const nextPage = useSelector(selectNextPage)
+  const searchQuery = useSelector(selectFilterSearch)
+  const searchGenre = useSelector(selectFilterGenre)
+  const dateStart = useSelector(selectFilterDateStart)
+  const dateEnd = useSelector(selectFilterDateEnd)
   const fetchMovies = async () => {
-    const movies = await MovieService.getMoviesBySearch(nextPage).catch((error) => {
+    console.log("Caller fetch i mainpagekomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
+
+    const movies = await MovieService.getMoviesBySearch(nextPage, searchGenre).catch((error) => {
       console.log("Error", error);
     });
     if(movies) {
-      console.log("setting movies")
-      setLoading(false);
       setMovies(movies);
     }
   }
   useEffect(() => {
-    console.log("UseEffect was triggered")
     fetchMovies();
   }, []) 
 
-  const fetchMore = async () => {
-    console.log("fetchMore was triggered")
-    fetchMovies();
-  };
 
   return (
     <>
