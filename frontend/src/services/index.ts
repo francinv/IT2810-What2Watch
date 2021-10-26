@@ -24,7 +24,7 @@ class MovieService {
                 query: GET_MOVIES_BY_SEARCH,
                 variables: { 
                     page: page,
-                    searchGenre: searchGenre? searchGenre : ["Action"],
+                    searchGenre: (searchGenre.length ? searchGenre : ["Action"]),
                     searchQuery: "", 
                     searchDateStart: -1635203598,
                     searchDateEnd: 1635203598

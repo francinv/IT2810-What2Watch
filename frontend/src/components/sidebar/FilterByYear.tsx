@@ -14,14 +14,18 @@ import { Dispatch } from "redux";
 import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { useSelector } from "react-redux"
-import { setMovies, setFilterGenres, emptyMovies, removeFilterGenres } from "../../pages/mainPageSlice"
+import { setMovies, emptyMovies, setFilterEndDate, setFilterStartDate } from "../../pages/mainPageSlice"
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  setStateStartDate: (year: number) => dispatch(setFilterStartDate(year)),
+  setStateEndDate: (year: number) => dispatch(setFilterEndDate(year)),
   emptyMovies: () => dispatch(emptyMovies())
 });
 
 export const FilterByYear: FunctionComponent = () => {
+
+  const { setMovies, emptyMovies, setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
 
   function convertUnixDateToDate(unixNumber: number) {
     const date = new Date(unixNumber * 1000);
@@ -42,8 +46,12 @@ export const FilterByYear: FunctionComponent = () => {
     },
   }));
 
-  console.log(convertUnixDateToDate(1551830400));
-  console.log(convertDateToUnixDate(new Date(1551830400)));
+  function setStartYear(year: number) {
+    setStateStartDate(convertDateToUnixDate(new Date(year, 0)));
+  }
+  function setEndYear(year: number) {
+    setStateEndDate(convertDateToUnixDate(new Date(year, 0)));
+  }
 
   return (
     <>
