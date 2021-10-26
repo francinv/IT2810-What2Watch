@@ -9,15 +9,12 @@ import { styled } from "@mui/material/styles";
 import Button, { ButtonProps } from '@mui/material/Button';
 
 export const FilterByYear: FunctionComponent = () => {
-  const [startYear, setStartYear] = useState<Date | null>(new Date());
-  const [endYear, setEndYear] = useState<Date | null>(new Date());
 
   function convertUnixDateToDate(unixNumber: number) {
     const date = new Date(unixNumber * 1000);
     //console.log(date.getFullYear());
     return date;
   }
-
   function convertDateToUnixDate(date: Date) {
     const unixTimeStamp = date.getTime() / 1000;
     return unixTimeStamp;
