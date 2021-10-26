@@ -23,7 +23,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
   emptyMovies: () => dispatch(emptyMovies())
 });
 
-export const FilterByYear: FunctionComponent = () => {
+export const FilterByYear: FunctionComponent = () => { 
 
   const { setMovies, emptyMovies, setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
 
