@@ -30,9 +30,13 @@ const MainPageSlice = createSlice({
         setFilterGenres(state, action) {
             console.log("Payload", action.payload)
             state.filterGenre = action.payload
+        },
+        emptyMovies(state) {
+            console.log("Emptying movies")
+            state.movies = []
         }
     },
 })
 
-export const { setMovies, setLoading, setFilterGenres } = MainPageSlice.actions
+export const { setMovies, setLoading, setFilterGenres, emptyMovies } = MainPageSlice.actions
 export default MainPageSlice.reducer

@@ -12,7 +12,7 @@ import { Dispatch } from "redux";
 import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { useSelector } from "react-redux"
-import { setMovies, setFilterGenres } from "../../pages/mainPageSlice"
+import { setMovies, setFilterGenres, emptyMovies } from "../../pages/mainPageSlice"
 
 
 export interface FilterByGenreProps {
@@ -30,14 +30,15 @@ const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
-  setFilter: (filter: string[]) => dispatch(setFilterGenres(filter))
+  setFilter: (filter: string[]) => dispatch(setFilterGenres(filter)),
+  emptyMovies: () => dispatch(emptyMovies())
 });
 
 export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
 
-  const { setMovies, setFilter } = actionDispatch(useAppDispatch())
+  const { setMovies, setFilter, emptyMovies } = actionDispatch(useAppDispatch())
   const nextPage = useSelector(selectNextPage)
   const searchQuery = useSelector(selectFilterSearch)
   const searchGenre = useSelector(selectFilterGenre)
@@ -49,7 +50,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
       console.log("Error", error);
     });
     if(movies) {
-      setMovies([]);
+      emptyMovies();
       setMovies(movies);
     }
   }
