@@ -1,44 +1,47 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
+import { Row, Col, Nav } from "react-bootstrap"
 import React, { useEffect } from "react";
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from './selectors';
+import { useSelector } from "react-redux"
 import MovieService from "../services/index";
-import { Row, Col } from "react-bootstrap";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
-import { setMovies } from "./mainPageSlice"
-import { getAllMovies } from "../services/__generated__/getAllMovies"
+import { setMovies, setLoading } from "./mainPageSlice"
+import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Layout } from 'antd';
 import CustomizedTables from "../components/movies";
 import './MainPage.css';
+import { BottomScrollListener } from "react-bottom-scroll-listener";
 
 const { Header, Content, Sider } = Layout;
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies))
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  setLoading: (loading: boolean) => dispatch(setLoading(loading))
 });
 
 export const MainPage: FunctionComponent = () => {
   const { setMovies } = actionDispatch(useAppDispatch())
-
+  const nextPage = useSelector(selectNextPage)
+  const searchQuery = useSelector(selectFilterSearch)
+  const searchGenre = useSelector(selectFilterGenre)
+  const dateStart = useSelector(selectFilterDateStart)
+  const dateEnd = useSelector(selectFilterDateEnd)
   const fetchMovies = async () => {
-    const movies = await MovieService.getAllMovies().catch((error) => {
+    console.log("Caller fetch i mainpagekomponent, Next page:", nextPage, " Search query:", searchQuery, " searchGenre:", searchGenre, " dateStart:", dateStart, " dateEnd:", dateEnd)
+
+    const movies = await MovieService.getMoviesBySearch(nextPage, searchGenre).catch((error) => {
       console.log("Error", error);
     });
-
-    
-
     if(movies) {
       setMovies(movies);
-      console.log(movies[1]);
     }
   }
-
   useEffect(() => {
     fetchMovies();
-    console.log("useEffect")
-  }, [])
-
+  }, []) 
 
 
   return (
@@ -51,11 +54,13 @@ export const MainPage: FunctionComponent = () => {
       <div className ="innercontainer">
         <SideBar />
         <div className="moviecontainer">
-          <CustomizedTables />
+          <BottomScrollListener onBottom={fetchMovies}/>
+          <CustomizedTables/>
         </div>
       </div>
     </>
   );
 };
+
 
 export default MainPage;

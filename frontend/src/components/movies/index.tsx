@@ -1,69 +1,55 @@
 
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { useSelector } from "react-redux"
 import './index.css';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+import { selectMovies } from '../../pages/selectors';
+import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { useState } from 'react';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
 
 export default function MovieTable() {
-    const data = 
-        [
-            {title:"Shazam!", release_date:1553299200, genres:["Action","Comedy","Fantasy"]},
-            {title:"Captain Marvel", release_date:1551830400, genres:["Action","Adventure","Science Fiction"]},
-            {title:"Escape Room", release_date:1546473600, genres:["Thriller","Action","Horror","Science Fiction"]},
-            {title:"How to Train Your Dragon: The Hidden World",release_date:1546473600,genres:["Animation ","Family","Adventure"]},
-            {title:"Glass",release_date:1547596800,genres:["Documentary"]},
-            {title:"Doraemon the Movie: Nobita's Treasure Island",release_date:1520035200,genres:["Animation"]},
-        ];
+  const movies = useSelector(selectMovies)
+  const [favorited, setFavorited] = useState(false);
+
   return (
-    <TableContainer component={Paper} className="tablecontainer">
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Movie Title</StyledTableCell>
-            <StyledTableCell align="right">Release Date</StyledTableCell>
-            <StyledTableCell align="right">Genre</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {
-                data.map((movie) => (
-                    <StyledTableRow key={movie.title}>
-                        <StyledTableCell component="th" scope="row">
-                            {movie.title}
-                        </StyledTableCell>
-                        <StyledTableCell align="right">{movie.release_date}</StyledTableCell>
-                        <StyledTableCell align="right">{movie.genres}</StyledTableCell>
-                    </StyledTableRow> 
-                ))
-            },
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+    <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
+      {
+      movies?.map((movie: any) => (
+        <Grid item xs={2} sm={4} md={4} key={movie.title}>
+          <Card sx={{ maxWidth: 345, height:'100%'}}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="auto"
+                width="auto"
+                image="https://m.media-amazon.com/images/I/91WNnQZdybL._AC_SL1500_.jpg"
+                alt="Movie poster"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {movie?.title}
+                </Typography>
+                <IconButton
+                >
+                  { favorited
+                    ? <FavoriteIcon color="error"/>
+                    : <FavoriteBorderIcon/>
+                  }
+                </IconButton>
+                <Typography variant="body2" color="text.secondary">
+                  {movie?.release_date}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {movie?.genres}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      ))}
+
+    </Grid>
+  )
 }

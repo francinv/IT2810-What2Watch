@@ -1,6 +1,7 @@
 import { apolloClient } from "../graphql";
 import { getAllMovies } from "./__generated__/getAllMovies";
-import { GET_ALL_MOVIES } from "./movieQueries";
+import { searchMovies } from "./__generated__/searchMovies";
+import { GET_ALL_MOVIES, GET_MOVIES_BY_SEARCH } from "./movieQueries";
 
 class MovieService {
 
@@ -10,12 +11,33 @@ class MovieService {
             if(!response || !response.data) {
                 throw new Error("Cannot get movies")
             }
-            return response.data.getAllMovies;
+            return response.data.getAllMovies
         } catch(error) {
             throw(error)
         }
     } 
 
+    async getMoviesBySearch(page: number, searchGenre: String[]):
+        Promise<searchMovies["getMoviesBySearch"]> {
+        try { 
+            const response = await apolloClient.query({
+                query: GET_MOVIES_BY_SEARCH,
+                variables: { 
+                    page: page,
+                    searchGenre: searchGenre? searchGenre : ["Action"],
+                    searchQuery: "", 
+                    searchDateStart: -1635203598,
+                    searchDateEnd: 1635203598
+                }
+            })
+            if(!response || !response.data) {
+                throw new Error("Cannot get movies")
+            }
+            return response.data.getMoviesBySearch;
+        } catch(error) {
+            throw(error)
+        }
+    }
 }
 
 export default new MovieService();

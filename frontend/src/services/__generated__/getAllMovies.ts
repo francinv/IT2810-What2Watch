@@ -9,6 +9,7 @@
 
 export interface getAllMovies_getAllMovies {
   __typename: "Movie";
+  id: string | null;
   title: string | null;
   release_date: number | null;
   genres: (string | null)[] | null;

@@ -102,52 +102,44 @@
         },
         {
           "kind": "OBJECT",
-          "name": "Query",
+          "name": "fullMovie",
           "description": null,
           "fields": [
             {
-              "name": "getMoviePage",
+              "name": "id",
               "description": null,
-              "args": [
-                {
-                  "name": "page",
-                  "description": null,
-                  "type": {
-                    "kind": "SCALAR",
-                    "name": "Int",
-                    "ofType": null
-                  },
-                  "defaultValue": null
-                }
-              ],
+              "args": [],
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Movie",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
-              "name": "getAllMovies",
+              "name": "overview",
               "description": null,
               "args": [],
               "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Movie",
-                  "ofType": null
-                }
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
-            },
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Query",
+          "description": null,
+          "fields": [
             {
               "name": "getMovieById",
               "description": null,
@@ -169,7 +161,7 @@
               ],
               "type": {
                 "kind": "OBJECT",
-                "name": "Movie",
+                "name": "fullMovie",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -179,6 +171,26 @@
               "name": "getMoviesBySearch",
               "description": null,
               "args": [
+                {
+                  "name": "searchDateStart",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "searchDateEnd",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
                 {
                   "name": "searchQuery",
                   "description": null,
@@ -193,9 +205,13 @@
                   "name": "searchGenre",
                   "description": null,
                   "type": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 },
