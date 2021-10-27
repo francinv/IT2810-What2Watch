@@ -13,6 +13,12 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
+import { useAppDispatch } from "../../services/hooks"
+import { Dispatch } from "redux";
+import MovieService from "../../services/index";
+import { getAllMovies } from "../../services/__generated__/getAllMovies"
+import { useSelector } from "react-redux"
+import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,6 +62,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const actionDispatch = (dispatch: Dispatch) => ({
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  setSearch: (query: string) => dispatch(setSearchQuery(query)),
+  emptyMovies: () => dispatch(emptyMovies())
+});
+
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -66,6 +78,12 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  {}
+
+  function inputChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+    console.log(event.target.value)
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -91,6 +109,8 @@ export default function NavBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={(event) => {inputChange(event)}}
+              autoFocus={true}
             />
           </Search>
           <div>

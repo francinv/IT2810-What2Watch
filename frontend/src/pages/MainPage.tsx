@@ -23,11 +23,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 export const MainPage: FunctionComponent = () => {
   const { setMovies } = actionDispatch(useAppDispatch())
-  const nextPage = useSelector(selectNextPage)
-  const searchQuery = useSelector(selectFilterSearch)
-  const searchGenre = useSelector(selectFilterGenre)
-  const dateStart = useSelector(selectFilterDateStart)
-  const dateEnd = useSelector(selectFilterDateEnd)
   const state = useSelector(selectStateExceptMovies)
   const fetchMovies = async () => {
     const movies = await MovieService.getMoviesBySearch(state).catch((error) => {

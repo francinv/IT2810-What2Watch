@@ -52,5 +52,5 @@ const MainPageSlice = createSlice({
     },
 })
 
-export const { setMovies, setFilterGenres, emptyMovies, removeFilterGenres, setFilterEndDate, setFilterStartDate} = MainPageSlice.actions
+export const { setMovies, setFilterGenres, emptyMovies, removeFilterGenres, setFilterEndDate, setFilterStartDate, setSearchQuery} = MainPageSlice.actions
 export default MainPageSlice.reducer

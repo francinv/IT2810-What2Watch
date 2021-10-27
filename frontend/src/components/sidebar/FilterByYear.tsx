@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";   
 import Button, { ButtonProps } from '@mui/material/Button';
-import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd, selectStateExceptMovies } from '../../pages/selectors';
+import { selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
 import MovieService from "../../services/index";
@@ -38,11 +38,6 @@ export const FilterByYear: FunctionComponent = () => {
     }
   }
 
-  function convertUnixDateToDate(unixNumber: number) {
-    const date = new Date(unixNumber * 1000);
-    //console.log(date.getFullYear());
-    return date;
-  }
   function convertDateToUnixDate(date: Date) {
     return date.getTime() / 1000;
   }
@@ -63,8 +58,11 @@ export const FilterByYear: FunctionComponent = () => {
     
   }
   function setEndYear(year: number | null) {
-    console.log(year);
     if (year !== null) {setStateEndDate(convertDateToUnixDate(new Date(year)));}
+  }
+
+  function testMethod(method: null) {
+    console.log("test");
   }
 
   return (
@@ -85,6 +83,7 @@ export const FilterByYear: FunctionComponent = () => {
             views={['year']}
             label='To'
             value={null}
+            onAccept={(value) => {testMethod(value)}}
             onChange={(newValue) => {
               setEndYear(newValue);
             }}
@@ -94,7 +93,7 @@ export const FilterByYear: FunctionComponent = () => {
         </LocalizationProvider>
       </Box>
       <div className="button-container">
-        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>}>Filter</FilterButton>
+        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton>
       </div>
     </>
   );

@@ -40,12 +40,6 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
 }: FilterByGenreProps) => {
 
   const { setMovies, setFilter, emptyMovies, removeFilter } = actionDispatch(useAppDispatch())
-  
-  const nextPage = useSelector(selectNextPage)
-  const searchQuery = useSelector(selectFilterSearch)
-  const searchGenre = useSelector(selectFilterGenre)
-  const dateStart = useSelector(selectFilterDateStart)
-  const dateEnd = useSelector(selectFilterDateEnd)
   const state = useSelector(selectStateExceptMovies)
   const fetchMovies = async () => {
     emptyMovies();
