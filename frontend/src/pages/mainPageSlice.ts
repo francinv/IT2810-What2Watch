@@ -36,15 +36,9 @@ const MainPageSlice = createSlice({
         },
         setFilterGenres(state, action) {
             console.log("Payload", action.payload)
-            state.filterGenre = [...state.filterGenre, action.payload]
-        },
-        removeFilterGenres(state, action) {
-            const index = state.filterGenre.indexOf(action.payload, 0)
-            if (index > -1) {
-                const temp = state.filterGenre
-                temp.splice(index, 1)
-                state.filterGenre = temp
-            }  
+            state.nextPage = 0
+            state.movies = []
+            state.filterGenre = action.payload
         },
         emptyMovies(state) {
             console.log("Emptying movies")
@@ -54,5 +48,5 @@ const MainPageSlice = createSlice({
     },
 })
 
-export const { setMovies, setFilterGenres, emptyMovies, removeFilterGenres, setFilterEndDate, setFilterStartDate, setSearchQuery} = MainPageSlice.actions
+export const { setMovies, setFilterGenres, emptyMovies, setFilterEndDate, setFilterStartDate, setSearchQuery} = MainPageSlice.actions
 export default MainPageSlice.reducer
