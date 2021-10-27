@@ -9,10 +9,11 @@
 
 export interface searchMovies_getMoviesBySearch {
   __typename: "Movie";
-  id: string | null;
   title: string | null;
   genres: (string | null)[] | null;
   release_date: number | null;
+  overview: string | null;
+  poster: string | null;
 }
 
 export interface searchMovies {

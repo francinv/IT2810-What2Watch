@@ -6,6 +6,8 @@ export const GET_MOVIES_BY_SEARCH = gql`
             title
             genres
             release_date
+            overview
+            poster
         }
     }
 `;
