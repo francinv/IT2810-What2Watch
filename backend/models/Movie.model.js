@@ -11,6 +11,12 @@ const MovieSchema = new mongoose.Schema({
     },
     genres: {
         type: [String]
+    },
+    overview: {
+        type: String
+    },
+    poster: {
+        type: String
     }
 
 })

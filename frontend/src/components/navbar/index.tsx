@@ -15,7 +15,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
-import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,7 +60,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
   setSearch: (query: string) => dispatch(setSearchQuery(query)),
   emptyMovies: () => dispatch(emptyMovies())
 });
