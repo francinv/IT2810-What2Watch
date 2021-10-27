@@ -72,7 +72,7 @@ export const FilterByYear: FunctionComponent = () => {
           <DatePicker
             views={['year']}
             label='From year'
-            value={2021}
+            value={-1635203598}
             onChange={(newValue) => {
               setStartYear(newValue);
             }}
@@ -82,7 +82,7 @@ export const FilterByYear: FunctionComponent = () => {
           <DatePicker
             views={['year']}
             label='To year'
-            value={2021}
+            value={1635203598}
             onChange={(newValue) => {
               setEndYear(newValue);
             }}

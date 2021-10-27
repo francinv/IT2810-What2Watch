@@ -36,9 +36,11 @@ const MainPageSlice = createSlice({
             state.filterGenre = [...state.filterGenre, action.payload]
         },
         removeFilterGenres(state, action) {
-            const index = state.filterGenre.indexOf(action.payload)
+            const index = state.filterGenre.indexOf(action.payload, 0)
             if (index > -1) {
-                state.filterGenre = state.filterGenre.splice(index, 1)
+                const temp = state.filterGenre
+                temp.splice(index, 1)
+                state.filterGenre = temp
             }  
         },
         emptyMovies(state) {

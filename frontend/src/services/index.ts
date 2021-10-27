@@ -19,6 +19,13 @@ class MovieService {
 
     async getMoviesBySearch(args: (number | String | String[])[]):
         Promise<searchMovies["getMoviesBySearch"]> {
+        var genres = undefined;
+        if (args[2].toLocaleString().length == 0) {
+            genres = ["Action", "Adventure"]
+        }
+        else {
+            genres = args[2]
+        }
         try { 
             console.log(args)
             const response = await apolloClient.query({
@@ -26,7 +33,7 @@ class MovieService {
                 variables: { 
                     page: args[0],
                     searchQuery: args[1],
-                    searchGenre: args[2],
+                    searchGenre: genres,
                     searchDateStart: args[3],
                     searchDateEnd: args[4]
                     /* 1635203598 */
