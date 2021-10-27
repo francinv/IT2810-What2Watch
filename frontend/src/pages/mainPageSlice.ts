@@ -16,15 +16,21 @@ const MainPageSlice = createSlice({
     initialState,
     reducers: {
         setMovies(state, action) {
+            console.log("next page", state.nextPage)
             state.nextPage += 1
             if (state.movies !== null) {
                 state.movies = state.movies.concat(action.payload)
             }
         },
-        setLoading(state, action) {
-            state.loading = action.payload
+        setFilterStartDate(state, action) {
+            console.log(action.payload, "date")
+            state.filterDateStart = action.payload
+        },
+        setFilterEndDate(state, action) {
+            state.filterDateEnd = action.payload
         },
         setSearchQuery(state, action) {
+            console.log("Set search query")
             state.filterSearch = action.payload
         },
         setFilterGenres(state, action) {
@@ -32,9 +38,11 @@ const MainPageSlice = createSlice({
             state.filterGenre = [...state.filterGenre, action.payload]
         },
         removeFilterGenres(state, action) {
-            const index = state.filterGenre.indexOf(action.payload)
+            const index = state.filterGenre.indexOf(action.payload, 0)
             if (index > -1) {
-                state.filterGenre = state.filterGenre.splice(index, 1)
+                const temp = state.filterGenre
+                temp.splice(index, 1)
+                state.filterGenre = temp
             }  
         },
         emptyMovies(state) {
@@ -45,5 +53,5 @@ const MainPageSlice = createSlice({
     },
 })
 
-export const { setMovies, setLoading, setFilterGenres, emptyMovies, removeFilterGenres } = MainPageSlice.actions
+export const { setMovies, setFilterGenres, emptyMovies, removeFilterGenres, setFilterEndDate, setFilterStartDate, setSearchQuery} = MainPageSlice.actions
 export default MainPageSlice.reducer

@@ -13,6 +13,13 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
+import { useAppDispatch } from "../../services/hooks"
+import { Dispatch } from "redux";
+import MovieService from "../../services/index";
+import { getAllMovies } from "../../services/__generated__/getAllMovies"
+import { useSelector } from "react-redux"
+import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
+import { selectStateExceptMovies } from '../../pages/selectors';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -56,8 +63,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const actionDispatch = (dispatch: Dispatch) => ({
+  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
+  setSearch: (query: string) => dispatch(setSearchQuery(query)),
+  emptyMovies: () => dispatch(emptyMovies())
+});
+
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [localSearch, setLocalSearch] = React.useState<string>("")
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -66,6 +80,36 @@ export default function NavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { setMovies, setSearch, emptyMovies} = actionDispatch(useAppDispatch())
+  const state = useSelector(selectStateExceptMovies)
+  const fetchMovies = async () => {
+    emptyMovies();
+    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
+      console.log("Error", error);
+    });
+    if(movies) {
+      setMovies(movies);
+    }
+  }
+
+  /* React.useEffect(() => {
+  }, [onSearch]) 
+  
+  USE TO FIX BUG: update other states
+
+  */
+
+  const keyPress = (event: any) => {
+    if (event.keyCode === 13) {
+      setSearch(localSearch)
+      fetchMovies()
+    }
+  };
+
+  function inputChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+    setLocalSearch(event.target.value)
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -91,6 +135,9 @@ export default function NavBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onKeyDown={keyPress}
+              onChange={(event) => {inputChange(event)}}
+              autoFocus={true}
             />
           </Search>
           <div>
