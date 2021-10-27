@@ -72,7 +72,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [localSearch, setLocalSearch] = React.useState<string>("")
-  const [onSearch, setOnSearch] = React.useState<boolean>(false)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

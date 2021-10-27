@@ -31,7 +31,7 @@ export const MainPage: FunctionComponent = () => {
   }
   useEffect(() => {
     fetchMovies();
-  }, []) 
+  }) 
 
 
   return (

@@ -4,7 +4,6 @@ import { FunctionComponent, useState } from "react";
 import {
   ProSidebar,
   Menu,
-  MenuItem,
   SubMenu,
   SidebarContent,
   SidebarHeader,
