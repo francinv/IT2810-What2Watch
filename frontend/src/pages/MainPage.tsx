@@ -14,6 +14,7 @@ import { Layout } from 'antd';
 import CustomizedTables from "../components/movies";
 import './MainPage.css';
 import { BottomScrollListener } from "react-bottom-scroll-listener";
+import MovieTable from "../components/movies";
 
 const { Header, Content, Sider } = Layout;
 
@@ -44,6 +45,17 @@ export const MainPage: FunctionComponent = () => {
     fetchMovies();
   };
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => {
+    setIsModalVisible(wasModalVisible => !wasModalVisible);
+  }
+
+  const closeModal = () => {
+    if(isModalVisible){
+      setIsModalVisible(false);
+    }
+  }
+
   return (
     <>
       <Row>
@@ -53,9 +65,9 @@ export const MainPage: FunctionComponent = () => {
       </Row>
       <div className ="innercontainer">
         <SideBar />
-        <div className="moviecontainer">
+        <div className="moviecontainer" onClick={closeModal}>
           <BottomScrollListener onBottom={fetchMovies}/>
-          <CustomizedTables/>
+          <MovieTable onBackDropClick={toggleModal} isModalVisible={isModalVisible}  />
         </div>
       </div>
     </>
