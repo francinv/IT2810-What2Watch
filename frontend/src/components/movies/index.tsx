@@ -27,7 +27,7 @@ export default function MovieTable() {
 
   return (
     <div>
-      <BaseModalWrapper isModalVisible={isModalVisible} onBackDropClick={toggleModal} movies={movies}/>
+      <BaseModalWrapper isModalVisible={isModalVisible} onBackDropClick={toggleModal} movie={modalMovie!}/>
       <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
         {
         movies?.map((movie: any) => (
