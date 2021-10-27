@@ -67,6 +67,17 @@ export const MainPage: FunctionComponent = () => {
     }
   }
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => {
+    setIsModalVisible(wasModalVisible => !wasModalVisible);
+  }
+
+  const closeModal = () => {
+    if(isModalVisible){
+      setIsModalVisible(false);
+    }
+  }
+
   return (
     <>
       <Row>
