@@ -16,16 +16,17 @@ const MainPageSlice = createSlice({
     initialState,
     reducers: {
         setMovies(state, action) {
+            console.log("next page", state.nextPage)
             state.nextPage += 1
             if (state.movies !== null) {
                 state.movies = state.movies.concat(action.payload)
             }
         },
         setFilterStartDate(state, action) {
+            console.log(action.payload, "date")
             state.filterDateStart = action.payload
         },
         setFilterEndDate(state, action) {
-            console.log("set filter")
             state.filterDateEnd = action.payload
         },
         setSearchQuery(state, action) {

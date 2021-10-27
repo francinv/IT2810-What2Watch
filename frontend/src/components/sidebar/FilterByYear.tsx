@@ -44,8 +44,7 @@ export const FilterByYear: FunctionComponent = () => {
     return date;
   }
   function convertDateToUnixDate(date: Date) {
-    const unixTimeStamp = date.getTime() / 1000;
-    return unixTimeStamp;
+    return date.getTime() / 1000;
   }
   
   const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -58,11 +57,14 @@ export const FilterByYear: FunctionComponent = () => {
   }));
 
   function setStartYear(year: number | null) {
-    if (year !== null) {setStateStartDate(convertDateToUnixDate(new Date(year, 0)));}
+    if (year !== null) {
+      setStateStartDate(convertDateToUnixDate(new Date(year)))
+    }
     
   }
   function setEndYear(year: number | null) {
-    if (year !== null) {setStateEndDate(convertDateToUnixDate(new Date(year, 0)));}
+    console.log(year);
+    if (year !== null) {setStateEndDate(convertDateToUnixDate(new Date(year)));}
   }
 
   return (
@@ -71,8 +73,8 @@ export const FilterByYear: FunctionComponent = () => {
         <LocalizationProvider dateAdapter={AdapterDateFns} > 
           <DatePicker
             views={['year']}
-            label='From year'
-            value={-1635203598}
+            label='From'
+            value={null}
             onChange={(newValue) => {
               setStartYear(newValue);
             }}
@@ -81,8 +83,8 @@ export const FilterByYear: FunctionComponent = () => {
           />
           <DatePicker
             views={['year']}
-            label='To year'
-            value={1635203598}
+            label='To'
+            value={null}
             onChange={(newValue) => {
               setEndYear(newValue);
             }}
