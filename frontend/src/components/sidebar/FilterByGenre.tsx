@@ -27,7 +27,6 @@ const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }));
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
   setFilter: (filter: string) => dispatch(setFilterGenres(filter)),
   removeFilter: (filter: string) => dispatch(removeFilterGenres(filter)),
   emptyMovies: () => dispatch(emptyMovies())
@@ -37,7 +36,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
 
-  const { setFilter, removeFilter } = actionDispatch(useAppDispatch())
+  const { setFilter, removeFilter, emptyMovies } = actionDispatch(useAppDispatch())
 
   const changeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {

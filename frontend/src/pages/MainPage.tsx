@@ -28,6 +28,7 @@ export const MainPage: FunctionComponent = () => {
   const filterDateEnd = useSelector(selectFilterDateEnd);
 
   const { setMovies } = actionDispatch(useAppDispatch())
+
   const fetchMovies = async () => {
     const movies = await MovieService.getMoviesBySearch(
       nextPage,
@@ -38,22 +39,21 @@ export const MainPage: FunctionComponent = () => {
     ).catch((error) => {
       console.log("Error", error);
     });
-    
+
     if (movies) {
       console.log("setmovies mainpage")
       setMovies(movies);
     }
   };
-  useEffect(() => {
-    console.log("useeffect fetchmovies")
-    fetchMovies();
-  }, []) 
 
   function fetchMore() {
     console.log("bottomscroll fetchmovies")
     fetchMovies()
   }
 
+  useEffect(() => {
+    fetchMovies();
+  }, [filterSearchQuery, filterGenre, filterDateStart, filterDateEnd])
 
   return (
     <>

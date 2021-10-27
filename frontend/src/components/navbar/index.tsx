@@ -15,7 +15,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
-import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
 
@@ -79,7 +78,7 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
-  const { setSearch} = actionDispatch(useAppDispatch())
+  const { setSearch } = actionDispatch(useAppDispatch())
 
   /* React.useEffect(() => {
   }, [onSearch]) 
