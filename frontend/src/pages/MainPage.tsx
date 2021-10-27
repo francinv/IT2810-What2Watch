@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";
@@ -9,7 +9,6 @@ import { setMovies } from "./mainPageSlice"
 import { searchMovies } from "../services/__generated__/searchMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Row, Col } from "react-bootstrap";
-import CustomizedTables from "../components/movies";
 import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
@@ -67,17 +66,6 @@ export const MainPage: FunctionComponent = () => {
     }
   }
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const toggleModal = () => {
-    setIsModalVisible(wasModalVisible => !wasModalVisible);
-  }
-
-  const closeModal = () => {
-    if(isModalVisible){
-      setIsModalVisible(false);
-    }
-  }
-
   return (
     <>
       <Row>
@@ -91,6 +79,7 @@ export const MainPage: FunctionComponent = () => {
           <SortDropDown />
           <BottomScrollListener onBottom={fetchMore}/>
           <MovieTable onBackDropClick={toggleModal} isModalVisible={isModalVisible}  />
+        </div>
       </div>
     </>
   );
