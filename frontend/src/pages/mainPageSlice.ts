@@ -22,12 +22,11 @@ const MainPageSlice = createSlice({
                 state.movies = state.movies.concat(action.payload)
             }
         },
-        setFilterStartDate(state, action) {
-            console.log(action.payload, "date")
-            state.filterDateStart = action.payload
-        },
-        setFilterEndDate(state, action) {
-            state.filterDateEnd = action.payload
+        setFilterDates(state, action) {
+            state.nextPage = 0
+            state.movies = []
+            state.filterDateStart = action.payload[0]
+            state.filterDateEnd = action.payload[1]
         },
         setSearchQuery(state, action) {
             state.nextPage = 0
@@ -48,5 +47,5 @@ const MainPageSlice = createSlice({
     },
 })
 
-export const { setMovies, setFilterGenres, emptyMovies, setFilterEndDate, setFilterStartDate, setSearchQuery} = MainPageSlice.actions
+export const { setMovies, setFilterGenres, emptyMovies, setFilterDates, setSearchQuery} = MainPageSlice.actions
 export default MainPageSlice.reducer
