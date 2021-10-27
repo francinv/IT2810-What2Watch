@@ -4,7 +4,7 @@ import Modal from './Modal';
 interface BaseModalWrapperProps {
     isModalVisible: boolean;
     onBackDropClick: () => void;
-    movies: [];
+    movie: [];
 }
 
 const BaseModalWrapper: React.FC<BaseModalWrapperProps> = ({onBackDropClick, isModalVisible}) => {
