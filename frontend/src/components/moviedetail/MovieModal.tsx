@@ -28,7 +28,7 @@ const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
 
     return (
         <div className="modal-container">
-            <img src="https://m.media-amazon.com/images/I/91WNnQZdybL._AC_SL1500_.jpg" alt="Movie Poster"/>
+            <img src={movie?.poster} alt="Movie Poster"/>
             <div className="content-modal-container">
                 <div className="content-header">
                     <h1>{movie?.title}</h1>
@@ -39,11 +39,7 @@ const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
                 </div>
                 <div className="content-flex">
                     <div className="col-flex left-flex">
-                        <p>Her vil beskrivelse for filmen komme, men foreløpig kun eksempel tekst. 
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Phasellus ac diam blandit, eleifend risus eget, suscipit eros. 
-                            Etiam porta vulputate egestas. Phasellus mauris arcu, imperdiet ut sem et, 
-                            pellentesque sodales elit.</p>
+                        <p>{movie?.overview}</p>
                     </div>
                     <div className="col-flex right-flex">
                         <h3>About the movie </h3>
