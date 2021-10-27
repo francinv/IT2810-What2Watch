@@ -30,6 +30,7 @@ const MainPageSlice = createSlice({
             state.filterDateEnd = action.payload
         },
         setSearchQuery(state, action) {
+            console.log("Set search query")
             state.filterSearch = action.payload
         },
         setFilterGenres(state, action) {

@@ -1,21 +1,19 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent } from "react";
 import React, { useEffect } from "react";
-import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd, selectStateExceptMovies } from './selectors';
+import { selectStateExceptMovies } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
 import { setMovies } from "./mainPageSlice"
-import { getAllMovies, getAllMovies_getAllMovies } from "../services/__generated__/getAllMovies"
+import { getAllMovies } from "../services/__generated__/getAllMovies"
 import { useAppDispatch } from "../services/hooks"
-import { Layout } from 'antd';
-import { Row, Col, Nav } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import CustomizedTables from "../components/movies";
 import './MainPage.css';
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 
-const { Header, Content, Sider } = Layout;
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies))

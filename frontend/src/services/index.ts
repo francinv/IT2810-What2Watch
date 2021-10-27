@@ -20,7 +20,7 @@ class MovieService {
     async getMoviesBySearch(args: (number | String | String[])[]):
         Promise<searchMovies["getMoviesBySearch"]> {
         var genres = undefined;
-        if (args[2].toLocaleString().length == 0) {
+        if (args[2].toLocaleString().length === 0) {
             genres = ["Action", "Adventure"]
         }
         else {
