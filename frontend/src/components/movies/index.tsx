@@ -36,7 +36,7 @@ const MovieTable: React.FC<MovieTableProps> = ({isModalVisible, onBackDropClick}
                   component="img"
                   height="auto"
                   width="auto"
-                  image="https://m.media-amazon.com/images/I/91WNnQZdybL._AC_SL1500_.jpg"
+                  image={movie?.poster}
                   alt="Movie poster"
                 />
                 <CardContent>
