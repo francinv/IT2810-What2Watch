@@ -1,5 +1,4 @@
-import { FunctionComponent } from "react";
-import React, { useEffect } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { selectStateExceptMovies } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";

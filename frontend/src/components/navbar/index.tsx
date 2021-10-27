@@ -72,6 +72,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [localSearch, setLocalSearch] = React.useState<string>("")
+  const [onSearch, setOnSearch] = React.useState<boolean>(false)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -82,7 +83,6 @@ export default function NavBar() {
   };
 
   const { setMovies, setSearch, emptyMovies} = actionDispatch(useAppDispatch())
-
   const state = useSelector(selectStateExceptMovies)
   const fetchMovies = async () => {
     emptyMovies();
@@ -94,10 +94,17 @@ export default function NavBar() {
     }
   }
 
+  /* React.useEffect(() => {
+  }, [onSearch]) 
+  
+  USE TO FIX BUG: update other states
+
+  */
+
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
       setSearch(localSearch)
-    fetchMovies()
+      fetchMovies()
     }
   };
 
