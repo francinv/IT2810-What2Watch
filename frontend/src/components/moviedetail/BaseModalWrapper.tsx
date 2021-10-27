@@ -1,17 +1,21 @@
-import React from "react";
-import Modal from './Modal';
+import React, { useEffect } from "react";
+import MovieModal from './MovieModal';
 
 interface BaseModalWrapperProps {
     isModalVisible: boolean;
-    onBackDropClick: () => void;
-    movie: [];
+    movie: any;
+    onCloseClick: () => void;
 }
 
-const BaseModalWrapper: React.FC<BaseModalWrapperProps> = ({onBackDropClick, isModalVisible}) => {
-    if (isModalVisible){
+const BaseModalWrapper: React.FC<BaseModalWrapperProps> = ({isModalVisible, movie, onCloseClick}) => {
+    useEffect(() => {
+        console.log(movie);
+    }, [])
+
+    if (!isModalVisible){
         return null;
     }
-    return(<Modal onBackDropClick={onBackDropClick}/>);
+    return(<MovieModal movie={movie} onCloseClick={onCloseClick}/>);
 }
 
 export default BaseModalWrapper;
