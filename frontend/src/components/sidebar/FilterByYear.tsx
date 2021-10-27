@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -7,36 +7,20 @@ import Box from '@mui/material/Box';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";   
 import Button, { ButtonProps } from '@mui/material/Button';
-import { selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
-import MovieService from "../../services/index";
-import { getAllMovies } from "../../services/__generated__/getAllMovies"
-import { useSelector } from "react-redux"
-import { setMovies, emptyMovies, setFilterEndDate, setFilterStartDate } from "../../pages/mainPageSlice"
+import { setFilterDates } from "../../pages/mainPageSlice"
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
-  setStateStartDate: (year: number) => dispatch(setFilterStartDate(year)),
-  setStateEndDate: (year: number) => dispatch(setFilterEndDate(year)),
-  emptyMovies: () => dispatch(emptyMovies())
+  setDates: (year: [number, number]) => dispatch(setFilterDates(year)),
 });
 
 export const FilterByYear: FunctionComponent = () => { 
 
-  const { setMovies, emptyMovies, setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
+  const [startDate, setStateStartDate] = useState<number>(1635203598)
+  const [endDate, setStateEndDate] = useState<number>(1635203598)
 
-  const state = useSelector(selectStateExceptMovies)
-
-  const fetchMovies = async () => {
-    emptyMovies();
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
-      console.log("Error", error);
-    });
-    if(movies) {
-      setMovies(movies);
-    }
-  }
+  const { setDates } = actionDispatch(useAppDispatch())
 
   function convertDateToUnixDate(date: Date) {
     return date.getTime() / 1000;
@@ -61,9 +45,12 @@ export const FilterByYear: FunctionComponent = () => {
     if (year !== null) {setStateEndDate(convertDateToUnixDate(new Date(year)));}
   }
 
-  function testMethod(method: null) {
-    console.log("test");
+  function setFilters() {
+    if (endDate > startDate) {
+      setDates([startDate, endDate])
+    }
   }
+
 
   return (
     <>
@@ -83,7 +70,6 @@ export const FilterByYear: FunctionComponent = () => {
             views={['year']}
             label='To'
             value={null}
-            onAccept={(value) => {testMethod(value)}}
             onChange={(newValue) => {
               setEndYear(newValue);
             }}
@@ -93,7 +79,7 @@ export const FilterByYear: FunctionComponent = () => {
         </LocalizationProvider>
       </Box>
       <div className="button-container">
-        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton>
+        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => setFilters()}>Filter</FilterButton>
       </div>
     </>
   );

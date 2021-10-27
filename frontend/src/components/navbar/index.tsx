@@ -15,11 +15,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
-import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
-import { useSelector } from "react-redux"
 import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
-import { selectStateExceptMovies } from '../../pages/selectors';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -81,17 +78,7 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
-  const { setMovies, setSearch, emptyMovies} = actionDispatch(useAppDispatch())
-  const state = useSelector(selectStateExceptMovies)
-  const fetchMovies = async () => {
-    emptyMovies();
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
-      console.log("Error", error);
-    });
-    if(movies) {
-      setMovies(movies);
-    }
-  }
+  const { setSearch } = actionDispatch(useAppDispatch())
 
   /* React.useEffect(() => {
   }, [onSearch]) 
@@ -103,7 +90,6 @@ export default function NavBar() {
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
       setSearch(localSearch)
-      fetchMovies()
     }
   };
 

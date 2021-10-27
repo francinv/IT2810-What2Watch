@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
@@ -6,13 +6,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Button, { ButtonProps } from '@mui/material/Button';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";
-import { selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
-import MovieService from "../../services/index";
-import { getAllMovies } from "../../services/__generated__/getAllMovies"
-import { useSelector } from "react-redux"
-import { setMovies, setFilterGenres, emptyMovies, removeFilterGenres } from "../../pages/mainPageSlice"
+import { setFilterGenres, emptyMovies } from "../../pages/mainPageSlice"
 
 
 export interface FilterByGenreProps {
@@ -29,35 +25,42 @@ const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }));
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies)),
-  setFilter: (filter: string) => dispatch(setFilterGenres(filter)),
-  removeFilter: (filter: string) => dispatch(removeFilterGenres(filter)),
-  emptyMovies: () => dispatch(emptyMovies())
+  setFilter: (filter: string[]) => dispatch(setFilterGenres(filter)),
 });
 
 export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
 
-  const { setMovies, setFilter, emptyMovies, removeFilter } = actionDispatch(useAppDispatch())
-  const state = useSelector(selectStateExceptMovies)
-  const fetchMovies = async () => {
-    emptyMovies();
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
-      console.log("Error", error);
-    });
-    if(movies) {
-      setMovies(movies);
-    }
-  }
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([])
+
+  console.log("this are the selected genres:", selectedGenres)
+
+  const { setFilter } = actionDispatch(useAppDispatch())
+
+  /* setFilter(event.target.name)
+  removeFilter(event.target.name) */
 
   const changeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      setFilter(event.target.name)
+      const temp = [...selectedGenres]
+      temp.push(event.target.name)
+      setSelectedGenres(temp)
+      console.log("checked box temp", temp)
     }
     if (!event.target.checked) {
-      removeFilter(event.target.name)
+      const index = selectedGenres.indexOf(event.target.name, 0)
+            if (index > -1) {
+                const temp = [...selectedGenres]
+                temp.splice(index, 1)
+                setSelectedGenres(temp)
+                console.log("unchecked box temp", temp)
+            }  
     }
+  }
+
+  function updateFilters() {
+    selectedGenres.length > 0 ? setFilter(selectedGenres) : setFilter(genres)
   }
 
   return (
@@ -80,7 +83,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
                 label={genre}
               /> ))
           }
-        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton>
+        {<FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {updateFilters()}}>Filter</FilterButton>}
       </FormGroup>
       
     </Box>

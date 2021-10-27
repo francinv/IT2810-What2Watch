@@ -7,10 +7,4 @@ export const selectFilterSearch = (state: RootState) => state.mainPage.filterSea
 export const selectFilterGenre = (state: RootState) => state.mainPage.filterGenre;
 export const selectFilterDateStart = (state: RootState) => state.mainPage.filterDateStart;
 export const selectFilterDateEnd = (state: RootState) => state.mainPage.filterDateEnd;
-export const selectStateExceptMovies = (state: RootState) => [
-    state.mainPage.nextPage,
-    state.mainPage.filterSearch,
-    state.mainPage.filterGenre,
-    state.mainPage.filterDateStart,
-    state.mainPage.filterDateEnd
-]
+
