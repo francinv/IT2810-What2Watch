@@ -39,18 +39,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
 
-  const { setMovies, setFilter, emptyMovies, removeFilter } = actionDispatch(useAppDispatch())
-  const state = useSelector(selectStateExceptMovies)
-  const fetchMovies = async () => {
-    emptyMovies();
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
-      console.log("Error", error);
-    });
-    if(movies) {
-      console.log("setmovies filterbygenre")
-      setMovies(movies);
-    }
-  }
+  const { setFilter, removeFilter } = actionDispatch(useAppDispatch())
 
   const changeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -81,7 +70,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
                 label={genre}
               /> ))
           }
-        <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton>
+        {/* <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton> */}
       </FormGroup>
       
     </Box>

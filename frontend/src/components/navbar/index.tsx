@@ -81,18 +81,7 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
-  const { setMovies, setSearch, emptyMovies} = actionDispatch(useAppDispatch())
-  const state = useSelector(selectStateExceptMovies)
-  const fetchMovies = async () => {
-    emptyMovies();
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
-      console.log("Error", error);
-    });
-    if(movies) {
-      console.log("setmovies navbar")
-      setMovies(movies);
-    }
-  }
+  const { setSearch} = actionDispatch(useAppDispatch())
 
   /* React.useEffect(() => {
   }, [onSearch]) 
@@ -104,7 +93,6 @@ export default function NavBar() {
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
       setSearch(localSearch)
-      fetchMovies()
     }
   };
 

@@ -24,20 +24,9 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 export const FilterByYear: FunctionComponent = () => { 
 
-  const { setMovies, emptyMovies, setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
+  const { setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
 
   const state = useSelector(selectStateExceptMovies)
-
-  const fetchMovies = async () => {
-    emptyMovies();
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
-      console.log("Error", error);
-    });
-    if(movies) {
-      console.log("setmovies filterbyyear")
-      setMovies(movies);
-    }
-  }
 
   function convertDateToUnixDate(date: Date) {
     return date.getTime() / 1000;
@@ -93,9 +82,9 @@ export const FilterByYear: FunctionComponent = () => {
           />
         </LocalizationProvider>
       </Box>
-      <div className="button-container">
+      {/* <div className="button-container">
         <FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {fetchMovies()}}>Filter</FilterButton>
-      </div>
+      </div> */}
     </>
   );
 };
