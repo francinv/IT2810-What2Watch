@@ -13,6 +13,7 @@ import CustomizedTables from "../components/movies";
 import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
+import MovieTable from "../components/movies";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -55,6 +56,17 @@ export const MainPage: FunctionComponent = () => {
     fetchMovies();
   }, [filterSearchQuery, filterGenre, filterDateStart, filterDateEnd])
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => {
+    setIsModalVisible(wasModalVisible => !wasModalVisible);
+  }
+
+  const closeModal = () => {
+    if(isModalVisible){
+      setIsModalVisible(false);
+    }
+  }
+
   return (
     <>
       <Row>
@@ -64,11 +76,10 @@ export const MainPage: FunctionComponent = () => {
       </Row>
       <div className="innercontainer">
         <SideBar />
-        <div className="moviecontainer">
+        <div className="moviecontainer" onClick={closeModal}>
           <SortDropDown />
           <BottomScrollListener onBottom={fetchMore}/>
-          <CustomizedTables/>
-        </div>
+          <MovieTable onBackDropClick={toggleModal} isModalVisible={isModalVisible}  />
       </div>
     </>
   );
