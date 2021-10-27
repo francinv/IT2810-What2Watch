@@ -38,6 +38,7 @@ export const MainPage: FunctionComponent = () => {
     ).catch((error) => {
       console.log("Error", error);
     });
+    
     if (movies) {
       console.log("setmovies mainpage")
       setMovies(movies);

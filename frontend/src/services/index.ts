@@ -19,16 +19,18 @@ class MovieService {
 
     async getMoviesBySearch(page: number, searchQuery: String, searchGenre: String[], searchDateStart: number, searchDateEnd: number):
         Promise<searchMovies["getMoviesBySearch"]> {
-        try { 
-            console.log(page, searchQuery, searchGenre, searchDateStart, searchDateEnd)
+        try {
+
+            console.log(searchGenre.length ? "length is over 0, accepted" : "length is 0, declined")
+            console.log("Page: ", page, "Search query: ", searchQuery, "searchGenre", searchGenre, "searchDateStart", searchDateStart, "searchDateEnd", searchDateEnd)
             const response = await apolloClient.query({
                 query: GET_MOVIES_BY_SEARCH,
                 variables: { 
                     page: page,
                     searchQuery: searchQuery,
-                    searchGenre: searchGenre,
+                    searchGenre: (searchGenre.length ? searchGenre : ["Action", "Adventure"]),
                     searchDateStart: searchDateStart,
-                    searchDateEnd: searchDateStart
+                    searchDateEnd: searchDateEnd
                     /* 1635203598 */
                 }
             })
