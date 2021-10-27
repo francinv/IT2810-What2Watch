@@ -6,12 +6,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Button, { ButtonProps } from '@mui/material/Button';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";
-import { selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
 import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
-import { useSelector } from "react-redux"
 import { setMovies, setFilterGenres, emptyMovies, removeFilterGenres } from "../../pages/mainPageSlice"
 
 

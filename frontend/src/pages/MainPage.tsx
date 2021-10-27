@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from "react";
-import { selectStateExceptMovies } from './selectors';
+import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
@@ -20,10 +20,22 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 export const MainPage: FunctionComponent = () => {
+
+  const nextPage = useSelector(selectNextPage);
+  const filterSearchQuery = useSelector(selectFilterSearch);
+  const filterGenre = useSelector(selectFilterGenre);
+  const filterDateStart = useSelector(selectFilterDateStart);
+  const filterDateEnd = useSelector(selectFilterDateEnd);
+
   const { setMovies } = actionDispatch(useAppDispatch())
-  const state = useSelector(selectStateExceptMovies)
   const fetchMovies = async () => {
-    const movies = await MovieService.getMoviesBySearch(state).catch((error) => {
+    const movies = await MovieService.getMoviesBySearch(
+      nextPage,
+      filterSearchQuery,
+      filterGenre,
+      filterDateStart,
+      filterDateEnd
+    ).catch((error) => {
       console.log("Error", error);
     });
     if (movies) {

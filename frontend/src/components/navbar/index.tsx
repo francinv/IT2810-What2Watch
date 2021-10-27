@@ -17,9 +17,7 @@ import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
 import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
-import { useSelector } from "react-redux"
 import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
-import { selectStateExceptMovies } from '../../pages/selectors';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

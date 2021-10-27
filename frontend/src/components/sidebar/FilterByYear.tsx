@@ -7,10 +7,8 @@ import Box from '@mui/material/Box';
 import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import { styled } from "@mui/material/styles";   
 import Button, { ButtonProps } from '@mui/material/Button';
-import { selectStateExceptMovies } from '../../pages/selectors';
 import { useAppDispatch } from "../../services/hooks"
 import { Dispatch } from "redux";
-import MovieService from "../../services/index";
 import { getAllMovies } from "../../services/__generated__/getAllMovies"
 import { useSelector } from "react-redux"
 import { setMovies, emptyMovies, setFilterEndDate, setFilterStartDate } from "../../pages/mainPageSlice"
@@ -25,8 +23,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export const FilterByYear: FunctionComponent = () => { 
 
   const { setStateStartDate, setStateEndDate } = actionDispatch(useAppDispatch())
-
-  const state = useSelector(selectStateExceptMovies)
 
   function convertDateToUnixDate(date: Date) {
     return date.getTime() / 1000;

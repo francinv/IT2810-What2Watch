@@ -17,25 +17,18 @@ class MovieService {
         }
     } 
 
-    async getMoviesBySearch(args: (number | String | String[])[]):
+    async getMoviesBySearch(page: number, searchQuery: String, searchGenre: String[], searchDateStart: number, searchDateEnd: number):
         Promise<searchMovies["getMoviesBySearch"]> {
-        var genres = undefined;
-        if (args[2].toLocaleString().length === 0) {
-            genres = ["Action", "Adventure"]
-        }
-        else {
-            genres = args[2]
-        }
         try { 
-            console.log(args)
+            console.log(page, searchQuery, searchGenre, searchDateStart, searchDateEnd)
             const response = await apolloClient.query({
                 query: GET_MOVIES_BY_SEARCH,
                 variables: { 
-                    page: args[0],
-                    searchQuery: args[1],
-                    searchGenre: genres,
-                    searchDateStart: args[3],
-                    searchDateEnd: args[4]
+                    page: page,
+                    searchQuery: searchQuery,
+                    searchGenre: searchGenre,
+                    searchDateStart: searchDateStart,
+                    searchDateEnd: searchDateStart
                     /* 1635203598 */
                 }
             })
