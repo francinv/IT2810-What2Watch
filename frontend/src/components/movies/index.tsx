@@ -10,30 +10,28 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import BaseModalWrapper from '../moviedetail/BaseModalWrapper';
 
-export default function MovieTable() {
+interface MovieTableProps {
+  onBackDropClick: () => void;
+  isModalVisible: boolean;
+}
+
+const MovieTable: React.FC<MovieTableProps> = ({isModalVisible, onBackDropClick}) => {
   const movies = useSelector(selectMovies)
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const toggleModal = () => {
-    setIsModalVisible(wasModalVisible => !wasModalVisible);
-  }
-
-  const handleAction = (movie:any) => {
-    setModalMovie(movie);
-    toggleModal();
-  }
-
   return (
     <div>
-      <BaseModalWrapper isModalVisible={isModalVisible} onBackDropClick={toggleModal} movie={modalMovie!}/>
+      <BaseModalWrapper isModalVisible={isModalVisible} movie={modalMovie!} onCloseClick={onBackDropClick}/>
       <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
         {
         movies?.map((movie: any) => (
           <Grid item xs={2} sm={4} md={4} key={movie.title}>
             <Card sx={{ maxWidth: 345, height:'100%'}}>
-              <CardActionArea onClick={handleAction(movie)}>
+              <CardActionArea onClick={ ()=>{
+                setModalMovie(movie);
+                onBackDropClick();
+              }}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -68,3 +66,5 @@ export default function MovieTable() {
     </div>
   )
 }
+
+export default MovieTable;
