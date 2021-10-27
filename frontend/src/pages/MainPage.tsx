@@ -27,12 +27,19 @@ export const MainPage: FunctionComponent = () => {
       console.log("Error", error);
     });
     if (movies) {
+      console.log("setmovies mainpage")
       setMovies(movies);
     }
   };
   useEffect(() => {
+    console.log("useeffect fetchmovies")
     fetchMovies();
-  }) 
+  }, []) 
+
+  function fetchMore() {
+    console.log("bottomscroll fetchmovies")
+    fetchMovies()
+  }
 
 
   return (
@@ -46,7 +53,7 @@ export const MainPage: FunctionComponent = () => {
         <SideBar />
         <div className="moviecontainer">
           <SortDropDown />
-          <BottomScrollListener onBottom={fetchMovies}/>
+          <BottomScrollListener onBottom={fetchMore}/>
           <CustomizedTables/>
         </div>
       </div>

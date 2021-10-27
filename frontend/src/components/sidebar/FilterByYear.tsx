@@ -34,6 +34,7 @@ export const FilterByYear: FunctionComponent = () => {
       console.log("Error", error);
     });
     if(movies) {
+      console.log("setmovies filterbyyear")
       setMovies(movies);
     }
   }

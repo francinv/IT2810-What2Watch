@@ -47,6 +47,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
       console.log("Error", error);
     });
     if(movies) {
+      console.log("setmovies filterbygenre")
       setMovies(movies);
     }
   }

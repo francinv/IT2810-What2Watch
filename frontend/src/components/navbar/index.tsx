@@ -89,6 +89,7 @@ export default function NavBar() {
       console.log("Error", error);
     });
     if(movies) {
+      console.log("setmovies navbar")
       setMovies(movies);
     }
   }
