@@ -1,7 +1,7 @@
-import { getAllMovies } from "./__generated__/getAllMovies";
+import { searchMovies } from "./__generated__/searchMovies";
 
 export default interface IMoviesList {
-    movies: getAllMovies["getAllMovies"];
+    movies: searchMovies["getMoviesBySearch"]
     loading: boolean;
     nextPage: number;
     filterSearch: String;

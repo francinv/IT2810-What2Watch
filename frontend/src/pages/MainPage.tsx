@@ -6,7 +6,7 @@ import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
 import { Dispatch } from "redux";
 import { setMovies } from "./mainPageSlice"
-import { getAllMovies } from "../services/__generated__/getAllMovies"
+import { searchMovies } from "../services/__generated__/searchMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Row, Col } from "react-bootstrap";
 import CustomizedTables from "../components/movies";
@@ -16,7 +16,7 @@ import SortDropDown from "../components/sortdropdown";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setMovies: (movies: getAllMovies["getAllMovies"]) => dispatch(setMovies(movies))
+  setMovies: (movies: searchMovies["getMoviesBySearch"]) => dispatch(setMovies(movies))
 });
 
 export const MainPage: FunctionComponent = () => {

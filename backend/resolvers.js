@@ -1,9 +1,6 @@
 const Movie = require('./models/Movie.model')
 const resolvers = {
     Query: {
-        getMovieById: async (_parent, { id }, _context, _info) => {
-            return await Movie.findById(id);
-        },
         getMoviesBySearch: async (_parent, args, _context, _info) => {
             const limit = 30
             const offset = limit * (args.page)
