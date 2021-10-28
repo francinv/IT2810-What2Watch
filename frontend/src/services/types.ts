@@ -13,5 +13,5 @@ export interface IMoviesList {
 
 export interface IUserState {
   isLoggedIn: boolean;
-  userName: string;
+  userName: string | undefined;
 }
