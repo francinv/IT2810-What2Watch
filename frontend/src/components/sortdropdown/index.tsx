@@ -6,18 +6,31 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./index.css";
 import { SortBy } from "../../util/sortingTypes";
+import { Dispatch } from "redux";
+import { selectSortByCriteria } from "../../pages/selectors";
+
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { setSortByCriteria } from "../../pages/mainPageSlice";
+import { useAppDispatch } from "../../services/hooks";
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setCriteria: (criteria: string) => dispatch(setSortByCriteria(criteria)),
+});
 
 export default function SortDropDown() {
-  const [yearssort, setYearsSort] = React.useState("");
-  const [titlesort, setTitleSort] = React.useState("");
+  const [sortBy, setSortBy] = React.useState("");
 
-  const handleYears = (event: SelectChangeEvent) => {
-    setYearsSort(event.target.value as string);
+  const handleSortBy = (event: SelectChangeEvent) => {
+    console.log("QWsortQuery", sortBy);
+    console.log("Eventvalue", event.target.value);
+    setSortBy(event.target.value);
   };
+  const { setCriteria } = actionDispatch(useAppDispatch());
 
-  const handleTitle = (event: SelectChangeEvent) => {
-    setTitleSort(event.target.value as string);
-  };
+  useEffect(() => {
+    setCriteria(sortBy);
+  }, [sortBy]);
 
   return (
     <Box className="select-container" sx={{ display: "flex", minWidth: 300 }}>
@@ -26,9 +39,9 @@ export default function SortDropDown() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={yearssort}
+          value={sortBy}
           label="Year"
-          onChange={handleYears}
+          onChange={handleSortBy}
         >
           <MenuItem value={SortBy.AlphabeticalAsc}>Title (Increasing)</MenuItem>
           <MenuItem value={SortBy.AlphabeticalDesc}>
