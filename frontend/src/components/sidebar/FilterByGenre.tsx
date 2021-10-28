@@ -81,11 +81,11 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
                   }}/>
                 }
                 label={genre}
+                key={genre}
               /> ))
           }
         {<FilterButton variant="contained" endIcon={<MovieCreationOutlinedIcon/>} onClick={() => {updateFilters()}}>Filter</FilterButton>}
       </FormGroup>
-      
     </Box>
   );
 };
