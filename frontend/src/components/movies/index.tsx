@@ -9,6 +9,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import BaseModalWrapper from '../moviedetail/BaseModalWrapper';
+import Container from 'react-bootstrap/Container';
+import { Col, Row } from 'react-bootstrap';
 
 interface MovieTableProps {
   onBackDropClick: () => void;
@@ -21,14 +23,14 @@ const MovieTable: React.FC<MovieTableProps> = ({isModalVisible, onBackDropClick}
   const [modalMovie, setModalMovie] = useState(null!);
 
   return (
-    <div>
+    <>
       <BaseModalWrapper isModalVisible={isModalVisible} movie={modalMovie!} onCloseClick={onBackDropClick}/>
-      <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
-        {
+      <Container>
+      {
         movies?.map((movie: any) => (
-          <Grid item xs={2} sm={4} md={4} key={movie.title}>
+          
             <Card sx={{ maxWidth: 345, height:'100%'}}>
-              <CardActionArea onClick={ ()=>{
+              <CardActionArea className="movie-item-card" onClick={ ()=>{
                 setModalMovie(movie);
                 onBackDropClick();
               }}>
@@ -59,11 +61,10 @@ const MovieTable: React.FC<MovieTableProps> = ({isModalVisible, onBackDropClick}
                 </CardContent>
               </CardActionArea>
             </Card>
-          </Grid>
+          
         ))}
-
-      </Grid>
-    </div>
+      </Container>
+  </>  
   )
 }
 
