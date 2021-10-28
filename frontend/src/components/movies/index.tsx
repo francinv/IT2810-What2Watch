@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
-import { selectMovies } from "../../pages/selectors";
+import { selectMovies, selectUserIsLoggedIn, selectUserName } from "../../services/selectors";
+import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies";
 import {
   Card,
   CardActionArea,
@@ -31,8 +32,17 @@ const MovieTable: React.FC<MovieTableProps> = ({
   onBackDropClick,
 }) => {
   const movies = useSelector(selectMovies);
+  const isLoggedIn = useSelector(selectUserIsLoggedIn)
+  const userName = useSelector(selectUserName)
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
+
+  function isFavorited(movie: any): boolean {
+    if (movie === null) {
+      return false;
+    }
+    return movie.favoritedByUser.includes(userName)
+  }
 
   return (
     <>
@@ -57,13 +67,13 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                  <IconButton>
-                    {favorited ? (
-                      <FavoriteIcon color="error" />
-                    ) : (
-                      <FavoriteBorderIcon />
-                    )}
-                  </IconButton>
+                    {isLoggedIn ? (<IconButton>
+                      {isFavorited(movie) ? (
+                        <FavoriteIcon color="error" />
+                      ) : (
+                        <FavoriteBorderIcon />
+                      )}
+                    </IconButton>) : null}
                   <Typography variant="body2" color="text.secondary">
                     {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)

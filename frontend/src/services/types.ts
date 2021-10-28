@@ -1,6 +1,6 @@
 import { searchMovies } from "./__generated__/searchMovies";
 
-export default interface IMoviesList {
+export interface IMoviesList {
   movies: searchMovies["getMoviesBySearch"];
   loading: boolean;
   nextPage: number;
@@ -9,4 +9,9 @@ export default interface IMoviesList {
   filterDateStart: number;
   filterDateEnd: number;
   sortByCriteria: String;
+}
+
+export interface IUserState {
+  isLoggedIn: boolean;
+  userName: string | undefined;
 }

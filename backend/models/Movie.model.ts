@@ -17,6 +17,9 @@ const MovieSchema = new mongoose.Schema({
     },
     poster: {
         type: String
+    },
+    favoritedByUser: {
+        type: [String]
     }
 
 })

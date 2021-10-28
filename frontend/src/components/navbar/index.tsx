@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import "./index.css";
@@ -15,7 +16,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
-import { emptyMovies, setSearchQuery } from "../../pages/mainPageSlice";
+import { setSearchQuery } from "../../pages/mainPageSlice";
+import { loginAsUser } from "../loginmodal/loginslice"
+import { selectUserIsLoggedIn } from "../../services/selectors";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,12 +64,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setSearch: (query: string) => dispatch(setSearchQuery(query)),
-  emptyMovies: () => dispatch(emptyMovies()),
+  setUser: (query: string) => dispatch(loginAsUser(query))
 });
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [localSearch, setLocalSearch] = React.useState<string>("");
+  const { setSearch, setUser } = actionDispatch(useAppDispatch());
+  const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -74,16 +79,14 @@ export default function NavBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    console.log()
   };
 
-  const { setSearch } = actionDispatch(useAppDispatch());
+  const handleLogin = () => {
+    setAnchorEl(null);
+    setUser("test")
+  }
 
-  /* React.useEffect(() => {
-  }, [onSearch]) 
-  
-  USE TO FIX BUG: update other states
-
-  */
 
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
@@ -154,8 +157,9 @@ export default function NavBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Log out</MenuItem>
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              {isLoggedIn 
+              ? <MenuItem onClick={handleLogin}>Log out</MenuItem> /* Handle logout her */
+              : <MenuItem onClick={handleLogin}>Log in</MenuItem>}
             </Menu>
           </div>
         </Toolbar>

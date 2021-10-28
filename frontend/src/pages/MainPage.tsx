@@ -7,7 +7,7 @@ import {
   selectFilterDateStart,
   selectFilterDateEnd,
   selectSortByCriteria,
-} from "./selectors";
+} from "../services/selectors";
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
