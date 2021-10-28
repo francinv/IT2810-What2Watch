@@ -7,10 +7,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import "./index.css";
 import { SortBy } from "../../util/sortingTypes";
 import { Dispatch } from "redux";
-import { selectSortByCriteria } from "../../pages/selectors";
 
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+
 import { setSortByCriteria } from "../../pages/mainPageSlice";
 import { useAppDispatch } from "../../services/hooks";
 

@@ -17,7 +17,6 @@ import IconButton from "@mui/material/IconButton";
 import BaseModalWrapper from "../moviedetail/BaseModalWrapper";
 import {
   formatDateAsString,
-  convertDateToUnixDate,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
 
