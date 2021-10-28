@@ -11,6 +11,7 @@ import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setFilterDates } from "../../pages/mainPageSlice";
 import "./index.css";
+import { convertDateToUnixDate } from "../../util/dateConverter";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setDates: (year: [number, number]) => dispatch(setFilterDates(year)),
@@ -21,10 +22,6 @@ export const FilterByYear: FunctionComponent = () => {
   const [endDate, setStateEndDate] = useState<number>(1635203598);
 
   const { setDates } = actionDispatch(useAppDispatch());
-
-  function convertDateToUnixDate(date: Date) {
-    return Math.round(date.getTime() / 1000);
-  }
 
   const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
     backgroundColor: "#fff",

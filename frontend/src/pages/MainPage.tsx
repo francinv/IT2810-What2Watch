@@ -1,13 +1,5 @@
 import { FunctionComponent, useEffect, useState } from "react";
-import {
-  selectNextPage,
-  selectFilterSearch,
-  selectFilterGenre,
-  selectFilterDateStart,
-  selectFilterDateEnd,
-} from "./selectors";
 import { useSelector } from "react-redux";
-
 import {
   selectNextPage,
   selectFilterSearch,
