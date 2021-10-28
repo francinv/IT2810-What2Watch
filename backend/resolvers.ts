@@ -38,9 +38,9 @@ const resolvers = {
       name: string,
       movie_id: string
     }) => {
-      const movie = await Movie.findById(args.movie_id);
-      console.log(movie.favoritedByUser);
-      return movie
+      const oldMovieFavorites = await Movie.findById(args.movie_id).favoritedByUser;
+      const newMovieFavorites = [ new Set([...oldMovieFavorites, args.name])]
+      return await Movie.findById/* AndUpdate */(args.movie_id/* , oldMovieFavorites */)
     }
   }
 };
