@@ -1,4 +1,5 @@
 import Movie from './models/Movie.model';
+import User from './models/User.model';
 
 const resolvers = {
     Query: {
@@ -27,6 +28,15 @@ const resolvers = {
                 .skip(offset))
         },
     },
-};
+    Mutation: {
+        setMovieAsFavorite: async (_parent: unknown, args: { 
+            name: string,
+            movie: string
+        }) => {
+            const user = User.findOne({
+                name: args.name
+        })
+    }
+}
 
 module.exports = resolvers;
