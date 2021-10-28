@@ -76,9 +76,10 @@ export const MainPage: FunctionComponent = () => {
       <div className="innercontainer">
         <SideBar />
         <div className="moviecontainer" onClick={closeModal}>
-          <SortDropDown />
-          <BottomScrollListener onBottom={fetchMore}/>
-          <MovieTable onBackDropClick={toggleModal} isModalVisible={isModalVisible}  />
+            <SortDropDown />
+            <BottomScrollListener onBottom={fetchMore}/>
+            <MovieTable onBackDropClick={toggleModal} isModalVisible={isModalVisible}  />
+          
         </div>
       </div>
     </>
