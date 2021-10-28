@@ -42,9 +42,9 @@ const resolvers = {
       const oldMovieFavorites = oldMovie.favoritedByUser
       if (oldMovieFavorites && oldMovieFavorites.length > 0) {
         const newMovieFavorites = [...new Set([...oldMovieFavorites, args.name])]
-        return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": newMovieFavorites})
+        return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": newMovieFavorites}, { new: true })
       }
-      return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": [args.name]})
+      return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": [args.name]}, { new: true })
     }
   }
 };
