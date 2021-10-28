@@ -23,6 +23,12 @@ const MainPageSlice = createSlice({
         state.movies = state.movies.concat(action.payload);
       }
     },
+    setSortByCriteria(state, action) {
+      console.log("Payload", action.payload);
+      state.nextPage = 0;
+      state.movies = [];
+      state.sortByCriteria = action.payload;
+    },
     setFilterDates(state, action) {
       state.nextPage = 0;
       state.movies = [];
@@ -45,21 +51,15 @@ const MainPageSlice = createSlice({
       state.nextPage = 0;
       state.movies = [];
     },
-    setSortByCriteria(state, action) {
-      console.log("Payload", action.payload);
-      state.nextPage = 0;
-      state.movies = [];
-      state.sortByCriteria = action.payload;
-    },
   },
 });
 
 export const {
   setMovies,
+  setSortByCriteria,
   setFilterGenres,
   emptyMovies,
   setFilterDates,
   setSearchQuery,
-  setSortByCriteria,
 } = MainPageSlice.actions;
 export default MainPageSlice.reducer;
