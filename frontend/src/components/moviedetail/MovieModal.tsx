@@ -11,16 +11,28 @@ interface ModalProps {
 const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
     let closeButton = document.body.querySelector(".closemenu");
     closeButton?.addEventListener("click", setClass);
+    
+    let movieclick = document.body.querySelector(".movie-item-card");
+    movieclick?.addEventListener("click", setWidth);
+
+    function setWidth(this: HTMLElement, ev: Event){
+        ev.preventDefault();
+        let prosidebar = document.querySelector(".pro-sidebar");
+        let modalcont = document.querySelector(".modal-container");
+        console.log("This is run");
+        if (prosidebar?.classList.contains('collapsed')){
+            modalcont?.classList.add('extra-width');
+        }
+    }
 
     function setClass(this: HTMLElement, ev: Event){
         ev.preventDefault();
-        let modalcont = document.querySelector(".modal-container");
         let prosidebar = document.querySelector(".pro-sidebar");
-       
+        let modalcont = document.querySelector(".modal-container");
         if (!prosidebar?.classList.contains('collapsed')){
             modalcont?.classList.add('extra-width');
         }   
-        else if ( prosidebar?.classList.contains('collapsed')){
+        else{
             modalcont?.classList.remove('extra-width');
         }
         
