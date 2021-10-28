@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
-import { selectMovies } from "../../pages/selectors";
+import { selectMovies } from "../../services/selectors";
 import {
   Card,
   CardActionArea,
