@@ -9,12 +9,7 @@ const typeDefs = gql`
         genres: [String]
         overview: String
         poster: String
-    }
-
-    type User { 
-        id: ID
-        name: String
-        favorites: [Movie]
+        favoritetByUser: [String]
     }
 
     type Query {
@@ -22,7 +17,7 @@ const typeDefs = gql`
     }
 
     type Mutation { 
-        setMovieAsFavorite(name: String, movie: String): String
+        setMovieAsFavorite(name: String, movie_id: ID): String
     }
 `;
 

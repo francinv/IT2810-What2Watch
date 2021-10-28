@@ -20,6 +20,11 @@ const MovieTable: React.FC<MovieTableProps> = ({isModalVisible, onBackDropClick}
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
 
+  if (movies !== null) {
+    movies.forEach((movie: any) => console.log(movie))
+  }
+  
+
   return (
     <div>
       <BaseModalWrapper isModalVisible={isModalVisible} movie={modalMovie!} onCloseClick={onBackDropClick}/>
