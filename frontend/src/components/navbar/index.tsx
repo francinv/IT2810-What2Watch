@@ -74,6 +74,7 @@ export default function NavBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    console.log("handleClose")
   };
 
   const { setSearch } = actionDispatch(useAppDispatch());

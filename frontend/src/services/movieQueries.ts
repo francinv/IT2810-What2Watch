@@ -17,6 +17,7 @@ export const GET_MOVIES_BY_SEARCH = gql`
       searchDateEnd: $searchDateEnd
       sortCriteria: $sortCriteria
     ) {
+      id
       title
       genres
       release_date

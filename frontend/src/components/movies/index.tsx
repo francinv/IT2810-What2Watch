@@ -33,10 +33,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
 
-  if (movies !== null) {
-    movies.forEach((movie: any) => console.log(movie))
-  }
-  
+  const render = false;
 
   return (
     <div>
@@ -70,13 +67,13 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                  <IconButton>
-                    {favorited ? (
-                      <FavoriteIcon color="error" />
-                    ) : (
-                      <FavoriteBorderIcon />
-                    )}
-                  </IconButton>
+                    {render ? (<IconButton>
+                      {favorited ? (
+                        <FavoriteIcon color="error" />
+                      ) : (
+                        <FavoriteBorderIcon />
+                      )}
+                    </IconButton>) : null}
                   <Typography variant="body2" color="text.secondary">
                     {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)
