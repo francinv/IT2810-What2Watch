@@ -19,6 +19,7 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
+import { Col, Row } from 'react-bootstrap';
 
 interface MovieTableProps {
   onBackDropClick: () => void;
@@ -34,26 +35,17 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const [modalMovie, setModalMovie] = useState(null!);
 
   return (
-    <div>
-      <BaseModalWrapper
-        isModalVisible={isModalVisible}
-        movie={modalMovie!}
-        onCloseClick={onBackDropClick}
-      />
-      <Grid
-        container
-        spacing={{ xs: 1, md: 2 }}
-        columns={{ xs: 2, sm: 8, md: 12 }}
-      >
-        {movies?.map((movie: any) => (
-          <Grid item xs={2} sm={4} md={4} key={movie.title}>
-            <Card sx={{ maxWidth: 345, height: "100%" }}>
-              <CardActionArea
-                onClick={() => {
-                  setModalMovie(movie);
-                  onBackDropClick();
-                }}
-              >
+    <>
+      <BaseModalWrapper isModalVisible={isModalVisible} movie={modalMovie!} onCloseClick={onBackDropClick}/>
+      <Container>
+      {
+        movies?.map((movie: any) => (
+          
+            <Card sx={{ maxWidth: 345, height:'100%'}}>
+              <CardActionArea className="movie-item-card" onClick={ ()=>{
+                setModalMovie(movie);
+                onBackDropClick();
+              }}>
                 <CardMedia
                   component="img"
                   height="auto"
@@ -83,11 +75,11 @@ const MovieTable: React.FC<MovieTableProps> = ({
                 </CardContent>
               </CardActionArea>
             </Card>
-          </Grid>
+          
         ))}
-      </Grid>
-    </div>
-  );
-};
+      </Container>
+  </>  
+  )
+}
 
 export default MovieTable;

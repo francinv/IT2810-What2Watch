@@ -9,19 +9,24 @@
     color: white;
     border-radius: 5px;
     display: flex;
-    transition: width 2s;
+    transition: width 0.5s;
 }
 
 @media (max-width:1080px){
     .modal-container{
-        margin-left:2rem;
+        margin-left:1rem;
     }
-    
+    .modal-container img {
+        display: none;
+    }
 }
 
-@media (max-width:810px){
+@media (max-width:900px){
     .modal-container{
         width:60%;
+        margin-top:2rem;
+        margin-left:2rem;
+        height: 400px;
     }
     .modal-container img{
         display: none;
@@ -30,13 +35,26 @@
 
 @media (max-width:375px){
     .modal-container{
-        width: 100%;
+        width: 78.7% !important;
         height: 100%;
-        margin-left:0;
+        margin-left: 0rem;
     }
     .content-flex {
         display: flex;
-        flex-direction: column;
+        flex-direction: column !important;
+    }
+    .extra-width{
+        width: 78.7% !important; 
+    }
+    .content-modal-container{
+        padding-top: 0rem !important;
+    }
+    .col-flex{
+        width:100%;
+    }
+
+    .left-flex{
+        border-right: 0px solid white;
     }
 }
 
