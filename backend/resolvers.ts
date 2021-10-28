@@ -2,8 +2,13 @@ import Movie from './models/Movie.model';
 
 const resolvers = {
     Query: {
-        getMoviesBySearch: async (_parent: unknown, args: any) => {
-            console.log(args)
+        getMoviesBySearch: async (_parent: unknown, args: {
+            searchDateStart: number,
+            searchDateEnd: number,
+            searchQuery: string,
+            searchGenre: string[],
+            page: number
+        }) => {
             const limit = 30
             const offset = limit * (args.page)
                 return await (Movie.find({
