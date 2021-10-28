@@ -1,24 +1,38 @@
-
-import * as React from 'react';
-import { useSelector } from "react-redux"
-import './index.css';
-import { selectMovies } from '../../pages/selectors';
-import { Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import { useState } from 'react';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import IconButton from '@mui/material/IconButton';
+import * as React from "react";
+import { useSelector } from "react-redux";
+import "./index.css";
+import { selectMovies } from "../../pages/selectors";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { useState } from "react";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import IconButton from "@mui/material/IconButton";
+import {
+  formatDateAsString,
+  convertDateToUnixDate,
+  convertUnixDateToDate,
+} from "../../util/dateConverter";
 
 export default function MovieTable() {
-  const movies = useSelector(selectMovies)
+  const movies = useSelector(selectMovies);
   const [favorited, setFavorited] = useState(false);
 
   return (
-    <Grid container spacing={{ xs:1, md:2}} columns={{xs: 2, sm: 8, md: 12 }}>
-      {
-      movies?.map((movie: any) => (
+    <Grid
+      container
+      spacing={{ xs: 1, md: 2 }}
+      columns={{ xs: 2, sm: 8, md: 12 }}
+    >
+      {movies?.map((movie: any) => (
         <Grid item xs={2} sm={4} md={4} key={movie.title}>
-          <Card sx={{ maxWidth: 345, height:'100%'}}>
+          <Card sx={{ maxWidth: 345, height: "100%" }}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -31,25 +45,26 @@ export default function MovieTable() {
                 <Typography gutterBottom variant="h5" component="div">
                   {movie?.title}
                 </Typography>
-                <IconButton
-                >
-                  { favorited
-                    ? <FavoriteIcon color="error"/>
-                    : <FavoriteBorderIcon/>
-                  }
+                <IconButton>
+                  {favorited ? (
+                    <FavoriteIcon color="error" />
+                  ) : (
+                    <FavoriteBorderIcon />
+                  )}
                 </IconButton>
                 <Typography variant="body2" color="text.secondary">
-                  {movie?.release_date}
+                  {formatDateAsString(
+                    convertUnixDateToDate(movie?.release_date)
+                  )}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {movie?.genres}
+                  {movie?.genres.join(", ")}
                 </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
         </Grid>
       ))}
-
     </Grid>
-  )
+  );
 }
