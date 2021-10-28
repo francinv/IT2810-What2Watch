@@ -33,6 +33,11 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
 
+  if (movies !== null) {
+    movies.forEach((movie: any) => console.log(movie))
+  }
+  
+
   return (
     <div>
       <BaseModalWrapper
