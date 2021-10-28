@@ -26,5 +26,5 @@ export interface searchMoviesVariables {
   searchQuery?: string | null;
   searchDateStart?: number | null;
   searchDateEnd?: number | null;
-  sortByCriteria?: string | null;
+  sortCriteria?: string | null;
 }

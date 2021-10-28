@@ -7,7 +7,7 @@ export const GET_MOVIES_BY_SEARCH = gql`
     $searchQuery: String
     $searchDateStart: Int
     $searchDateEnd: Int
-    $sortByCriteria: String
+    $sortCriteria: String
   ) {
     getMoviesBySearch(
       page: $page
@@ -15,7 +15,7 @@ export const GET_MOVIES_BY_SEARCH = gql`
       searchQuery: $searchQuery
       searchDateStart: $searchDateStart
       searchDateEnd: $searchDateEnd
-      sortByCriteria: $sortByCriteria
+      sortCriteria: $sortCriteria
     ) {
       title
       genres

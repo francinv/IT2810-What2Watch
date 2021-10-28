@@ -41,7 +41,7 @@ export const MainPage: FunctionComponent = () => {
   const filterGenre = useSelector(selectFilterGenre);
   const filterDateStart = useSelector(selectFilterDateStart);
   const filterDateEnd = useSelector(selectFilterDateEnd);
-  const sortByCriteria = useSelector(selectSortByCriteria);
+  const sortBy = useSelector(selectSortByCriteria);
 
   const { setMovies } = actionDispatch(useAppDispatch());
 
@@ -52,7 +52,7 @@ export const MainPage: FunctionComponent = () => {
       filterGenre,
       filterDateStart,
       filterDateEnd,
-      sortByCriteria
+      sortBy
     ).catch((error) => {
       console.log("Error", error);
     });
@@ -70,13 +70,7 @@ export const MainPage: FunctionComponent = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, [
-    filterSearchQuery,
-    filterGenre,
-    filterDateStart,
-    filterDateEnd,
-    sortByCriteria,
-  ]);
+  }, [filterSearchQuery, filterGenre, filterDateStart, filterDateEnd, sortBy]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const toggleModal = () => {

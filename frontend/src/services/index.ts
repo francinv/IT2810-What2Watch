@@ -9,7 +9,7 @@ class MovieService {
     searchGenre: String[],
     searchDateStart: number,
     searchDateEnd: number,
-    sortByCriteria: String
+    sortCriteria: String
   ): Promise<searchMovies["getMoviesBySearch"]> {
     try {
       console.log(
@@ -25,7 +25,7 @@ class MovieService {
         "searchDateEnd",
         searchDateEnd,
         "sortByCriteria",
-        sortByCriteria
+        sortCriteria
       );
       const response = await apolloClient.query({
         query: GET_MOVIES_BY_SEARCH,
@@ -35,7 +35,7 @@ class MovieService {
           searchGenre: searchGenre.length ? searchGenre : ["Action"],
           searchDateStart: searchDateStart,
           searchDateEnd: searchDateEnd,
-          sortByCriteria: "-title",
+          sortCriteria: sortCriteria,
         },
       });
       if (!response || !response.data) {
