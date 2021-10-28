@@ -44,15 +44,15 @@ const resolvers = {
         const newMovieFavorites = [...new Set([...oldMovieFavorites, args.name])]
         return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": newMovieFavorites}, { new: true })
       }
-      return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": [args.name]}, { new: true })
-    }
+      return await Movie.findByIdAndUpdate(args.movie_id, {
+         "favoritedByUser": [args.name]}, { new: true })
+    },
     removeMovieAsFavorite: async (_parent: unknown, args: {
       name: string,
       movie_id: string
     }) => {
-      
+      return await Movie.findByIdAndUpdate(args.movie_id, { $pull: { "favoritedByUser": args.name }}, { new: true })
     }
-
   }
 };
 
