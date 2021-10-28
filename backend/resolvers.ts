@@ -1,7 +1,14 @@
-const Movie = require('./models/Movie.model')
+import Movie from './models/Movie.model';
+
 const resolvers = {
     Query: {
-        getMoviesBySearch: async (_parent, args, _context, _info) => {
+        getMoviesBySearch: async (_parent: unknown, args: {
+            searchDateStart: number,
+            searchDateEnd: number,
+            searchQuery: string,
+            searchGenre: string[],
+            page: number
+        }) => {
             const limit = 30
             const offset = limit * (args.page)
                 return await (Movie.find({
@@ -21,6 +28,5 @@ const resolvers = {
         },
     },
 };
-
 
 module.exports = resolvers;
