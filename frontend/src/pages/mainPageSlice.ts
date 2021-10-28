@@ -6,10 +6,10 @@ const initialState: IMoviesList = {
   loading: false,
   nextPage: 0,
   filterSearch: "",
-  filterGenre: [],
+  filterGenre: ["Action"],
   filterDateStart: -1635203598,
   filterDateEnd: 1635203598,
-  sortByCriteria: "title",
+  sortByCriteria: "",
 };
 
 const MainPageSlice = createSlice({
