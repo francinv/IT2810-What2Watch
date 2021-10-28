@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import "./index.css";
@@ -17,6 +18,7 @@ import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
 import { loginAsUser } from "../loginmodal/loginslice"
+import { selectUserIsLoggedIn } from "../../services/selectors";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -69,6 +71,7 @@ export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [localSearch, setLocalSearch] = React.useState<string>("");
   const { setSearch, setUser } = actionDispatch(useAppDispatch());
+  const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -154,8 +157,9 @@ export default function NavBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleLogin}>Log in</MenuItem>
-              <MenuItem onClick={handleClose}>Profile</MenuItem>
+              {isLoggedIn 
+              ? <MenuItem onClick={handleLogin}>Log out</MenuItem>
+              : <MenuItem onClick={handleLogin}>Log in</MenuItem>}
             </Menu>
           </div>
         </Toolbar>

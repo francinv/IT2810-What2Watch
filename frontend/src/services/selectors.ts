@@ -14,5 +14,5 @@ export const selectFilterDateEnd = (state: RootState) =>
   state.mainPage.filterDateEnd;
 export const selectSortByCriteria = (state: RootState) =>
   state.mainPage.sortByCriteria;
-export const selectUserSlice = (state: RootState) =>
-  state.userSlice;
+export const selectUserIsLoggedIn = (state: RootState) =>
+  state.userSlice.isLoggedIn;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
-import { selectMovies } from "../../services/selectors";
+import { selectMovies, selectUserIsLoggedIn } from "../../services/selectors";
 import {
   Card,
   CardActionArea,
@@ -30,10 +30,9 @@ const MovieTable: React.FC<MovieTableProps> = ({
   onBackDropClick,
 }) => {
   const movies = useSelector(selectMovies);
+  const isLoggedIn = useSelector(selectUserIsLoggedIn)
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
-
-  const render = false;
 
   return (
     <div>
@@ -67,7 +66,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {render ? (<IconButton>
+                    {isLoggedIn ? (<IconButton>
                       {favorited ? (
                         <FavoriteIcon color="error" />
                       ) : (
