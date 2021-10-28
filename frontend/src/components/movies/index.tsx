@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
-import { selectMovies, selectUserIsLoggedIn } from "../../services/selectors";
+import { selectMovies, selectUserIsLoggedIn, selectUserName } from "../../services/selectors";
+import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies";
 import {
   Card,
   CardActionArea,
@@ -31,8 +32,16 @@ const MovieTable: React.FC<MovieTableProps> = ({
 }) => {
   const movies = useSelector(selectMovies);
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
+  const userName = useSelector(selectUserName)
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
+
+  function isFavorited(movie: any): boolean {
+    if (movie === null) {
+      return false;
+    }
+    return movie.favoritedByUser.includes(userName)
+  }
 
   return (
     <div>
@@ -67,7 +76,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
                     {movie?.title}
                   </Typography>
                     {isLoggedIn ? (<IconButton>
-                      {favorited ? (
+                      {isFavorited(movie) ? (
                         <FavoriteIcon color="error" />
                       ) : (
                         <FavoriteBorderIcon />
