@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 import { selectNextPage, selectFilterSearch, selectFilterGenre, selectFilterDateStart, selectFilterDateEnd } from './selectors';
 import { useSelector } from "react-redux"
 import MovieService from "../services/index";
@@ -9,10 +9,10 @@ import { setMovies } from "./mainPageSlice"
 import { searchMovies } from "../services/__generated__/searchMovies"
 import { useAppDispatch } from "../services/hooks"
 import { Row, Col } from "react-bootstrap";
-import CustomizedTables from "../components/movies";
 import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
+import MovieTable from "../components/movies";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -55,6 +55,17 @@ export const MainPage: FunctionComponent = () => {
     fetchMovies();
   }, [filterSearchQuery, filterGenre, filterDateStart, filterDateEnd])
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const toggleModal = () => {
+    setIsModalVisible(wasModalVisible => !wasModalVisible);
+  }
+
+  const closeModal = () => {
+    if(isModalVisible){
+      setIsModalVisible(false);
+    }
+  }
+
   return (
     <>
       <Row>
@@ -64,10 +75,10 @@ export const MainPage: FunctionComponent = () => {
       </Row>
       <div className="innercontainer">
         <SideBar />
-        <div className="moviecontainer">
+        <div className="moviecontainer" onClick={closeModal}>
           <SortDropDown />
           <BottomScrollListener onBottom={fetchMore}/>
-          <CustomizedTables/>
+          <MovieTable onBackDropClick={toggleModal} isModalVisible={isModalVisible}  />
         </div>
       </div>
     </>
