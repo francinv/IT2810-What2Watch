@@ -38,9 +38,13 @@ const resolvers = {
       name: string,
       movie_id: string
     }) => {
-      const oldMovieFavorites = await Movie.findById(args.movie_id).favoritedByUser;
-      const newMovieFavorites = [ new Set([...oldMovieFavorites, args.name])]
-      return await Movie.findById/* AndUpdate */(args.movie_id/* , oldMovieFavorites */)
+      const oldMovie = await Movie.findById(args.movie_id);
+      const oldMovieFavorites = oldMovie.favoritedByUser
+      if (oldMovieFavorites && oldMovieFavorites.length > 0) {
+        const newMovieFavorites = [...new Set([...oldMovieFavorites, args.name])]
+        return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": newMovieFavorites})
+      }
+      return await Movie.findByIdAndUpdate(args.movie_id, { "favoritedByUser": [args.name]})
     }
   }
 };
