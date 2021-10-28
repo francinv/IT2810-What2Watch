@@ -23,6 +23,7 @@ export const GET_MOVIES_BY_SEARCH = gql`
       release_date
       overview
       poster
+      favoritedByUser
     }
   }
 `;

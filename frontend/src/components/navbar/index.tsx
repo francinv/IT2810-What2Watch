@@ -158,7 +158,7 @@ export default function NavBar() {
               onClose={handleClose}
             >
               {isLoggedIn 
-              ? <MenuItem onClick={handleLogin}>Log out</MenuItem>
+              ? <MenuItem onClick={handleLogin}>Log out</MenuItem> /* Handle logout her */
               : <MenuItem onClick={handleLogin}>Log in</MenuItem>}
             </Menu>
           </div>

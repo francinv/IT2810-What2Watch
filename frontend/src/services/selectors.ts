@@ -16,3 +16,5 @@ export const selectSortByCriteria = (state: RootState) =>
   state.mainPage.sortByCriteria;
 export const selectUserIsLoggedIn = (state: RootState) =>
   state.userSlice.isLoggedIn;
+export const selectUserName = (state: RootState) =>
+  state.userSlice.userName;

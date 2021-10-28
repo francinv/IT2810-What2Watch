@@ -15,6 +15,7 @@ export interface searchMovies_getMoviesBySearch {
   release_date: number | null;
   overview: string | null;
   poster: string | null;
+  favoritedByUser: (string | null)[] | null;
 }
 
 export interface searchMovies {
