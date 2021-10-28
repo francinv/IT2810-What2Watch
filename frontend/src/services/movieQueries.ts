@@ -26,7 +26,7 @@ export const GET_MOVIES_BY_SEARCH = gql`
   }
 `;
 
-export const SET_FAVORITE_MOVIES = gql`
+export const SET_FAVORITE_MOVIE = gql`
   mutation setMovieAsFavorite(
     $name: String,
     $movieId: String
