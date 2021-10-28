@@ -8,7 +8,6 @@ import {
   selectFilterDateEnd,
   selectSortByCriteria,
 } from "./selectors";
-
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
 import SideBar from "../components/sidebar/SideBar";
