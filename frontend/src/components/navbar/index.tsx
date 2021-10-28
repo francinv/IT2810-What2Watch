@@ -13,9 +13,9 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { AccountCircle } from "@mui/icons-material";
-import { useAppDispatch } from "../../services/hooks"
+import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
-import { setMovies, emptyMovies, setSearchQuery } from "../../pages/mainPageSlice"
+import { emptyMovies, setSearchQuery } from "../../pages/mainPageSlice";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,12 +61,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setSearch: (query: string) => dispatch(setSearchQuery(query)),
-  emptyMovies: () => dispatch(emptyMovies())
+  emptyMovies: () => dispatch(emptyMovies()),
 });
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [localSearch, setLocalSearch] = React.useState<string>("")
+  const [localSearch, setLocalSearch] = React.useState<string>("");
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -76,7 +76,7 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
-  const { setSearch } = actionDispatch(useAppDispatch())
+  const { setSearch } = actionDispatch(useAppDispatch());
 
   /* React.useEffect(() => {
   }, [onSearch]) 
@@ -87,12 +87,14 @@ export default function NavBar() {
 
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
-      setSearch(localSearch)
+      setSearch(localSearch);
     }
   };
 
-  function inputChange(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-    setLocalSearch(event.target.value)
+  function inputChange(
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) {
+    setLocalSearch(event.target.value);
   }
 
   return (
@@ -120,7 +122,9 @@ export default function NavBar() {
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
               onKeyDown={keyPress}
-              onChange={(event) => {inputChange(event)}}
+              onChange={(event) => {
+                inputChange(event);
+              }}
               autoFocus={true}
             />
           </Search>
