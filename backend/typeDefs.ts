@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
 
@@ -14,5 +14,6 @@ const typeDefs = gql`
     type Query {
         getMoviesBySearch(searchDateStart: Int, searchDateEnd: Int, searchQuery: String, searchGenre: [String], page: Int): [Movie]
     }
-`
-module.exports = typeDefs;
+`;
+
+module.exports = typeDefs
