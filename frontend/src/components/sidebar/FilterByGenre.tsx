@@ -58,7 +58,7 @@ export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   };
 
   function updateFilters() {
-    selectedGenres.length > 0 ? setFilter(selectedGenres) : setFilter(genres);
+    setFilter(selectedGenres)
   }
 
   return (

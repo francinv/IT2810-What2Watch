@@ -15,22 +15,39 @@ const resolvers = {
     ) => {
       const limit = 30;
       const offset = limit * args.page;
-      return await Movie.find({
-        title: {
-          $regex: args.searchQuery,
-          $options: "i",
-        },
-        release_date: {
-          $gte: args.searchDateStart,
-          $lte: args.searchDateEnd,
-        },
-        genres: {
-          $all: Array.from(args.searchGenre),
-        },
-      })
-        .limit(limit)
-        .skip(offset)
-        .sort(args.sortCriteria);
+      if (args.searchGenre.length === 0) {
+        return await Movie.find({
+          title: {
+            $regex: args.searchQuery,
+            $options: "i",
+          },
+          release_date: {
+            $gte: args.searchDateStart,
+            $lte: args.searchDateEnd,
+          },
+        })
+          .limit(limit)
+          .skip(offset)
+          .sort(args.sortCriteria);
+        }
+      else {
+        return await Movie.find({
+          title: {
+            $regex: args.searchQuery,
+            $options: "i",
+          },
+          release_date: {
+            $gte: args.searchDateStart,
+            $lte: args.searchDateEnd,
+          },
+          genres: {
+            $all: Array.from(args.searchGenre),
+          },
+        })
+          .limit(limit)
+          .skip(offset)
+          .sort(args.sortCriteria);
+      }
     },
   },
   Mutation: {

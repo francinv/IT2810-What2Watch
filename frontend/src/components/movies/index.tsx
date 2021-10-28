@@ -20,6 +20,7 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
+import Container from "react-bootstrap/container";
 import { Col, Row } from 'react-bootstrap';
 
 interface MovieTableProps {
@@ -71,7 +72,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
                       {isFavorited(movie) ? (
                         <FavoriteIcon color="error" />
                       ) : (
-                        <FavoriteBorderIcon />
+                        <FavoriteBorderIcon onClick={()=> (console.log("click!"))}/>
                       )}
                     </IconButton>) : null}
                   <Typography variant="body2" color="text.secondary">
