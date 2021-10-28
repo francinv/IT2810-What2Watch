@@ -25,7 +25,7 @@ const typeDefs = gql`
   }
 
   type Mutation { 
-      setMovieAsFavorite(name: String, movie_id: String): String
+      setMovieAsFavorite(name: String, movie_id: String): Movie
   }
 `;
 

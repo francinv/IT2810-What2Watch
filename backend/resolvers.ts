@@ -38,9 +38,9 @@ const resolvers = {
       name: string,
       movie_id: string
     }) => {
-      const movie = Movie.findById(args.movie_id);
-      console.log(movie);
-      return "success"
+      const movie = await Movie.findById(args.movie_id);
+      console.log(movie.favoritedByUser);
+      return movie
     }
   }
 };
