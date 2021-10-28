@@ -31,6 +31,11 @@ class MovieService {
       throw error;
     }
   }
+
+  /* async removeFavorite(
+    name: string,
+    movie_id: string,
+  ): Promi */
 }
 
 export default new MovieService();

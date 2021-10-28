@@ -25,3 +25,31 @@ export const GET_MOVIES_BY_SEARCH = gql`
     }
   }
 `;
+
+export const SET_FAVORITE_MOVIES = gql`
+  mutation setMovieAsFavorite(
+    $name: String,
+    $movieId: String
+  ) {
+    setMovieAsFavorite(
+      name: $name, 
+      movie_id: $movieId
+    ) {
+      favoritedByUser
+  }
+}
+`;
+
+export const REMOVE_MOVIE_AS_FAVORITE = gql`
+  mutation removeMovieAsFavorite(
+    $name: String, 
+    $movieId: String
+  ) {
+  removeMovieAsFavorite(
+    name: $name, 
+    movie_id: $movieId
+    ) {
+    favoritedByUser
+  }
+}
+`
