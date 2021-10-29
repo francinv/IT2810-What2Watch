@@ -19,7 +19,6 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
-import Container from "react-bootstrap/container";
 import MovieService from "../../services/index";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
@@ -95,7 +94,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
   return (
     <>
       <BaseModalWrapper isModalVisible={isModalVisible} movie={modalMovie!} onCloseClick={onBackDropClick}/>
-      <Container>
+      <div className="container">
       {
         movies?.map((movie: any) => (
           
@@ -135,7 +134,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
             </Card>
           
         ))}
-      </Container>
+      </div>
   </>  
   )
 }
