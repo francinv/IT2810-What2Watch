@@ -19,6 +19,7 @@ import {
   convertUnixDateToDate,
 } from "../../util/dateConverter";
 import Container  from 'react-bootstrap/Container';
+import FavButton from "../favButton";
 
 interface MovieTableProps {
   onBackDropClick: () => void;
@@ -61,17 +62,12 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   image={movie?.poster}
                   alt="Movie poster"
                 />
-                <CardContent>
+              </CardActionArea>
+              <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {isLoggedIn ? (<IconButton>
-                      {isFavorited(movie) ? (
-                        <FavoriteIcon color="error" />
-                      ) : (
-                        <FavoriteBorderIcon />
-                      )}
-                    </IconButton>) : null}
+                  <FavButton isFavorited={favorited} movie={movie}/>
                   <Typography variant="body2" color="text.secondary">
                     {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)
@@ -81,7 +77,6 @@ const MovieTable: React.FC<MovieTableProps> = ({
                     {movie?.genres.join(", ")}
                   </Typography>
                 </CardContent>
-              </CardActionArea>
             </Card>
           
         ))}
