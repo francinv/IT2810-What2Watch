@@ -1,5 +1,5 @@
 import React from "react";
-import MovieModal from "./MovieModal";
+import MovieModal from "./DetailedMovieModal";
 
 interface BaseModalWrapperProps {
   isModalVisible: boolean;

@@ -2,6 +2,10 @@ import React from "react";
 import './index.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from "@mui/material";
+import {
+    formatDateAsString,
+    convertUnixDateToDate,
+  } from "../../util/dateConverter";
 
 interface ModalProps {
     movie: any;
@@ -55,9 +59,11 @@ const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
                     </div>
                     <div className="col-flex right-flex">
                         <h3>About the movie </h3>
-                        <p><b>Release date:</b> {movie?.release_date}</p>
+                        <p><b>Release date:</b> {formatDateAsString(
+                      convertUnixDateToDate(movie?.release_date)
+                    )}</p>
                         <br></br>
-                        <p><b>Genres:</b> {movie?.genres}</p>
+                        <p><b>Genres:</b> {movie?.genres.join(", ")}</p>
 
                     </div>
                 </div>
