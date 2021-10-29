@@ -7,4 +7,7 @@
 .navBar {
     background-color: black !important;
     position: relative !important;
+   /* position: -webkit-sticky;
+    position: sticky;
+    top: 0;*/
 }
