@@ -3,7 +3,7 @@ import { IUserState } from "../../services/types"
 
 const initialState: IUserState = {
   isLoggedIn: false,
-  userName: undefined
+  userName: undefined,
 };
 
 const UserSlice = createSlice({
