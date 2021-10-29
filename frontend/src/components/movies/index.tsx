@@ -10,9 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import IconButton from "@mui/material/IconButton";
 import BaseModalWrapper from "../moviedetail/BaseModalWrapper";
 import {
   formatDateAsString,
@@ -26,12 +23,6 @@ interface MovieTableProps {
   isModalVisible: boolean;
 }
 
-const actionDispatch = (dispatch: Dispatch) => ({
-  addFavorite: (id: string) =>
-    dispatch(setFavorite(id)),
-  removeFavoriteMovie: (id: string) =>
-    dispatch(removeFavorite(id))
-});
 
 const MovieTable: React.FC<MovieTableProps> = ({
   isModalVisible,
@@ -134,7 +125,6 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   </Typography>
                 </CardContent>
             </Card>
-          
         ))}
       </div>
   </>  
