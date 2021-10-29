@@ -33,5 +33,5 @@ const UserSlice = createSlice({
   },
 });
 
-export const { loginAsUser, logOut } = UserSlice.actions;
+export const { loginAsUser, logOut, setFavorite, removeFavorite } = UserSlice.actions;
 export default UserSlice.reducer;

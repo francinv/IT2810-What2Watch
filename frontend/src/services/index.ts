@@ -40,7 +40,6 @@ class MovieService {
     name: string,
     movie_id: string,
   ): Promise<removeMovieAsFavorite["removeMovieAsFavorite"]> {
-    console.log("name:", name, "movie_id:", movie_id)
     try {
       const response = await apolloClient.mutate({
         mutation: REMOVE_MOVIE_AS_FAVORITE,
@@ -52,7 +51,7 @@ class MovieService {
       if (!response || !response.data) {
         throw new Error("Cannot remove movie as favorite");
       }
-      return response.data.removeMovieAsFavorite;
+      return response.data.removeMovieAsFavorite.id;
     } catch (error) {
       throw error;
     }
@@ -62,7 +61,6 @@ class MovieService {
     name: string,
     movie_id: string,
   ): Promise<setMovieAsFavorite["setMovieAsFavorite"]> {
-    console.log("name:", name, "movie_id:", movie_id)
     try {
       const response = await apolloClient.mutate({
         mutation: SET_FAVORITE_MOVIE,
@@ -74,7 +72,7 @@ class MovieService {
       if (!response || !response.data) {
         throw new Error("Cannot set this move as favorite");
       }
-      return response.data.removeMovieAsFavorite;
+      return response.data.setMovieAsFavorite.id;
     } catch (error) {
       throw error;
     }

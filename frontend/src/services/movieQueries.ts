@@ -37,7 +37,7 @@ export const SET_FAVORITE_MOVIE = gql`
       name: $name, 
       movie_id: $movie_id
     ) {
-      favoritedByUser
+      id
   }
 }
 `;
@@ -51,7 +51,7 @@ export const REMOVE_MOVIE_AS_FAVORITE = gql`
     name: $name, 
     movie_id: $movie_id
     ) {
-    favoritedByUser
+    id
   }
 }
 `

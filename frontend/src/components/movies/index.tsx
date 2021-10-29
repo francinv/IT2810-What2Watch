@@ -2,7 +2,6 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
 import { selectMovies, selectUserIsLoggedIn, selectUserName } from "../../services/selectors";
-import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies";
 import {
   Card,
   CardActionArea,
@@ -22,11 +21,21 @@ import {
 } from "../../util/dateConverter";
 import Container from "react-bootstrap/container";
 import MovieService from "../../services/index";
+import { useAppDispatch } from "../../services/hooks";
+import { Dispatch } from "redux";
+import { setFavorite, removeFavorite } from "../loginmodal/loginslice"
 
 interface MovieTableProps {
   onBackDropClick: () => void;
   isModalVisible: boolean;
 }
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  addFavorite: (id: string) =>
+    dispatch(setFavorite(id)),
+  removeFavoriteMovie: (id: string) =>
+    dispatch(removeFavorite(id))
+});
 
 const MovieTable: React.FC<MovieTableProps> = ({
   isModalVisible,
@@ -37,6 +46,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const userName = useSelector(selectUserName)
   const [favorited, setFavorited] = useState(false);
   const [modalMovie, setModalMovie] = useState(null!);
+  const { addFavorite, removeFavoriteMovie } = actionDispatch(useAppDispatch());
 
   function isFavorited(movie: any): boolean {
     if (movie === null) {
@@ -52,7 +62,8 @@ const MovieTable: React.FC<MovieTableProps> = ({
         id
       ).catch((error) => {
         console.log("Error", error);
-      });
+      })
+      addFavorite(response)
     }
   }
 
@@ -63,7 +74,8 @@ const MovieTable: React.FC<MovieTableProps> = ({
         id
       ).catch((error) => {
         console.log("Error", error);
-      });
+      })
+      console.log("response", response, "typeof response", typeof response);
     }
   }
 
