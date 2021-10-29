@@ -44,12 +44,10 @@ const MainPageSlice = createSlice({
       console.log("Payload", action.payload);
       state.nextPage = 0;
       state.movies = [];
+      if (state.filterGenre === [""]) {
+        state.filterGenre = []
+      }
       state.filterGenre = action.payload;
-    },
-    emptyMovies(state) {
-      console.log("Emptying movies");
-      state.nextPage = 0;
-      state.movies = [];
     },
   },
 });
@@ -58,7 +56,6 @@ export const {
   setMovies,
   setSortByCriteria,
   setFilterGenres,
-  emptyMovies,
   setFilterDates,
   setSearchQuery,
 } = MainPageSlice.actions;
