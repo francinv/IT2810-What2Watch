@@ -15,14 +15,12 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
-import Container  from 'react-bootstrap/Container';
 import FavButton from "../favButton";
 
 interface MovieTableProps {
   onBackDropClick: () => void;
   isModalVisible: boolean;
 }
-
 
 const MovieTable: React.FC<MovieTableProps> = ({
   isModalVisible,
@@ -32,7 +30,6 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
   const userName = useSelector(selectUserName)
   const [modalMovie, setModalMovie] = useState(null!);
-  const { addFavorite, removeFavoriteMovie } = actionDispatch(useAppDispatch());
 
   function isFavorited(movie: any): boolean {
     if (movie === null) {
@@ -40,55 +37,6 @@ const MovieTable: React.FC<MovieTableProps> = ({
     }
     return movie.favoritedByUser.includes(userName)
   }
-
-  const setFavorite = async (id: string) => {
-    if (userName !== undefined) {
-      const response = await MovieService.setMovieAsFavorite(
-        userName,
-        id
-      ).catch((error) => {
-        console.log("Error", error);
-      })
-      if (response) {
-        addFavorite(response)
-      }
-    }
-  }
-
-  const removeFavorite = async (id: string) => {
-    if (userName !== undefined) {
-      const response = await MovieService.removeFavorite(
-        userName,
-        id
-      ).catch((error) => {
-        console.log("Error", error);
-      })
-      if (response) {
-        removeFavoriteMovie(response)
-      }
-    }
-  }
-
-  function clickFavorite(movie: any) {
-    if (isFavorited(movie)) {
-      removeFavorite(movie.id);
-    }
-    else {
-      setFavorite(movie.id);
-    }
-  }
-
-  function setColor(movie: any){
-    let iconbutton = document.querySelector(".iconBtnFavorite");
-    if (isFavorited(movie)) {
-      iconbutton?.classList.add('favorited');
-    } else {
-      iconbutton?.classList.remove('favorited');
-    }
-  }
-
-
-
 
   return (
     <>

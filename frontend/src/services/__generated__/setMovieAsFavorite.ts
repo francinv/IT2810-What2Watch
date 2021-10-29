@@ -18,5 +18,5 @@ export interface setMovieAsFavorite {
 
 export interface setMovieAsFavoriteVariables {
   name?: string | null;
-  movieId?: string | null;
+  movie_id?: string | null;
 }
