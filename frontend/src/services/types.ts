@@ -13,6 +13,5 @@ export interface IMoviesList {
 
 export interface IUserState {
   isLoggedIn: boolean;
-  userName: string | undefined;
-  favorites: String[]
+  userName: string | undefined; 
 }
