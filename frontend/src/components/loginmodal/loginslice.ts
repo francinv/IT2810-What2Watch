@@ -3,7 +3,8 @@ import { IUserState } from "../../services/types"
 
 const initialState: IUserState = {
   isLoggedIn: false,
-  userName: undefined
+  userName: undefined,
+  favorites: []
 };
 
 const UserSlice = createSlice({
@@ -17,9 +18,20 @@ const UserSlice = createSlice({
     logOut(state) {
       state.isLoggedIn = false;
       state.userName = undefined;
+    },
+    setFavorite(state, action) {
+      state.favorites = [...state.favorites, action.payload]
+    },
+    removeFavorite(state, action) {
+      const index = state.favorites.indexOf(action.payload, 0);
+      if (index > -1) {
+        const temp = [...state.favorites];
+        temp.splice(index, 1);
+        state.favorites = temp;
+      }
     }
   },
 });
 
-export const { loginAsUser, logOut } = UserSlice.actions;
+export const { loginAsUser, logOut, setFavorite, removeFavorite } = UserSlice.actions;
 export default UserSlice.reducer;
