@@ -20,6 +20,7 @@ import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
 import MovieTable from "../components/movies";
+import SignIn from "../components/login";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: searchMovies["getMoviesBySearch"]) =>
@@ -76,6 +77,7 @@ export const MainPage: FunctionComponent = () => {
 
   return (
     <>
+      <SignIn></SignIn>
       <Row>
         <Col>
           <NavBar />

@@ -154,7 +154,7 @@ export default function NavBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>Log out</MenuItem>
+              <MenuItem onClick={handleClose}>Log in</MenuItem>
               <MenuItem onClick={handleClose}>Profile</MenuItem>
             </Menu>
           </div>

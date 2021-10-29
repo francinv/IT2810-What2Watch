@@ -7,7 +7,6 @@ import {
   CardActionArea,
   CardContent,
   CardMedia,
-  Grid,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -19,7 +18,7 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
-import { Col, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 interface MovieTableProps {
   onBackDropClick: () => void;
