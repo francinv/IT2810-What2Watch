@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import "./index.css";
 import { alpha, styled } from "@mui/material/styles";
 import {
+  Button,
   IconButton,
   InputBase,
   Menu,
@@ -19,6 +20,9 @@ import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
 import { loginAsUser } from "../loginmodal/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
+import SignIn from "../login";
+import PersonIcon from '@mui/icons-material/Person';
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -67,19 +71,27 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setUser: (query: string) => dispatch(loginAsUser(query))
 });
 
-export default function NavBar() {
+interface NavBarProps{
+  isLoginModalVisible:boolean;
+  onCloseClick: () => void;
+}
+
+const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [localSearch, setLocalSearch] = React.useState<string>("");
   const { setSearch, setUser } = actionDispatch(useAppDispatch());
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
 
   const handleClose = () => {
     setAnchorEl(null);
     console.log()
+  };
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  
+  const toggleModal = () => {
+    setIsModalVisible((wasModalVisible) => !wasModalVisible);
   };
 
   const handleLogin = () => {
@@ -102,6 +114,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <SignIn  isLoginModalVisible={isLoginModalVisible} onCloseClick={onCloseClick}/>
       <AppBar className="navBar">
         <Toolbar>
           <Typography
@@ -131,39 +144,13 @@ export default function NavBar() {
               autoFocus={true}
             />
           </Search>
-          <div>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              {isLoggedIn 
-              ? <MenuItem onClick={handleLogin}>Log out</MenuItem> /* Handle logout her */
-              : <MenuItem onClick={handleLogin}>Log in</MenuItem>}
-            </Menu>
-          </div>
+          {isLoggedIn 
+              ? <Button onClick={handleLogin} variant="contained" endIcon={PersonIcon}>Log out</Button> /* Handle logout her */
+              : <Button onClick={onCloseClick} variant="contained" endIcon={PersonIcon}> Log in</Button>}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+
+export default NavBar;

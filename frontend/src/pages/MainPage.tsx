@@ -69,6 +69,11 @@ export const MainPage: FunctionComponent = () => {
     setIsModalVisible((wasModalVisible) => !wasModalVisible);
   };
 
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const toggleLogInModal = () => {
+    setIsLoginModalVisible((wasModalVisible) => !wasModalVisible);
+  };
+
   const closeModal = () => {
     if (isModalVisible) {
       setIsModalVisible(false);
@@ -77,13 +82,12 @@ export const MainPage: FunctionComponent = () => {
 
   return (
     <>
-      <SignIn></SignIn>
       <Row>
         <Col>
-          <NavBar />
+          <NavBar onCloseClick={toggleLogInModal} isLoginModalVisible={isLoginModalVisible}/>
         </Col>
       </Row>
-      <div className="innercontainer">
+      <div className="innercontainer" onClick={toggleLogInModal}>
         <SideBar />
         <div className="moviecontainer" onClick={closeModal}>
           <SortDropDown />

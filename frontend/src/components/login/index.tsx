@@ -12,7 +12,12 @@ import './index.css';
 
 const theme = createTheme();
 
-export default function SignIn() {
+interface SignInProps{
+  isLoginModalVisible:boolean;
+  onCloseClick: () => void;
+}
+
+const SignIn: React.FC<SignInProps> = ({isLoginModalVisible, onCloseClick}) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,6 +25,7 @@ export default function SignIn() {
     console.log({
       username: data.get('username'),
     });
+    onCloseClick();
   };
 
   return (
@@ -51,6 +57,7 @@ export default function SignIn() {
               autoComplete="username"
               variant="standard"
               autoFocus
+              className="input-sign"
             />
             <Button
               type="submit"
@@ -67,3 +74,5 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+export default SignIn;
