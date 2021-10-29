@@ -1,5 +1,8 @@
 .sidebar {
-  min-height: calc(100vh - 72px);
+  height: 100vh !important;
+  position: -webkit-sticky;
+position: sticky;
+top: 0;
 }
 
 .closemenu {
