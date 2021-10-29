@@ -21,7 +21,7 @@ import {
   convertUnixDateToDate,
 } from "../../util/dateConverter";
 import Container from "react-bootstrap/container";
-import { Col, Row } from 'react-bootstrap';
+import MovieService from "../../services/index";
 
 interface MovieTableProps {
   onBackDropClick: () => void;
@@ -43,6 +43,37 @@ const MovieTable: React.FC<MovieTableProps> = ({
       return false;
     }
     return movie.favoritedByUser.includes(userName)
+  }
+
+  const setFavorite = async (id: string) => {
+    if (userName !== undefined) {
+      const response = await MovieService.setMovieAsFavorite(
+        id,
+        userName
+      ).catch((error) => {
+        console.log("Error", error);
+      });
+    }
+  }
+
+  const removeFavorite = async (id: string) => {
+    if (userName !== undefined) {
+      const response = await MovieService.removeFavorite(
+        id,
+        userName
+      ).catch((error) => {
+        console.log("Error", error);
+      });
+    }
+  }
+
+  function clickFavorite(movie: any) {
+    if (isFavorited(movie)) {
+      removeFavorite(movie.id);
+    }
+    else {
+      setFavorite(movie.id);
+    }
   }
 
   return (
@@ -68,7 +99,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {isLoggedIn ? (<IconButton onClick={()=> (console.log("click!"))}>
+                    {isLoggedIn ? (<IconButton onClick={()=> (clickFavorite(movie))}>
                       {isFavorited(movie) ? (
                         <FavoriteIcon color="error" />
                       ) : (
