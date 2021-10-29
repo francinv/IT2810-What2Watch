@@ -48,8 +48,8 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const setFavorite = async (id: string) => {
     if (userName !== undefined) {
       const response = await MovieService.setMovieAsFavorite(
-        id,
-        userName
+        userName,
+        id
       ).catch((error) => {
         console.log("Error", error);
       });
@@ -59,8 +59,8 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const removeFavorite = async (id: string) => {
     if (userName !== undefined) {
       const response = await MovieService.removeFavorite(
-        id,
-        userName
+        userName,
+        id
       ).catch((error) => {
         console.log("Error", error);
       });
