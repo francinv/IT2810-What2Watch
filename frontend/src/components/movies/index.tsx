@@ -114,12 +114,8 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {isLoggedIn ? (<IconButton onClick={()=> (clickFavorite(movie))}>
-                      {isFavorited(movie) ? (
-                        <FavoriteIcon color="error" />
-                      ) : (
-                        <FavoriteBorderIcon />
-                      )}
+                    {isLoggedIn ? (<IconButton onClick={()=> (clickFavorite(movie))}> 
+                        <FavoriteIcon color={isFavorited(movie) ? "error" : "inherit"} />
                     </IconButton>) : null}
                   <Typography variant="body2" color="text.secondary">
                     Release date: {formatDateAsString(
