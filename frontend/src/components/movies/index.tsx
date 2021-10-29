@@ -63,7 +63,9 @@ const MovieTable: React.FC<MovieTableProps> = ({
       ).catch((error) => {
         console.log("Error", error);
       })
-      addFavorite(response)
+      if (response) {
+        addFavorite(response)
+      }
     }
   }
 
@@ -75,7 +77,9 @@ const MovieTable: React.FC<MovieTableProps> = ({
       ).catch((error) => {
         console.log("Error", error);
       })
-      console.log("response", response, "typeof response", typeof response);
+      if (response) {
+        removeFavoriteMovie(response)
+      }
     }
   }
 

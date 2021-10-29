@@ -39,7 +39,7 @@ class MovieService {
   async removeFavorite(
     name: string,
     movie_id: string,
-  ): Promise<removeMovieAsFavorite["removeMovieAsFavorite"]> {
+  ): Promise<string> {
     try {
       const response = await apolloClient.mutate({
         mutation: REMOVE_MOVIE_AS_FAVORITE,
@@ -60,7 +60,7 @@ class MovieService {
   async setMovieAsFavorite(
     name: string,
     movie_id: string,
-  ): Promise<setMovieAsFavorite["setMovieAsFavorite"]> {
+  ): Promise<string> {
     try {
       const response = await apolloClient.mutate({
         mutation: SET_FAVORITE_MOVIE,
