@@ -17,6 +17,5 @@ build project:
   image: node:14
   script:
     - cd frontend
-    - yarn add "react-bootstrap/Container"
     - yarn install
     - yarn build
