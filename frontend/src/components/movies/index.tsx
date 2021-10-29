@@ -43,7 +43,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const movies = useSelector(selectMovies);
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
   const userName = useSelector(selectUserName)
-  const [favorited, setFavorited] = useState(false);
+  const [favorited, setFavorited] = useState("");
   const [modalMovie, setModalMovie] = useState(null!);
   const { addFavorite, removeFavoriteMovie } = actionDispatch(useAppDispatch());
 
@@ -91,6 +91,18 @@ const MovieTable: React.FC<MovieTableProps> = ({
     }
   }
 
+  function setColor(movie: any){
+    let iconbutton = document.querySelector(".iconBtnFavorite");
+    if (isFavorited(movie)) {
+      iconbutton?.classList.add('favorited');
+    } else {
+      iconbutton?.classList.remove('favorited');
+    }
+  }
+
+
+
+
   return (
     <>
       <BaseModalWrapper isModalVisible={isModalVisible} movie={modalMovie!} onCloseClick={onBackDropClick}/>
@@ -114,8 +126,11 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {isLoggedIn ? (<IconButton onClick={()=> (clickFavorite(movie))}> 
-                        <FavoriteIcon color={isFavorited(movie) ? "error" : "inherit"} />
+                    {isLoggedIn ? (<IconButton onClick={(e) => 
+                      {clickFavorite(movie)
+                      setColor(movie)}
+                      }> 
+                        <FavoriteIcon className="iconBtnFavorite" color={isFavorited(movie) ? "error" : "inherit"}/>
                     </IconButton>) : null}
                   <Typography variant="body2" color="text.secondary">
                     Release date: {formatDateAsString(

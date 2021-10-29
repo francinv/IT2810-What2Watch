@@ -14,3 +14,7 @@
     margin:15px;
     height: 720px;
 }
+
+.favorited {
+    background-color: red !important;
+}
