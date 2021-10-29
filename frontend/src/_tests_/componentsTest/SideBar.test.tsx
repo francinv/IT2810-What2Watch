@@ -1,0 +1,17 @@
+import {render, screen} from "../test-utils"
+import userEvent from "@testing-library/user-event"
+import SideBar from "../../components/sidebar/SideBar"
+
+describe("SideBar", ()=> {
+    test("Sidebar is showing 'Filtering options'", () => {
+        const {debug} = render(<SideBar/>)
+        expect(screen.getByText("Filtering options")).toBeInTheDocument();
+        //expect(screen.getByRole(/Menu/i)).toBeInTheDocument();
+    })
+    test("Sidebar is including FilterByYear and FilterByGenre components", () => {
+        render(<SideBar/>)
+        expect(screen.getByText("Genre")).toBeInTheDocument();
+        expect(screen.getByText("Year")).toBeInTheDocument();
+    })
+
+})
