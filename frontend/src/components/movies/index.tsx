@@ -68,20 +68,20 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {isLoggedIn ? (<IconButton>
+                    {isLoggedIn ? (<IconButton onClick={()=> (console.log("click!"))}>
                       {isFavorited(movie) ? (
                         <FavoriteIcon color="error" />
                       ) : (
-                        <FavoriteBorderIcon onClick={()=> (console.log("click!"))}/>
+                        <FavoriteBorderIcon />
                       )}
                     </IconButton>) : null}
                   <Typography variant="body2" color="text.secondary">
-                    {formatDateAsString(
+                    Release date: {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)
                     )}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {movie?.genres.join(", ")}
+                    {(movie.genres.length > 1 ? "Genres: " : "Genre: ")} {movie?.genres.join(", ")}
                   </Typography>
                 </CardContent>
               </CardActionArea>
