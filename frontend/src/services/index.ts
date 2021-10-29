@@ -41,8 +41,8 @@ class MovieService {
     movie_id: string,
   ): Promise<removeMovieAsFavorite["removeMovieAsFavorite"]> {
     try {
-      const response = await apolloClient.query({
-        query: REMOVE_MOVIE_AS_FAVORITE,
+      const response = await apolloClient.mutate({
+        mutation: REMOVE_MOVIE_AS_FAVORITE,
         variables: {
           name: name,
           movie_id: movie_id
@@ -62,8 +62,8 @@ class MovieService {
     movie_id: string,
   ): Promise<setMovieAsFavorite["setMovieAsFavorite"]> {
     try {
-      const response = await apolloClient.query({
-        query: SET_FAVORITE_MOVIE,
+      const response = await apolloClient.mutate({
+        mutation: SET_FAVORITE_MOVIE,
         variables: {
           name: name,
           movie_id: movie_id
