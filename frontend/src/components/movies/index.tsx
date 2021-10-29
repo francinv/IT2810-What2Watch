@@ -18,10 +18,8 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
-import MovieService from "../../services/index";
-import { useAppDispatch } from "../../services/hooks";
-import { Dispatch } from "redux";
-import { setFavorite, removeFavorite } from "../loginmodal/loginslice"
+import Container  from 'react-bootstrap/Container';
+import FavButton from "../favButton";
 
 interface MovieTableProps {
   onBackDropClick: () => void;
@@ -121,16 +119,12 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   image={movie?.poster}
                   alt="Movie poster"
                 />
-                <CardContent>
+              </CardActionArea>
+              <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                    {isLoggedIn ? (<IconButton onClick={(e) => 
-                      {clickFavorite(movie)
-                      setColor(movie)}
-                      }> 
-                        <FavoriteIcon className="iconBtnFavorite" color={isFavorited(movie) ? "error" : "inherit"}/>
-                    </IconButton>) : null}
+                  <FavButton isFavorited={favorited} movie={movie}/>
                   <Typography variant="body2" color="text.secondary">
                     Release date: {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)
@@ -140,7 +134,6 @@ const MovieTable: React.FC<MovieTableProps> = ({
                     {(movie.genres.length > 1 ? "Genres: " : "Genre: ")} {movie?.genres.join(", ")}
                   </Typography>
                 </CardContent>
-              </CardActionArea>
             </Card>
           
         ))}
