@@ -40,7 +40,6 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const movies = useSelector(selectMovies);
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
   const userName = useSelector(selectUserName)
-  const [favorited, setFavorited] = useState("");
   const [modalMovie, setModalMovie] = useState(null!);
   const { addFavorite, removeFavoriteMovie } = actionDispatch(useAppDispatch());
 
@@ -124,7 +123,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                  <FavButton isFavorited={favorited} movie={movie}/>
+                  {isLoggedIn ? <FavButton isFavorited={isFavorited(movie)}/> : null}
                   <Typography variant="body2" color="text.secondary">
                     Release date: {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)
