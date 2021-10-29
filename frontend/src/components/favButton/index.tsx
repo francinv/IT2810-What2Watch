@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 interface FavButtonProps {
-    movie: any;
     isFavorited: boolean;
 }
 
-const FavButton: React.FC<FavButtonProps> =({movie, isFavorited}) => {
+const FavButton: React.FC<FavButtonProps> =({isFavorited}) => {
+
+    const [favorited, setFavorited] = useState(isFavorited);
+
     return(
         <>
-            <button className="btn-fav" onClick={() => setFavorite()}>
-                <FontAwesomeIcon icon={faHeart} color={isFavorited ? 'red' : 'lightgray'}></FontAwesomeIcon>
+            <button className="btn-fav" onClick={() => 
+                {setFavorited(!favorited)
+                console.log("click")}}>
+                <FontAwesomeIcon icon={faHeart} color={favorited ? 'red' : 'lightgray'}></FontAwesomeIcon>
             </button>
         </>
     )
