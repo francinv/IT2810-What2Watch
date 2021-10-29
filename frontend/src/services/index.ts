@@ -51,7 +51,7 @@ class MovieService {
       if (!response || !response.data) {
         throw new Error("Cannot remove movie as favorite");
       }
-      return response.data.removeMovieAsFavorite.id;
+      return response.data.removeMovieAsFavorite.title;
     } catch (error) {
       throw error;
     }
@@ -72,7 +72,7 @@ class MovieService {
       if (!response || !response.data) {
         throw new Error("Cannot set this move as favorite");
       }
-      return response.data.setMovieAsFavorite.id;
+      return response.data.setMovieAsFavorite.title;
     } catch (error) {
       throw error;
     }

@@ -4,7 +4,6 @@ import { IUserState } from "../../services/types"
 const initialState: IUserState = {
   isLoggedIn: false,
   userName: undefined,
-  favorites: []
 };
 
 const UserSlice = createSlice({

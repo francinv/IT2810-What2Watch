@@ -107,7 +107,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
         movies?.map((movie: any) => (
           
             <Card sx={{ maxWidth: 345, height:'100%'}}>
-              <CardActionArea className="movie-item-card" onClick={ ()=>{
+              <CardActionArea className="movie-item-card" onClick={()=>{
                 setModalMovie(movie);
                 onBackDropClick();
               }}>
@@ -123,7 +123,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
                   <Typography gutterBottom variant="h5" component="div">
                     {movie?.title}
                   </Typography>
-                  {isLoggedIn ? <FavButton isFavorited={isFavorited(movie)}/> : null}
+                  {isLoggedIn ? <FavButton isFavorited={isFavorited(movie)} userName={userName !== undefined ? userName : ""} id={movie.id}/> : null}
                   <Typography variant="body2" color="text.secondary">
                     Release date: {formatDateAsString(
                       convertUnixDateToDate(movie?.release_date)
