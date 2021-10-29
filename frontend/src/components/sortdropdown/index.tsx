@@ -48,7 +48,7 @@ export default function SortDropDown() {
           </MenuItem>
           <MenuItem value={SortBy.YearAsc}>Release Year (Increasing)</MenuItem>
           <MenuItem value={SortBy.YearDesc}>Release Year (Decreasing)</MenuItem>
-          <MenuItem value={SortBy.Clear}>Clear</MenuItem>
+          <MenuItem value={SortBy.Clear}>None</MenuItem>
         </Select>
       </FormControl>
     </Box>

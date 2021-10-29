@@ -2,13 +2,11 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import "./index.css";
 import { selectMovies, selectUserIsLoggedIn, selectUserName } from "../../services/selectors";
-import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies";
 import {
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
-  Grid,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
@@ -20,7 +18,7 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
-import { Col, Row } from 'react-bootstrap';
+import Container  from 'react-bootstrap/Container';
 
 interface MovieTableProps {
   onBackDropClick: () => void;
