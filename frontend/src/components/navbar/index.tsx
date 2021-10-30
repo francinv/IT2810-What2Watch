@@ -127,7 +127,8 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
             />
           </Search>
           {isLoggedIn 
-              ? <Button className="sign-btn" onClick={()=> setLogOut()} variant="contained" startIcon={<PersonIcon/>}>Log out</Button> /* Handle logout her */
+              ? <Button className="sign-btn" onClick={()=> {setLogOut()
+                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>}>Log out</Button> /* Handle logout her */
               : <Button className="sign-btn" onClick={onCloseClick} variant="contained" startIcon={<PersonIcon/>}> Log in</Button>}
         </Toolbar>
       </AppBar>
