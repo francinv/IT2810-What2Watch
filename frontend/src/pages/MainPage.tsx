@@ -20,6 +20,8 @@ import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
 import MovieTable from "../components/movies";
+import SignIn from "../components/login";
+import UserDisplay from "../components/userDisplay";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: searchMovies["getMoviesBySearch"]) =>
@@ -68,23 +70,38 @@ export const MainPage: FunctionComponent = () => {
     setIsModalVisible((wasModalVisible) => !wasModalVisible);
   };
 
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const toggleLogInModal = () => {
+    setIsLoginModalVisible((wasModalVisible) => !wasModalVisible);
+  };
+
   const closeModal = () => {
     if (isModalVisible) {
       setIsModalVisible(false);
     }
   };
 
+  const closeLoginModal = () => {
+    if (isLoginModalVisible){
+      setIsLoginModalVisible(false);
+    }
+  }
+
+  
   return (
     <>
       <Row>
         <Col>
-          <NavBar />
+          <NavBar onCloseClick={toggleLogInModal} isLoginModalVisible={isLoginModalVisible}/>
         </Col>
       </Row>
-      <div className="innercontainer">
+      <div className="innercontainer" onClick={closeLoginModal}>
         <SideBar />
         <div className="moviecontainer" onClick={closeModal}>
-          <SortDropDown />
+          <div className="upper-div-container">
+            <UserDisplay />
+            <SortDropDown />
+          </div>
           <BottomScrollListener onBottom={fetchMore} />
           <MovieTable
             onBackDropClick={toggleModal}

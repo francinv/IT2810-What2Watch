@@ -3,6 +3,12 @@
     display: flex;
 }
 
+.upper-div-container{
+    display:flex;
+    flex-direction: row;
+    vertical-align: center;
+}
+
 .moviecontainer {
     width: 100%;    
     position: relative;

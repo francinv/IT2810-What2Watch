@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import "./index.css";
 import { alpha, styled } from "@mui/material/styles";
 import {
+  Button,
   IconButton,
   InputBase,
   Menu,
@@ -17,8 +18,11 @@ import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
-import { loginAsUser } from "../loginmodal/loginslice"
+import { loginAsUser, logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
+import SignIn from "../login";
+import PersonIcon from '@mui/icons-material/Person';
+import { useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,30 +68,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setSearch: (query: string) => dispatch(setSearchQuery(query)),
-  setUser: (query: string) => dispatch(loginAsUser(query))
+  setLogOut: () => dispatch(logOut()),
 });
 
-export default function NavBar() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+interface NavBarProps{
+  isLoginModalVisible:boolean;
+  onCloseClick: () => void;
+}
+
+const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
   const [localSearch, setLocalSearch] = React.useState<string>("");
-  const { setSearch, setUser } = actionDispatch(useAppDispatch());
+  const { setSearch, setLogOut} = actionDispatch(useAppDispatch());
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    console.log()
-  };
-
-  const handleLogin = () => {
-    setAnchorEl(null);
-    setUser("test")
-  }
-
-
+  
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
       setSearch(localSearch);
@@ -102,6 +96,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
+      <SignIn  isLoginModalVisible={isLoginModalVisible} onCloseClick={onCloseClick}/>
       <AppBar className="navBar">
         <Toolbar>
           <Typography
@@ -131,39 +126,14 @@ export default function NavBar() {
               autoFocus={true}
             />
           </Search>
-          <div>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              {isLoggedIn 
-              ? <MenuItem onClick={handleLogin}>Log out</MenuItem> /* Handle logout her */
-              : <MenuItem onClick={handleLogin}>Log in</MenuItem>}
-            </Menu>
-          </div>
+          {isLoggedIn 
+              ? <Button className="sign-btn" onClick={()=> {setLogOut()
+                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>}>Log out</Button> /* Handle logout her */
+              : <Button className="sign-btn" onClick={onCloseClick} variant="contained" startIcon={<PersonIcon/>}> Log in</Button>}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
+
+export default NavBar;
