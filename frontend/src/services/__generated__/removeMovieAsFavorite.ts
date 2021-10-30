@@ -9,14 +9,14 @@
 
 export interface removeMovieAsFavorite_removeMovieAsFavorite {
   __typename: "Movie";
-  favoritedByUser: (string | null)[] | null;
+  favoritedByUser: (string)[];
 }
 
 export interface removeMovieAsFavorite {
-  removeMovieAsFavorite: removeMovieAsFavorite_removeMovieAsFavorite | null;
+  removeMovieAsFavorite: removeMovieAsFavorite_removeMovieAsFavorite;
 }
 
 export interface removeMovieAsFavoriteVariables {
-  name?: string | null;
-  movieId?: string | null;
+  name?: string;
+  movieId?: string;
 }

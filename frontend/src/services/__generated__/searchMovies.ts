@@ -9,24 +9,24 @@
 
 export interface searchMovies_getMoviesBySearch {
   __typename: "Movie";
-  id: string | null;
-  title: string | null;
-  genres: (string | null)[] | null;
-  release_date: number | null;
-  overview: string | null;
-  poster: string | null;
-  favoritedByUser: (string | null)[] | null;
+  id: string;
+  title: string;
+  genres: (string)[]
+  release_date: number;
+  overview: string;
+  poster: string;
+  favoritedByUser: (string)[];
 }
 
 export interface searchMovies {
-  getMoviesBySearch: (searchMovies_getMoviesBySearch | null)[] | null;
+  getMoviesBySearch: (searchMovies_getMoviesBySearch)[];
 }
 
 export interface searchMoviesVariables {
-  page?: number | null;
-  searchGenre?: (string | null)[] | null;
-  searchQuery?: string | null;
-  searchDateStart?: number | null;
-  searchDateEnd?: number | null;
-  sortCriteria?: string | null;
+  page?: number;
+  searchGenre?: (string)[];
+  searchQuery?: string;
+  searchDateStart?: number;
+  searchDateEnd?: number;
+  sortCriteria?: string;
 }

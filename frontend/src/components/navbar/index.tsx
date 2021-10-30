@@ -88,7 +88,7 @@ export default function NavBar() {
   }
 
 
-  const keyPress = (event: any) => {
+  const keyPress = (event: React.KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (event.keyCode === 13) {
       setSearch(localSearch);
     }

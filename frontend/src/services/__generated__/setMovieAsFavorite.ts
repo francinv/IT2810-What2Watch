@@ -9,14 +9,14 @@
 
 export interface setMovieAsFavorite_setMovieAsFavorite {
   __typename: "Movie";
-  favoritedByUser: (string | null)[] | null;
+  favoritedByUser: (string)[];
 }
 
 export interface setMovieAsFavorite {
-  setMovieAsFavorite: setMovieAsFavorite_setMovieAsFavorite | null;
+  setMovieAsFavorite: setMovieAsFavorite_setMovieAsFavorite;
 }
 
 export interface setMovieAsFavoriteVariables {
-  name?: string | null;
-  movie_id?: string | null;
+  name?: string;
+  movie_id?: string;
 }
