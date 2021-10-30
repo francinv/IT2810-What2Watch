@@ -39,22 +39,12 @@ const Search = styled("div")(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    paddingLeft: "1rem",
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("sm")]: {
@@ -63,6 +53,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
         width: "20ch",
       },
     },
+  },
+}));
+
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
+  color:theme.palette.common.white,
+  backgroundColor:theme.palette.common.black,
+  borderRadius:"0px",
+  paddingTop:"10px",
+  border:"0.5px solid white",
+  transition:"background-color 0.75s",
+  borderTopRightRadius:"4px",
+  borderBottomRightRadius:"4px",
+  "&:hover": {
+    backgroundColor: theme.palette.common.white,
+    color:theme.palette.common.black,
+    transition:"background-color 0.75s",
   },
 }));
 
@@ -81,7 +87,9 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
   const { setSearch, setLogOut} = actionDispatch(useAppDispatch());
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
-  
+  const searchEvent = () => {
+    setSearch(localSearch);
+  }
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
       setSearch(localSearch);
@@ -112,10 +120,7 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
           >
             What to Watch?
           </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
+          <Search className="search-div">
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
@@ -124,7 +129,11 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
                 inputChange(event);
               }}
               autoFocus={true}
+              className="input-search"
             />
+            <StyledIconButton onClick={searchEvent}>
+              <SearchIcon />
+            </StyledIconButton>
           </Search>
           {isLoggedIn 
               ? <Button className="sign-btn" onClick={()=> {setLogOut()
