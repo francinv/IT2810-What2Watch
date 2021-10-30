@@ -24,3 +24,19 @@
 .sign-btn:hover{
     background-color: rgba(255, 255, 255, 0.25) !important;
 }
+
+
+@media(max-width:810px){
+    .text-navbar{
+        font-size: 2.5rem !important;
+    }
+}
+
+@media(max-width:655px){
+    .search-div{
+        display: flex;
+    }
+    .input-search{
+        width:100% !important;
+    }
+}

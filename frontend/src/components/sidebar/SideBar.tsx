@@ -20,7 +20,6 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import MovieFilterIcon from "@mui/icons-material/MovieFilter";
 import { FilterByYear } from "./FilterByYear";
 import { FilterByGenre } from "./FilterByGenre";
-
 /**
  * Global SideBar
  */
@@ -36,6 +35,18 @@ const SideBar: FunctionComponent = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+  const onResizeAutoMenuCollapse = () => {
+    let sidebar = document.body.querySelector(".pro-sidebar");
+    let width = document.body.clientWidth;
+    if(width <= 580){
+      setMenuCollapse(true);
+    }
+    if (width > 580){
+      setMenuCollapse(false);
+    }
+  }
+
+  window.addEventListener("resize", onResizeAutoMenuCollapse);
   return (
     <div className="sidebar">
       <ProSidebar collapsed={menuCollapse}>
