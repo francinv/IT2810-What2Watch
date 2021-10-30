@@ -18,7 +18,7 @@ import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
-import { loginAsUser } from "../loginmodal/loginslice"
+import { loginAsUser, logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
 import SignIn from "../login";
 import PersonIcon from '@mui/icons-material/Person';
@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setSearch: (query: string) => dispatch(setSearchQuery(query)),
-  setUser: (query: string) => dispatch(loginAsUser(query))
+  setLogOut: () => dispatch(logOut()),
 });
 
 interface NavBarProps{
@@ -77,29 +77,11 @@ interface NavBarProps{
 }
 
 const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [localSearch, setLocalSearch] = React.useState<string>("");
-  const { setSearch, setUser } = actionDispatch(useAppDispatch());
+  const { setSearch, setLogOut} = actionDispatch(useAppDispatch());
   const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    console.log()
-  };
-
-  const [isModalVisible, setIsModalVisible] = useState(false);
   
-  const toggleModal = () => {
-    setIsModalVisible((wasModalVisible) => !wasModalVisible);
-  };
-
-  const handleLogin = () => {
-    setAnchorEl(null);
-    setUser("test")
-  }
-
-
   const keyPress = (event: any) => {
     if (event.keyCode === 13) {
       setSearch(localSearch);
@@ -145,8 +127,8 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
             />
           </Search>
           {isLoggedIn 
-              ? <Button onClick={handleLogin} variant="contained" endIcon={PersonIcon}>Log out</Button> /* Handle logout her */
-              : <Button onClick={onCloseClick} variant="contained" endIcon={PersonIcon}> Log in</Button>}
+              ? <Button className="sign-btn" onClick={()=> setLogOut()} variant="contained" startIcon={<PersonIcon/>}>Log out</Button> /* Handle logout her */
+              : <Button className="sign-btn" onClick={onCloseClick} variant="contained" startIcon={<PersonIcon/>}> Log in</Button>}
         </Toolbar>
       </AppBar>
     </Box>
