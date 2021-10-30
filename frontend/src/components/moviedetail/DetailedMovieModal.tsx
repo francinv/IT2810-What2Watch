@@ -47,10 +47,8 @@ const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
     }
 
     function getReducedArray(array: Array<any>): Array<any> {
-        console.log("array", array);
         const temp = [...array]
         const index = temp.indexOf(userName, 0);
-        console.log("index", index);
         if (index > -1) {
             temp.splice(index, 1);
         }
