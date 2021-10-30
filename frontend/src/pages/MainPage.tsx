@@ -6,7 +6,7 @@ import {
   selectFilterGenre,
   selectFilterDateStart,
   selectFilterDateEnd,
-  selectSortByCriteria
+  selectSortByCriteria,
 } from "../services/selectors";
 import MovieService from "../services/index";
 import NavBar from "../components/navbar";
@@ -21,6 +21,7 @@ import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
 import MovieTable from "../components/movies";
 import SignIn from "../components/login";
+import UserDisplay from "../components/userDisplay";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: searchMovies["getMoviesBySearch"]) =>
@@ -97,7 +98,10 @@ export const MainPage: FunctionComponent = () => {
       <div className="innercontainer" onClick={closeLoginModal}>
         <SideBar />
         <div className="moviecontainer" onClick={closeModal}>
-          <SortDropDown />
+          <div className="upper-div-container">
+            <UserDisplay />
+            <SortDropDown />
+          </div>
           <BottomScrollListener onBottom={fetchMore} />
           <MovieTable
             onBackDropClick={toggleModal}
