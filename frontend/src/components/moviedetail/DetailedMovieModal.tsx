@@ -2,6 +2,8 @@ import React from "react";
 import './index.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from "@mui/material";
+import { selectUserName, selectUserIsLoggedIn } from "../../services/selectors"
+import { useSelector } from "react-redux";
 import {
     formatDateAsString,
     convertUnixDateToDate,
@@ -12,12 +14,15 @@ interface ModalProps {
     onCloseClick: () => void;
 }
 
-const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
+const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
     let closeButton = document.body.querySelector(".closemenu");
     closeButton?.addEventListener("click", setClass);
     
     let movieclick = document.body.querySelector(".movie-item-card");
     movieclick?.addEventListener("click", setWidth);
+
+    const userName = useSelector(selectUserName)
+    const isLoggedIn = useSelector(selectUserIsLoggedIn)
 
     function setWidth(this: HTMLElement, ev: Event){
         ev.preventDefault();
@@ -39,6 +44,18 @@ const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
         else{
             modalcont?.classList.remove('extra-width');
         }
+    }
+
+    function getReducedArray(array: Array<any>): Array<any> {
+        console.log("array", array);
+        const temp = [...array]
+        const index = temp.indexOf(userName, 0);
+        console.log("index", index);
+        if (index > -1) {
+            temp.splice(index, 1);
+        }
+        console.log(temp)
+        return temp;
         
     }
 
@@ -64,7 +81,9 @@ const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
                     )}</p>
                         <br></br>
                         <p><b>Genres:</b> {movie?.genres.join(", ")}</p>
-
+                        <br></br>
+                        {isLoggedIn ?  (<p><b>Favorited by:</b> {getReducedArray(movie?.favoritedByUser).length} other user{getReducedArray(movie?.favoritedByUser).length === 1 ? "." : "s."}</p>)
+                        : null}
                     </div>
                 </div>
             </div>
