@@ -16,6 +16,7 @@ import {
   convertUnixDateToDate,
 } from "../../util/dateConverter";
 import FavButton from "../favButton";
+import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies"
 
 interface MovieTableProps {
   onBackDropClick: () => void;
@@ -31,8 +32,8 @@ const MovieTable: React.FC<MovieTableProps> = ({
   const userName = useSelector(selectUserName)
   const [modalMovie, setModalMovie] = useState(null!);
 
-  function isFavorited(movie: any): boolean {
-    if (movie === null) {
+  function isFavorited(movie: searchMovies_getMoviesBySearch): boolean {
+    if (movie === null || !userName ) {
       return false;
     }
     return movie.favoritedByUser.includes(userName)

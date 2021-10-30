@@ -1,9 +1,10 @@
 import React from "react";
 import MovieModal from "./DetailedMovieModal";
+import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies"
 
 interface BaseModalWrapperProps {
   isModalVisible: boolean;
-  movie: any;
+  movie: searchMovies_getMoviesBySearch;
   onCloseClick: () => void;
 }
 
