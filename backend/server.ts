@@ -5,6 +5,12 @@ const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers')
 const mongoose = require("mongoose");
 import cors = require("cors");
+import "dotenv/config";
+
+const db_url:string = process.env.DB_URL ? process.env.DB_URL : "";
+const user: string = process.env.USER ? process.env.USER : "";
+const password:string = process.env.PASSWORD ? process.env.PASSWORD : ""
+const database:string = process.env.DATABASE ? process.env.DATABASE : "";
 
 async function startServer() {
     const app = express();
@@ -20,7 +26,7 @@ async function startServer() {
 
     app.use(cors());
 
-    await mongoose.connect("mongodb://it2810:it281029@it2810-29.idi.ntnu.no:27017/it2810?authSource=it2810&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false", {
+    await mongoose.connect(`mongodb://${user}:${password}@${db_url}/${database}?authSource=it2810&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false`, {
         useUnifiedTopology: true,
         useNewUrlParser: true
     })
