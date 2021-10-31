@@ -17,7 +17,7 @@ import {
 } from "../../util/dateConverter";
 
 import { searchMovies_getMoviesBySearch } from "../../services/__generated__/searchMovies"
-import FavButton from "../favbutton";
+import FavButton from "../favButton";
 
 interface MovieTableProps {
   onBackDropClick: () => void;
