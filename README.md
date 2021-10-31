@@ -119,9 +119,21 @@ Enheter som har blitt testet:
 
 
 ## Kjøre applikasjonen
+Under finner du instrukser for hvordan du kjører appen om du ønsker å kjøre denne lokalt på din egen PC.
 
 ### Frontend
+For å kjøre frontend må man:
+1. `cd frontend/`
+2. `yarn install`
+3. `yarn start`
 
-
+Ved kjøring som nevnt ovenfor vil appen kjøre på: `localhost:3000/`, dersom annet ikke er spesifisert.
 ### Backend
+For å kjøre backend må man:
+1. `cd backend/`
+2. `npm install`
+3. `npm run dev`
 
+Ved kjøring som nevnt ovenfor vil GraphQL-endpoint kjøres på: `localhost:4000/graphql`, dersom annet ikke er spesifisert.
+
+**MERKNAD: Husk å sette egne variabler i [.env](./backend/.env)**
