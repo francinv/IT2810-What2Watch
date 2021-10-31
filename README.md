@@ -23,7 +23,33 @@ helst enheter. Hvert element består av: bilde, tittel, utgivelsesdato, sjanger 
 - **Pagination:** Filmene på siden lastes dynamisk når brukeren scroller.
 
 ## Prosjektstruktur
+
+Nedenfor ligger mappestrukturen til frontend og backend. I frontend har vi lagt hver komponentgruppe i en egen mappe, samt den essensielle mainpagekomponenten som også henter state i en egen mappe under `src`. I backend har vi kun én mappe som inneholder mongoosemodell for datatypen Movie.
+
+# Frontend
+
+   src
+    ├─────── components
+    |        ├── favButton
+    |        ├── moviedetail
+    |        ├── moviesview
+    |        ├── navbar
+    |        ├── sidebar
+    |        ├── sortdropdown
+    |        └── userDisplay
+    ├─────── graphql
+    ├─────── pages
+    ├─────── services
+    └─────── util
+
+# Backend
+
+   src
+    └─────── models
+
 ## Backend
+
+Backenden består av en MongoDB-database og en kjørende server som hoster GraphQL-endpointet.
 
 ### Graphql
 
