@@ -5,7 +5,7 @@ import SortDropDown from "../../components/sortdropdown";
 describe("SortDropDown", ()=> {
     test("sortdropdown is showing", () => {
         render(<SortDropDown/>)
-        expect(screen.getByText("Sort by")).toBeInTheDocument();
+        expect(screen.getByLabelText("Sort by")).toBeInTheDocument();
     })
     test("Sortdropdown includes correct options", () => {
         const {getByLabelText, getByText} = render(<SortDropDown/>)

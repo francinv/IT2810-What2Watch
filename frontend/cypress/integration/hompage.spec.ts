@@ -110,20 +110,9 @@ describe("Renders the home page", ()=> {
         //Checking the three first movies that will be on top if sorting or filtering options are selected
         checkContainsDefaultMovies()
     })
-    
-    //TODO
-    it("Filtering by year works", ()=> {
-        
-    
-    })
-    
-    //TODO
-    it("Favorite", ()=> {
-    
-    })
+
     
     it("Login & Logout", ()=> {
-        
         //Login
         cy.get('#login-button-in-appbar').click();
         //cy.get('#username').clear();
@@ -131,10 +120,11 @@ describe("Renders the home page", ()=> {
         cy.get('.MuiBox-root > .MuiButton-root').click();
         cy.get("#username-display").should("exist")
         cy.contains("cypressTest");
-        
+        checkContainsDefaultMovies()
         //Logout
-        cy.get('#logout-button-in-appbar > .svg-inline--fa > path').click();
+        cy.get('#logout-button-in-appbar').click();
         cy.get("#username-display").should("not.exist")
+        checkContainsDefaultMovies()
         
     })
 
