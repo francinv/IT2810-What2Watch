@@ -15,7 +15,7 @@
     height:700px;
 }
 
-@media (min-width:375px){ 
+@media (max-width:375px){ 
     .container>div{
         height:625px;
     }
