@@ -116,8 +116,13 @@ Enheter som har blitt testet:
 ### End-to-end testing
 
 ## Dokumentasjon og utvikling
+Gjennom prosjektet har gruppen valgt å bruke GitLab flittig. Det har vært fokus på parprogrammering underveis i utviklingen for å forsikre god kodekvalitet til enhver tid. Vi har også hatt fokus på å utvikle komponenter og skrive lesbar kode. Dette har vi også sikret ved å bruke code-review jevnt gjennom utviklingsprosessen. 
 
-
+Gruppens prosess:
+1. Medlem oppretter issue i GitLab: Hver gang man skal starte med en arbeidsoppgave blir det laget en oppgave(issue) som beskriver hva man skal gjøre. Vi har brukt IssueBoard med egne lister slik at resten av teamet har kontroll på hvordan oppgaven ligger an. 
+2. Oppretter en branch fra nevnt issue: Hvert medlem lager en ny branch basert på master. Underveis passer medlemmet på at det alltid er oppdatert versjon. Teamet har til enhver tid jobbet i seperate branches. 
+3. Commite endringer og referer til issue: For at et annet medlem skal kunne forstå hva det respektive medlemmet har gjort, har det vært høyt fokus på at commit-meldinger skal være beskrivende og referere til riktig issue. 
+4. Når oppgaven/issue er fullført: Når oppgavene er løst opprettes en merge request. Når dette er gjort vil de andre gruppemedlemmene se over koden og se at alt fungerer. Om det blir godkjent, blir det merget til master branchen. 
 ## Kjøre applikasjonen
 Under finner du instrukser for hvordan du kjører appen om du ønsker å kjøre denne lokalt på din egen PC.
 
