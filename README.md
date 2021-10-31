@@ -4,6 +4,7 @@
 
 ## Om prosjektet
 
+![](https://i.imgur.com/Dc5bgYo.jpg)
 ## Innhold og funksjonalitet
 
 
@@ -60,11 +61,11 @@ Enheter som har blitt testet:
 ![](https://i.imgur.com/eXfsZ8G.jpg)
 
 ### Tablet:
-![](https://i.imgur.com/jKAcGrS.jpg)
+![](https://i.imgur.com/GkquT5Y.jpg)
 ![](https://i.imgur.com/8XVan49.jpg)
 
 ### Desktop:
-![](https://i.imgur.com/2hGJqgA.jpg)
+![](https://i.imgur.com/Dc5bgYo.jpg)
 
 ### Enhetstesting
 
