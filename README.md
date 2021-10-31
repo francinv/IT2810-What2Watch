@@ -76,6 +76,12 @@ viste seg å være fornuftig.
 Gruppen har både brukt ekstern css og styled-komponenter. Dette for å vise kunnskap på begge områder. Der det har vært hensiktsmessig har 
 gruppen også brukt egen css. Dette har blitt gjort hovedsakelig for responsivitet.
 ## Testing
+### Enhetstesting
+Vi har hovedsakelig basert enhetstestinga vår på "react-testing-library." Alle hovedkomponenter har hver sin egen rendertest. Komponentenes standardfunksjonalitet blir også testet. Disse testene finnes i mappen "frontend/src/_tests_".  Testene kjøres med kommandoen "yarn test" fra frontend-mappen.
+
+### End-to-end-testing
+Vi har brukt "Cypress" for end-to-end-testing. Her kjøres detaljerte scenarioer for bruken av appen vår. Testene ligger i filen "frontend/cypress/integration/hompage.spec". Testene kjøres med kommandoen "yarn cypress:run"(Terminalbasert) eller "yarn cypress:open"(nettleserbasert).
+
 
 ### Testing i nettleser
 For å kvalitetssikre gruppens produkt har det blitt testet i forskjellige nettlesere og enheter. Teamet har testet i disse nettleserne:
