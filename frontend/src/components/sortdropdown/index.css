@@ -1,11 +1,7 @@
 .select-container {
-    position: absolute;
-    top:0;
-    right: 0;
-    /*position: -webkit-sticky;
-    position: sticky;
-    top: 0;*/
-
+    width:30%;
+    align-self: flex-end;
+    margin-left:auto;
 }
 
 @media (max-width:375px){
@@ -15,4 +11,4 @@
         max-width:100% !important;
         min-width: 100% !important;
     }
-}
+} 

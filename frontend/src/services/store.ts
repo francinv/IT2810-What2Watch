@@ -1,6 +1,6 @@
 import { configureStore, ThunkAction, Action,  getDefaultMiddleware } from "@reduxjs/toolkit";
 import mainPageReducer from "../pages/mainPageSlice";
-import userReducer from "../components/loginmodal/loginslice"
+import userReducer from "../components/login/loginslice"
 import ReduxLogger from "redux-logger"
 
 const middleware = (getDefaultMiddleware: any) => getDefaultMiddleware().concat(ReduxLogger)

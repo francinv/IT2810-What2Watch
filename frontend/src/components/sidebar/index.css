@@ -139,7 +139,7 @@ input[type="checkbox"] {
   font-size: 1rem;
   line-height: 1.4375em;
   letter-spacing: 0.00938em;
-  color: white !important;
+  color: black !important;
   box-sizing: border-box;
   position: relative;
   cursor: text;
