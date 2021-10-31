@@ -3,10 +3,16 @@
 [[_TOC_]]
 
 ## Om prosjektet
+What 2 watch er en filmdatabase. Brukeren har mulighet til å se en stor mengde med filmer, i tillegg favorisere dem. Brukeren har også mulighet til å se detaljert informasjon av ønsket film. Videre har brukeren både sorteringsmuligheter og filtreringsmuligheter. Dette vil drøftes og forklares ytterligere i [Innhold og funksjonalitet](#ihf).
 
 ![](https://i.imgur.com/Dc5bgYo.jpg)
-## Innhold og funksjonalitet
+## <a id="ihf"></a>Innhold og funksjonalitet
 
+- **Presentasjon av filmer:** Filmene er det som har hovedfokus på siden. Basert på liste (hentet fra database) blir filmene vist i et
+pent rutenett. For å gjøre filmene presentable har det blitt brukt CSS-Flexbox layout. Dette gjør at filmene skalerer fint over hvilken som 
+helst enheter. Hvert element består av: bilde, tittel, utgivelsesdato, sjanger og favoritt-ikon(kun om bruker er innlogget).
+- **Detaljer om film:** Brukeren har mulighet til å lese mer detaljert informasjon om hver film. Dette gjøres ved at brukeren trykker på ønsket film. Det vil da dukke opp en modal, som viser en beskrivelse om filmen. Hvis brukeren er innlogget vil personen kunne se antall personer som har favorisert filmen. 
+- **Sortering:** Øverst i høyre hjørne er det en select. Her kan brukeren velge ønsket 
 
 ## Prosjektstruktur
 ## Backend
