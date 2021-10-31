@@ -16,6 +16,8 @@ helst enheter. Hvert element består av: bilde, tittel, utgivelsesdato, sjanger 
 
 ## Prosjektstruktur
 
+Nedenfor ligger mappestrukturen til frontend og backend. I frontend har vi lagt hver komponentgruppe i en egen mappe, samt den essensielle mainpagekomponenten som også henter state i en egen mappe under `src`. I backend har vi kun én mappe som inneholder mongoosemodell for datatypen Movie.
+
 # Frontend
 
    src
