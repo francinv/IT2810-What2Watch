@@ -17,6 +17,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setDates: (year: [number, number]) => dispatch(setFilterDates(year)),
 });
 
+/**
+ * This is the component for the filter: Year.
+ * The parent component are: SideBar.
+ * 
+ * @returns FilterByYear component.
+ */
 export const FilterByYear: FunctionComponent = () => {
   const [startDate, setStateStartDate] = useState<number>(1635203598);
   const [endDate, setStateEndDate] = useState<number>(1635203598);

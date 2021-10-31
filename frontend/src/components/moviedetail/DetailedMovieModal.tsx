@@ -14,6 +14,13 @@ interface ModalProps {
     onCloseClick: () => void;
 }
 
+/**
+ * This is a component for displaying the selected movie. 
+ * There are also some functions for making the modal responsive.
+ * 
+ * @param movie to show, onCloseClick function to close/open the modal
+ * @returns a Modal with MovieDetal.
+ */
 const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
     let closeButton = document.body.querySelector(".closemenu");
     closeButton?.addEventListener("click", setClass);

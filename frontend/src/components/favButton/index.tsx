@@ -11,6 +11,13 @@ interface FavButtonProps {
     id: string;
 }
 
+/**
+ * This is a component for favoriting a movie. We take in three props. 
+ * This component is connected to the database.
+ * 
+ * @param isFavorited, userName, id 
+ * @returns a button with Heart. 
+ */
 const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
 
     const [favorited, setFavorited] = useState(isFavorited);
