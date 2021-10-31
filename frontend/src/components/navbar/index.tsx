@@ -102,7 +102,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className="navBar">
+      <AppBar className="navBar" id="nav-bar">
         <Toolbar>
           <Typography
             variant="h2"
@@ -117,7 +117,7 @@ export default function NavBar() {
           >
             What to Watch?
           </Typography>
-          <Search>
+          <Search id="search-field-in-navbar">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -143,7 +143,7 @@ export default function NavBar() {
               <AccountCircle />
             </IconButton>
             <Menu
-              id="menu-appbar"
+              id="menu-in-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
                 vertical: "top",

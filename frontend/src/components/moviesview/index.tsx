@@ -15,7 +15,7 @@ import {
   formatDateAsString,
   convertUnixDateToDate,
 } from "../../util/dateConverter";
-import FavButton from "../favButton";
+import FavButton from "../favbutton";
 
 interface MovieTableProps {
   onBackDropClick: () => void;

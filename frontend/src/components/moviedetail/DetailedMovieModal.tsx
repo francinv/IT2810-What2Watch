@@ -43,7 +43,7 @@ const MovieModal: React.FC<ModalProps> = ({children, movie, onCloseClick}) => {
     }
 
     return (
-        <div className="modal-container">
+        <div className="modal-container" id="detailed-movie-view">
             <img src={movie?.poster} alt="Movie Poster"/>
             <div className="content-modal-container">
                 <div className="content-header">
