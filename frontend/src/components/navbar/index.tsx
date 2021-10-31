@@ -18,11 +18,11 @@ import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
-import { loginAsUser, logOut } from "../login/loginslice"
+import { logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
-import SignIn from "../login";
 import PersonIcon from '@mui/icons-material/Person';
 import { useState } from "react";
+import SignIn from "../login";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -139,7 +139,7 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
           </Search>
           {isLoggedIn 
               ? <Button className="sign-btn" onClick={()=> {setLogOut()
-                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>}>Log out</Button> /* Handle logout her */
+                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>} id="login-button-in-navbar">Log out</Button> /* Handle logout her */
               : <Button className="sign-btn" onClick={onCloseClick} variant="contained" startIcon={<PersonIcon/>}> Log in</Button>}
         </Toolbar>
       </AppBar>
