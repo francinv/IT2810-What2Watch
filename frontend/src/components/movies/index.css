@@ -12,5 +12,11 @@
 
 .container>div{
     margin:5px;
-    height:750px;
+    height:700px;
+}
+
+@media (min-width:375px){ 
+    .container>div{
+        height:625px;
+    }
 }
