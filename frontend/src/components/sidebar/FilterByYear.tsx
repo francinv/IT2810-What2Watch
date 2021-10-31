@@ -21,6 +21,9 @@ export const FilterByYear: FunctionComponent = () => {
   const [startDate, setStateStartDate] = useState<number>(1635203598);
   const [endDate, setStateEndDate] = useState<number>(1635203598);
 
+  const [starttemp, setStartTemp] = useState<Date | null>(new Date());
+  const [endtemp, setEndTemp] = useState<Date | null>(new Date());
+
   const { setDates } = actionDispatch(useAppDispatch());
 
   const FilterButton = styled(Button)<ButtonProps>(({ theme }) => ({
@@ -32,12 +35,12 @@ export const FilterByYear: FunctionComponent = () => {
     },
   }));
 
-  function setStartYear(year: number | null) {
+  function setStartYear(year: any | null) {
     if (year !== null) {
       setStateStartDate(convertDateToUnixDate(new Date(year)));
     }
   }
-  function setEndYear(year: number | null) {
+  function setEndYear(year: any | null) {
     if (year !== null) {
       setStateEndDate(convertDateToUnixDate(new Date(year)));
     }
@@ -52,14 +55,15 @@ export const FilterByYear: FunctionComponent = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
+      <Box className="year-container" sx={{ display: "flex" }}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DatePicker
             views={["year"]}
             label="From"
-            value={null}
+            value={starttemp}
             onChange={(newValue) => {
               setStartYear(newValue);
+              setStartTemp(newValue);
             }}
             renderInput={(params) => (
               <TextField {...params} helperText={null} />
@@ -69,9 +73,10 @@ export const FilterByYear: FunctionComponent = () => {
           <DatePicker
             views={["year"]}
             label="To"
-            value={null}
+            value={endtemp}
             onChange={(newValue) => {
               setEndYear(newValue);
+              setEndTemp(newValue);
             }}
             renderInput={(params) => (
               <TextField {...params} helperText={null} />
