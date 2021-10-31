@@ -36,9 +36,10 @@ Det har i tillegg blitt testet responsivitet ved hjelp av utviklerverktøy. Nede
 viser at dette har blitt testet:
 
 Enheter som har blitt testet:
-- Desktop (vanlig PC-skjerm)
-- Tablet (iPad både horisontalt og vertikalt)
-- Smarttelefon (iPhone både horisontalt og vertikalt)
+:computer: Desktop (vanlig PC-skjerm)
+:iphone: (iPad både horisontalt og vertikalt)
+:iphone: Smarttelefon (iPhone både horisontalt og vertikalt)
+
 **Det har blitt testet flere enheter men vi har valgt og kun ta med bilder av de viktigste.**
 
 #### Smarttelefon:
