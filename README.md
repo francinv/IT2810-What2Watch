@@ -15,7 +15,31 @@ helst enheter. Hvert element består av: bilde, tittel, utgivelsesdato, sjanger 
 - **Sortering:** Øverst i høyre hjørne er det en select. Her kan brukeren velge ønsket sorteringsmulighet. Brukeren kan velge mellom: 
 
 ## Prosjektstruktur
+
+# Frontend
+
+   src
+    ├─────── components
+    |        ├── favButton
+    |        ├── moviedetail
+    |        ├── moviesview
+    |        ├── navbar
+    |        ├── sidebar
+    |        ├── sortdropdown
+    |        └── userDisplay
+    ├─────── graphql
+    ├─────── pages
+    ├─────── services
+    └─────── util
+
+# Backend
+
+   src
+    └─────── models
+
 ## Backend
+
+Backenden består av en MongoDB-database og en kjørende server som hoster GraphQL-endpointet.
 
 ### Graphql
 
