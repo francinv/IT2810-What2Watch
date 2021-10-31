@@ -28,7 +28,7 @@ Nedenfor ligger mappestrukturen til frontend og backend. I frontend har vi lagt 
 
 # Frontend
 
-   src
+    src
     ├─────── components
     |        ├── favButton
     |        ├── moviedetail
@@ -44,7 +44,7 @@ Nedenfor ligger mappestrukturen til frontend og backend. I frontend har vi lagt 
 
 # Backend
 
-   src
+    src
     └─────── models
 
 ## Backend
