@@ -90,7 +90,9 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
   const searchEvent = () => {
     setSearch(localSearch);
   }
-  const keyPress = (event: any) => {
+
+
+  const keyPress = (event: React.KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     if (event.keyCode === 13) {
       setSearch(localSearch);
     }
