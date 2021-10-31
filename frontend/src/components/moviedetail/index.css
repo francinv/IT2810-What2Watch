@@ -36,7 +36,7 @@
 @media (max-width:375px){
     .modal-container{
         width: auto !important;
-        height: 300px;
+        height: auto;
         margin-left: 0rem;
     }
     .content-flex {
@@ -48,6 +48,7 @@
     }
     .content-modal-container{
         padding-top: 0rem !important;
+        padding-bottom: 40px;
     }
     .col-flex{
         width:100% !important;
