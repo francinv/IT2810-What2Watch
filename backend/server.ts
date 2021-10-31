@@ -8,7 +8,7 @@ import cors = require("cors");
 import "dotenv/config";
 
 const db_url:string = process.env.DB_URL ? process.env.DB_URL : "";
-const user: string = process.env.USERNAME ? process.env.USERNAME : "";
+const user: string = process.env.DB_USERNAME ? process.env.DB_USERNAME : "";
 const password:string = process.env.PASSWORD ? process.env.PASSWORD : ""
 const database:string = process.env.DATABASE ? process.env.DATABASE : "";
 

@@ -13,7 +13,7 @@ const resolvers = {
         sortCriteria: string;
       }
     ) => {
-      const limit = 30;
+      const limit = 24;
       const offset = limit * args.page;
       if (args.searchGenre.length === 0) {
         return await Movie.find({
