@@ -84,6 +84,13 @@ interface NavBarProps{
   onCloseClick: () => void;
 }
 
+/**
+ * This is the header for our app. We use AppBar component from MUI.
+ * The component both have the search function and userLogIn.
+ * 
+ * @param isLoginModalVisible, onCloseClick 
+ * @returns header to show.
+ */
 const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
   const [localSearch, setLocalSearch] = React.useState<string>("");
   const { setSearch, setLogOut} = actionDispatch(useAppDispatch());

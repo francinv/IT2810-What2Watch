@@ -17,6 +17,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setCriteria: (criteria: string) => dispatch(setSortByCriteria(criteria)),
 });
 
+/**
+ * This is a simple function for SelectComponent.
+ * The component gives the user possibility to sort the movies based on their wish.
+ * This component is a MUI component with custom css. 
+ * 
+ */
 export default function SortDropDown() {
   const [sortBy, setSortBy] = React.useState("");
 

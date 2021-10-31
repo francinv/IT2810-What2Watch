@@ -27,14 +27,18 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setFilter: (filter: string[]) => dispatch(setFilterGenres(filter)),
 });
 
+/**
+ * This is the component for filter: Genre.
+ * The parent component: SideBar.
+ *  
+ * @param genres from state.. 
+ * @returns FilterByGenre component to SideBar
+ */
 export const FilterByGenre: FunctionComponent<FilterByGenreProps> = ({
   genres,
 }: FilterByGenreProps) => {
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const { setFilter } = actionDispatch(useAppDispatch());
-
-  /* setFilter(event.target.name)
-  removeFilter(event.target.name) */
 
   const changeBox = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
