@@ -8,7 +8,6 @@ test project:
   stage: test
   image: node:14
   script:
-    - cd what2watch
     - cd frontend
     - yarn install
     - yarn test
