@@ -19,7 +19,7 @@ describe("Renders the home page", ()=> {
         cy.get("#side-bar").should("exist")
         cy.get("#movie-container").should("exist")
         cy.get("#search-field-in-navbar").should("exist")
-        cy.get("#menu-in-appbar").should("exist")
+        cy.get("#login-button-in-appbar").should("exist")
         cy.get("#genre-selection-checkbox-submenu").should("exist")
         cy.get("#year-selection-datepicker-submenu").should("exist")
     })
@@ -38,10 +38,10 @@ describe("Renders the home page", ()=> {
         cy.get("#detailed-movie-view").should("not.exist")
         
     })
-
+    
     it("Sorting works", ()=> {
         //Checking the three first movies that will be on top if the following sorting option is selected
-
+        
         //Title asc
         //cy.get('body').click();
         cy.get("#sort-drop-down").click();
@@ -83,7 +83,7 @@ describe("Renders the home page", ()=> {
     it("Filtering by genre works", ()=> {
         //Checking that the correct three first movies that will be on top before filtering options are selected
         checkContainsDefaultMovies()
-
+        
         //Selecting genre options
         cy.get('#genre-selection-checkbox-submenu > .pro-inner-item > .pro-item-content').click();
         //Checking and selecting "Animation"
@@ -93,7 +93,7 @@ describe("Renders the home page", ()=> {
         cy.contains("How to Train Your Dragon: The Hidden World")
         cy.contains("Doraemon the Movie: Nobita's Treasure Island")
         cy.contains("Cars")
-
+        
         //Adding "Comedy" as genre too
         cy.get(':nth-child(4) > .MuiCheckbox-root > .PrivateSwitchBase-input').check();
         cy.get('.MuiFormGroup-root > .MuiButton-root').click();
@@ -110,24 +110,32 @@ describe("Renders the home page", ()=> {
         //Checking the three first movies that will be on top if sorting or filtering options are selected
         checkContainsDefaultMovies()
     })
-
-//TODO
+    
+    //TODO
     it("Filtering by year works", ()=> {
         
-
+    
     })
-
+    
     //TODO
     it("Favorite", ()=> {
-        
-
+    
     })
-
-        //TODO
-    it("Login", ()=> {
-
+    
+    it("Login & Logout", ()=> {
         
-
+        //Login
+        cy.get('#login-button-in-appbar').click();
+        //cy.get('#username').clear();
+        cy.get('#username').type('cypressTest');
+        cy.get('.MuiBox-root > .MuiButton-root').click();
+        cy.get("#username-display").should("exist")
+        cy.contains("cypressTest");
+        
+        //Logout
+        cy.get('#logout-button-in-appbar > .svg-inline--fa > path').click();
+        cy.get("#username-display").should("not.exist")
+        
     })
 
 });
