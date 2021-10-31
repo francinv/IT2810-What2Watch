@@ -13,6 +13,14 @@ pent rutenett. For å gjøre filmene presentable har det blitt brukt CSS-Flexbox
 helst enheter. Hvert element består av: bilde, tittel, utgivelsesdato, sjanger og favoritt-ikon(kun om bruker er innlogget).
 - **Detaljer om film:** Brukeren har mulighet til å lese mer detaljert informasjon om hver film. Dette gjøres ved at brukeren trykker på ønsket film. Det vil da dukke opp en modal, som viser en beskrivelse om filmen. Hvis brukeren er innlogget vil personen kunne se antall personer som har favorisert filmen. 
 - **Sortering:** Øverst i høyre hjørne er det en select. Her kan brukeren velge ønsket sorteringsmulighet. Brukeren kan velge mellom: 
+    - Tittel (A-Å)
+    - Tittel (Å-A)
+    - Utgivelsesår (økende)
+    - Utgivelsesår (synkende)
+- **Filtering:** Brukeren har mulighet til å filtrere basert på utgivelsesår og sjanger. Basert på dette vil visningen av filmene oppdateres. 
+- **Søking:** Brukeren har mulighet til å finne en film ved å søke på bestemt film. Søkefeltet er implementert i Headeren som er en MUI komponent. Gruppen har endret komponenten med egen CSS. For å passe ønsket farge og størrelse. 
+- **Innlogging:** Brukeren har mulighet til å logge inn på sin bruker for å favorisere ønskede filmer. Favoriserte filmer vil vises med et hjerte om brukeren logger inn med samme brukernavn igjen. Ut fra favorisering vil dette også vises i detaljer om hver film.
+- **Pagination:** Filmene på siden lastes dynamisk når brukeren scroller.
 
 ## Prosjektstruktur
 
