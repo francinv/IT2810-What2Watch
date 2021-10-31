@@ -21,8 +21,10 @@ import { setSearchQuery } from "../../pages/mainPageSlice";
 import { logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
 import PersonIcon from '@mui/icons-material/Person';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react";
 import SignIn from "../login";
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -138,9 +140,9 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
             </StyledIconButton>
           </Search>
           {isLoggedIn 
-              ? <Button className="sign-btn" onClick={()=> {setLogOut()
-                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>} id="login-button-in-navbar">Log out</Button> /* Handle logout her */
-              : <Button className="sign-btn" onClick={onCloseClick} variant="contained" startIcon={<PersonIcon/>}> Log in</Button>}
+              ? <button className="sign-btn" onClick={()=> {setLogOut()
+                window.location.reload()}}> <FontAwesomeIcon icon={faUser}/> <p className="btn-text">Sign out</p> </button>
+              : <button className="sign-btn" onClick={onCloseClick}> <FontAwesomeIcon icon={faUser} /> <p className="btn-text">Sign out</p> </button>}
         </Toolbar>
       </AppBar>
     </Box>

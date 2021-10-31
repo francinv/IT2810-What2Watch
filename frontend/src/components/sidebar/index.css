@@ -2,8 +2,8 @@
   height: 100vh !important;
   /*min-height: calc(100vh - 72px) !important;*/
   position: -webkit-sticky;
-position: sticky;
-top: 0;
+  position: sticky;
+  top: 0;
 }
 
 .closemenu {
@@ -204,12 +204,6 @@ input[type="checkbox"] {
     max-width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
   z-index: 1;
   pointer-events: none;
-}
-
-@media only screen and (max-width: 600px) {
-  .sidebar {
-    height: 100vh !important;
-  }
 }
 
 .button-container {
