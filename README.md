@@ -12,7 +12,7 @@ What 2 watch er en filmdatabase. Brukeren har mulighet til å se en stor mengde 
 pent rutenett. For å gjøre filmene presentable har det blitt brukt CSS-Flexbox layout. Dette gjør at filmene skalerer fint over hvilken som 
 helst enheter. Hvert element består av: bilde, tittel, utgivelsesdato, sjanger og favoritt-ikon(kun om bruker er innlogget).
 - **Detaljer om film:** Brukeren har mulighet til å lese mer detaljert informasjon om hver film. Dette gjøres ved at brukeren trykker på ønsket film. Det vil da dukke opp en modal, som viser en beskrivelse om filmen. Hvis brukeren er innlogget vil personen kunne se antall personer som har favorisert filmen. 
-- **Sortering:** Øverst i høyre hjørne er det en select. Her kan brukeren velge ønsket 
+- **Sortering:** Øverst i høyre hjørne er det en select. Her kan brukeren velge ønsket sorteringsmulighet. Brukeren kan velge mellom: 
 
 ## Prosjektstruktur
 ## Backend
