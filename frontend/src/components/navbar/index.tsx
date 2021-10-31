@@ -18,11 +18,11 @@ import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
-import { loginAsUser, logOut } from "../login/loginslice"
+import { logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
-import SignIn from "../login";
 import PersonIcon from '@mui/icons-material/Person';
 import { useState } from "react";
+import SignIn from "../login";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -104,8 +104,8 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <SignIn  isLoginModalVisible={isLoginModalVisible} onCloseClick={onCloseClick}/>
-      <AppBar className="navBar">
+      <SignIn isLoginModalVisible={isLoginModalVisible} onCloseClick={onCloseClick}/>
+      <AppBar className="navBar" id ="nav-bar">
         <Toolbar>
           <Typography
             variant="h2"
@@ -120,7 +120,7 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
           >
             What to Watch?
           </Typography>
-          <Search className="search-div">
+          <Search className="search-div" id="search-field-in-navbar">
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
@@ -137,7 +137,7 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
           </Search>
           {isLoggedIn 
               ? <Button className="sign-btn" onClick={()=> {setLogOut()
-                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>}>Log out</Button> /* Handle logout her */
+                window.location.reload()}} variant="contained" startIcon={<PersonIcon/>} id="login-button-in-navbar">Log out</Button> /* Handle logout her */
               : <Button className="sign-btn" onClick={onCloseClick} variant="contained" startIcon={<PersonIcon/>}> Log in</Button>}
         </Toolbar>
       </AppBar>

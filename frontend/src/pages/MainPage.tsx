@@ -19,9 +19,9 @@ import { Row, Col } from "react-bootstrap";
 import "./MainPage.css";
 import { BottomScrollListener } from "react-bottom-scroll-listener";
 import SortDropDown from "../components/sortdropdown";
-import MovieTable from "../components/movies";
-import SignIn from "../components/login";
+import MovieTable from "../components/moviesview";
 import UserDisplay from "../components/userDisplay";
+
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setMovies: (movies: searchMovies["getMoviesBySearch"]) =>
@@ -97,7 +97,7 @@ export const MainPage: FunctionComponent = () => {
       </Row>
       <div className="innercontainer" onClick={closeLoginModal}>
         <SideBar />
-        <div className="moviecontainer" onClick={closeModal}>
+        <div className="moviecontainer" id="movie-container" onClick={closeModal}>
           <div className="upper-div-container">
             <UserDisplay />
             <SortDropDown />
