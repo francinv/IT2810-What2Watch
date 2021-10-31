@@ -8,6 +8,12 @@ interface BaseModalWrapperProps {
   onCloseClick: () => void;
 }
 
+/**
+ * This is a wrapper component for the MovieModal. 
+ * 
+ * @param isModalVisible, movie to view, onCloseClick. 
+ * @returns null if isModalVisible = false, and returns the MovieModal if not.
+ */
 const BaseModalWrapper: React.FC<BaseModalWrapperProps> = ({
   isModalVisible,
   movie,
