@@ -11,7 +11,7 @@ test project:
     - cd frontend
     - yarn install
     - yarn test
-    - yarn cypress:run
+    - yarn cypress:run:pipline
 
 build project:
   stage: build
