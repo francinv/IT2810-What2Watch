@@ -13,8 +13,11 @@
 
 ### Graphql
 
+Graphql er brukt som spørrespråk. Sammen med mongoose og Apollo, kan man hente nøyaktig den dataen vi selv har definert. Dette gjøres gjennom schemas som vi selv har definert. Mongoose blir brukt som for å modellere og resolve data som sendes som queries til databasen. Vi bruker Apollo client og Apollo server for å kjøre GraphQL-serveren
+og for å hente og sende spørringer til GraphQL-serveren
 ### Database
 
+Vi har hentet data fra datasett tilgjengelig på [kaggle](https://kaggle.com/datasets/) og tilpasset dataen til vår database. Deretter lastet vi dem opp i en database som ligger på IDI sin VM.
 
 ## Frontend
 What to Watch bruker React for frontend. React er et JavaScript-bibliotek for å lage og bygge brukergrensesnitt. Det vedlikeholdes av Facebook og et fellesskap av ulike utviklere og selskaper. React kan brukes som et utgangspunkt i utviklingen av enkeltside eller mobil applikasjon, da det er optimalisert for å raskt hente skiftende data som må registreres. 
