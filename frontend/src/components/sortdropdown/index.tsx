@@ -37,9 +37,9 @@ export default function SortDropDown() {
         <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
         <Select
           labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          id="sort-drop-down"
           value={sortBy}
-          label="Year"
+          label="Sort by"
           onChange={handleSortBy}
         >
           <MenuItem value={SortBy.AlphabeticalAsc}>Title (Increasing)</MenuItem>

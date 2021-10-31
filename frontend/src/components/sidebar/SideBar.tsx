@@ -48,7 +48,7 @@ const SideBar: FunctionComponent = () => {
 
   window.addEventListener("resize", onResizeAutoMenuCollapse);
   return (
-    <div className="sidebar">
+    <div className="sidebar" id="side-bar">
       <ProSidebar collapsed={menuCollapse}>
         <SidebarHeader>
           <div className="closemenu" onClick={menuIconClick}>
@@ -60,10 +60,10 @@ const SideBar: FunctionComponent = () => {
         </SidebarHeader>
         <SidebarContent>
           <Menu iconShape="square">
-            <SubMenu title="Genre" icon={<MovieFilterIcon />}>
+            <SubMenu title="Genre" icon={<MovieFilterIcon />} id="genre-selection-checkbox-submenu">
               <FilterByGenre genres={["Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "Horror", "Music", "Mystery", "Romance", "Science Fiction", "Thriller", "TV Movie", "War", "Western"]} />
             </SubMenu>
-            <SubMenu title="Year" icon={<CalendarTodayIcon />}>
+            <SubMenu title="Year" icon={<CalendarTodayIcon />} id="year-selection-datepicker-submenu">
               <FilterByYear />
             </SubMenu>
           </Menu>
