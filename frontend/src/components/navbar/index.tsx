@@ -107,7 +107,7 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <SignIn  isLoginModalVisible={isLoginModalVisible} onCloseClick={onCloseClick}/>
-      <AppBar className="navBar">
+      <AppBar className="navBar" id="nav-bar">
         <Toolbar>
           <Typography
             variant="h2"
@@ -122,7 +122,7 @@ const NavBar: React.FC<NavBarProps> = ({isLoginModalVisible, onCloseClick}) => {
           >
             What to Watch?
           </Typography>
-          <Search className="search-div">
+          <Search className="search-div" id="search-field-in-navbar">
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}

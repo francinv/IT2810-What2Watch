@@ -97,7 +97,7 @@ export const MainPage: FunctionComponent = () => {
       </Row>
       <div className="innercontainer" onClick={closeLoginModal}>
         <SideBar />
-        <div className="moviecontainer" onClick={closeModal}>
+        <div className="moviecontainer" id="movie-container" onClick={closeModal}>
           <div className="upper-div-container">
             <UserDisplay />
             <SortDropDown />
