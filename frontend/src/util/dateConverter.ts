@@ -1,3 +1,5 @@
+//Utilityfile to convert between dates in UNIX date format and normal date format and print date as String
+
 export function convertDateToUnixDate(date: Date) {
   return Math.round(date.getTime() / 1000);
 }

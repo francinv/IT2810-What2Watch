@@ -1,3 +1,6 @@
+/**
+ * Enum used in sorting dropdown menu
+ */
 export enum SortBy {
   AlphabeticalAsc = "title",
   AlphabeticalDesc = "-title",
