@@ -64,6 +64,8 @@ export const MainPage: FunctionComponent = () => {
 
   useEffect(() => {
     fetchMovies();
+    //fethMovies is not supposed to be in the dependency list, otherwise it will go in an endless loop
+    // eslint-disable-next-line
   }, [filterSearchQuery, filterGenre, filterDateStart, filterDateEnd, sortBy]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
