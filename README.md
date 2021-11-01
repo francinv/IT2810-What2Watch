@@ -7,7 +7,7 @@ Av en eller annen grunn vises ikke én av komponentene våre i builden. Vi har p
 
 [[_TOC_]]
 
-## Om prosjektet
+# Om prosjektet
 What 2 watch er en filmdatabase. Brukeren har mulighet til å se en stor mengde med filmer, i tillegg favorisere dem. Brukeren har også mulighet til å se detaljert informasjon av ønsket film. Videre har brukeren både sorteringsmuligheter og filtreringsmuligheter. Dette vil drøftes og forklares ytterligere i [Innhold og funksjonalitet](#ihf).
 
 ![](https://i.imgur.com/Dc5bgYo.jpg)
