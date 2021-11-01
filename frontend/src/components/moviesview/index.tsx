@@ -53,7 +53,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
       {
         movies?.map((movie: any) => (
           
-            <Card sx={{ maxWidth: 345, height:'100%'}}>
+            <Card key = {movie.id} sx={{ maxWidth: 345, height:'100%'}}>
               <CardActionArea className="movie-item-card" onClick={()=>{
                 setModalMovie(movie);
                 onBackDropClick();

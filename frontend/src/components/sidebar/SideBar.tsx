@@ -36,7 +36,6 @@ const SideBar: FunctionComponent = () => {
   };
 
   const onResizeAutoMenuCollapse = () => {
-    let sidebar = document.body.querySelector(".pro-sidebar");
     let width = document.body.clientWidth;
     if(width <= 580){
       setMenuCollapse(true);
