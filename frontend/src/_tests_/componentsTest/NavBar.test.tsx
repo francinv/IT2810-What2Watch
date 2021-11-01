@@ -1,10 +1,7 @@
 import {render, screen} from "../test-utils"
 import userEvent from "@testing-library/user-event"
 import NavBar from "../../components/navbar";
-import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
-import App from "../../App";
-import { apolloClient } from "../../graphql";
 import { store } from "../../services/store";
 
 
@@ -13,10 +10,8 @@ const dummyProp = jest.fn();
 
 const navbar = (
     <Provider store={store}>
-      
-    <NavBar onCloseClick={dummyProp} isLoginModalVisible={false}/>
-    
-  </Provider>
+        <NavBar onCloseClick={dummyProp} isLoginModalVisible={false}/>  
+    </Provider>
 )
 
 
