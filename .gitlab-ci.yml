@@ -10,7 +10,7 @@ test project:
   script:
     - cd frontend
     - yarn install
-    - yarn test
+    - yarn test --coverage --updateSnapshot
 
 build project:
   stage: build
