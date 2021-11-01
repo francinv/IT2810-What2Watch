@@ -61,9 +61,6 @@ export const MainPage: FunctionComponent = () => {
     }
   };
 
-  function fetchMore() {
-    fetchMovies();
-  }
 
   useEffect(() => {
     fetchMovies();
@@ -106,7 +103,7 @@ export const MainPage: FunctionComponent = () => {
             <UserDisplay />
             <SortDropDown />
           </div>
-          <BottomScrollListener onBottom={fetchMore} />
+          <BottomScrollListener onBottom={fetchMovies} />
           <MovieTable
             onBackDropClick={toggleModal}
             isModalVisible={isModalVisible}
