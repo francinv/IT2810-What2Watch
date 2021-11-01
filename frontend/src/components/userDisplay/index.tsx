@@ -11,7 +11,7 @@ const UserDisplay: React.FC = () => {
         return null;
     }
     return(
-        <div className="name-display">
+        <div id="username-display" className="name-display">
             <h2><b>Hello</b> {username}!</h2>
         </div>
     )
