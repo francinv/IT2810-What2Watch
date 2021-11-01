@@ -33,6 +33,8 @@ export default function SortDropDown() {
 
   useEffect(() => {
     setCriteria(sortBy);
+    //setCriteria is not supposed to be in the dependency list, otherwise it will go in an endless loop
+    // eslint-disable-next-line
   }, [sortBy]);
 
   return (

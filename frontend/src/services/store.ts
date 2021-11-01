@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action,  getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import mainPageReducer from "../pages/mainPageSlice";
 import userReducer from "../components/login/loginslice"
 

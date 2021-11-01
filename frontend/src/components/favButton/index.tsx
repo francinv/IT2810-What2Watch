@@ -24,7 +24,7 @@ const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
 
     const setFavorite = async () => {
         if (userName !== undefined) {
-          const response = await MovieService.setMovieAsFavorite(
+          await MovieService.setMovieAsFavorite(
             userName,
             id
           ).catch((error) => {
@@ -35,7 +35,7 @@ const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
     
     const removeFavorite = async () => {
     if (userName !== undefined) {
-        const response = await MovieService.removeFavorite(
+        await MovieService.removeFavorite(
         userName,
         id
         ).catch((error) => {

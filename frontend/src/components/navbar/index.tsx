@@ -17,7 +17,6 @@ import { setSearchQuery } from "../../pages/mainPageSlice";
 import { logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from "react";
 import SignIn from "../login";
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
