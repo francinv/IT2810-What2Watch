@@ -1,5 +1,7 @@
 import gql from "graphql-tag";
 
+/* GraphQL queries and mutation including schemas to query to the graphql server. */
+
 export const GET_MOVIES_BY_SEARCH = gql`
   query searchMovies(
     $page: Int

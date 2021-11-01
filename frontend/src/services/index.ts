@@ -6,6 +6,7 @@ import { GET_MOVIES_BY_SEARCH } from "./movieQueries";
 import { SET_FAVORITE_MOVIE } from "./movieQueries";
 import { REMOVE_MOVIE_AS_FAVORITE } from "./movieQueries";
 
+/* Class to send apollo queries and returns the response data */
 class MovieService {
   async getMoviesBySearch(
     page: number,
