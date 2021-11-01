@@ -63,7 +63,7 @@ const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
     }
 
     return (
-        <div className="modal-container" onClick={(event) => event.stopPropagation()}>
+        <div id="detailed-movie-view" className="modal-container" onClick={(event) => event.stopPropagation()}>
             <img src={movie?.poster} alt="Movie Poster"/>
             <div className="content-modal-container">
                 <div className="content-header">

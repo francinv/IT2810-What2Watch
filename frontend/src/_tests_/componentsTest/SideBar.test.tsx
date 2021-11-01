@@ -6,7 +6,6 @@ describe("SideBar", ()=> {
     test("Sidebar is showing 'Filtering options'", () => {
         const {debug} = render(<SideBar/>)
         expect(screen.getByText("Filtering options")).toBeInTheDocument();
-        //expect(screen.getByRole(/Menu/i)).toBeInTheDocument();
     })
     test("Sidebar is including FilterByYear and FilterByGenre components", () => {
         render(<SideBar/>)
