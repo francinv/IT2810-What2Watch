@@ -27,8 +27,6 @@ export default function SortDropDown() {
   const [sortBy, setSortBy] = React.useState("");
 
   const handleSortBy = (event: SelectChangeEvent) => {
-    console.log("QWsortQuery", sortBy);
-    console.log("Eventvalue", event.target.value);
     setSortBy(event.target.value);
   };
   const { setCriteria } = actionDispatch(useAppDispatch());

@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IMoviesList } from "../services/types";
 
+/* Reducer for mainpage. Here the actions are also dispatched with redux toolkit. All the actions are defined in the reducers. */
+
+
 const initialState: IMoviesList = {
   movies: [],
   loading: false,
@@ -17,14 +20,12 @@ const MainPageSlice = createSlice({
   initialState,
   reducers: {
     setMovies(state, action) {
-      console.log("next page", state.nextPage);
       state.nextPage += 1;
       if (state.movies !== null) {
         state.movies = state.movies.concat(action.payload);
       }
     },
     setSortByCriteria(state, action) {
-      console.log("Payload", action.payload);
       state.nextPage = 0;
       state.movies = [];
       state.sortByCriteria = action.payload;
@@ -41,7 +42,6 @@ const MainPageSlice = createSlice({
       state.filterSearch = action.payload;
     },
     setFilterGenres(state, action) {
-      console.log("Payload", action.payload);
       state.nextPage = 0;
       state.movies = [];
       if (state.filterGenre === [""]) {
