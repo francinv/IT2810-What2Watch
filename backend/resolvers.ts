@@ -1,5 +1,7 @@
 import Movie from "./models/Movie.model";
 
+/* Resolver for mongoose. It defines how collections are returned by query and mutation */
+
 const resolvers = {
   Query: {
     getMoviesBySearch: async (
