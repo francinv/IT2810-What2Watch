@@ -82,7 +82,7 @@ Gruppen har både brukt ekstern css og styled-komponenter. Dette for å vise kun
 gruppen også brukt egen css. Dette har blitt gjort hovedsakelig for responsivitet.
 ## Testing
 ### Enhetstesting
-Vi har hovedsakelig basert enhetstestinga vår på "react-testing-library." Alle hovedkomponenter har hver sin egen rendertest. Komponentenes standardfunksjonalitet blir også testet. Disse testene finnes i mappen "frontend/src/_tests_".  Testene kjøres med kommandoen "yarn test" fra frontend-mappen.
+Vi har hovedsakelig basert enhetstestinga vår på "react-testing-library." Alle hovedkomponenter har hver sin egen rendertest. Komponentenes standardfunksjonalitet blir også testet. Kjøres også en enhetstest av App som sjekker at alt av underkomponenter loades og vises på siden. Disse testene finnes i mappen "frontend/src/_tests_". Er også inkludert snapshottest hvor inneholdet testes ved å matche siste snapshot. Dette er bl.a. gjort av App.tsx  Testene kjøres med kommandoen "yarn test" fra frontend-mappen.
 
 ### End-to-end-testing
 Vi har brukt "Cypress" for end-to-end-testing. Her kjøres detaljerte scenarioer for bruken av appen vår. Testene ligger i filen "frontend/cypress/integration/hompage.spec". Testene kjøres med kommandoen "yarn cypress:run"(Terminalbasert) eller "yarn cypress:open"(nettleserbasert).
@@ -120,11 +120,6 @@ Enheter som har blitt testet:
 
 ### Desktop:
 ![](https://i.imgur.com/Dc5bgYo.jpg)
-
-### Enhetstesting
-
-
-### End-to-end testing
 
 ## Dokumentasjon og utvikling
 Gjennom prosjektet har gruppen valgt å bruke GitLab flittig. Det har vært fokus på parprogrammering underveis i utviklingen for å forsikre god kodekvalitet til enhver tid. Vi har også hatt fokus på å utvikle komponenter og skrive lesbar kode. Dette har vi også sikret ved å bruke code-review jevnt gjennom utviklingsprosessen. 
