@@ -5,22 +5,17 @@ import Box from "@mui/material/Box";
 import "./index.css";
 import { alpha, styled } from "@mui/material/styles";
 import {
-  Button,
   IconButton,
   InputBase,
-  Menu,
-  MenuItem,
   Toolbar,
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { AccountCircle } from "@mui/icons-material";
 import { useAppDispatch } from "../../services/hooks";
 import { Dispatch } from "redux";
 import { setSearchQuery } from "../../pages/mainPageSlice";
 import { logOut } from "../login/loginslice"
 import { selectUserIsLoggedIn } from "../../services/selectors";
-import PersonIcon from '@mui/icons-material/Person';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from "react";
 import SignIn from "../login";
