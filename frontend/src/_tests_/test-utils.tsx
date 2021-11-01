@@ -31,4 +31,7 @@ const render = (ui: ReactElement, renderOptions?: RenderOptions, store = configu
   
   // override render method
   export { render };
+
+
+  export const dummyPropFunction = jest.fn();
   

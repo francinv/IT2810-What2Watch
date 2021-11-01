@@ -53,7 +53,7 @@ const SignIn: React.FC<SignInProps> = ({isLoginModalVisible, onCloseClick}) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container className="sign-in-container" component="div" maxWidth="xs">
+      <Container id="signin-modal" className="sign-in-container" component="div" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{

@@ -1,4 +1,4 @@
-
+/// <reference types="cypress"/>
 
 describe("Renders the home page", ()=> {
     beforeEach(()=> {

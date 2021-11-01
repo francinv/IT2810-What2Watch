@@ -1,4 +1,4 @@
-import {render, screen} from "../test-utils"
+import {render, screen, dummyPropFunction} from "../test-utils"
 import userEvent from "@testing-library/user-event"
 import NavBar from "../../components/navbar";
 import { Provider } from "react-redux";
@@ -6,18 +6,18 @@ import { store } from "../../services/store";
 
 
 
-const dummyProp = jest.fn();
+
 
 const navbar = (
     <Provider store={store}>
-        <NavBar onCloseClick={dummyProp} isLoginModalVisible={false}/>  
+        <NavBar onCloseClick={dummyPropFunction} isLoginModalVisible={false}/>  
     </Provider>
 )
 
 
 describe("NavBar", ()=> {
 
-    //beforeEach(()=>render(navbar));
+
 
     it("renders", ()=> {
         render(navbar)
@@ -40,5 +40,11 @@ describe("NavBar", ()=> {
         const searchField= getByLabelText(/search/i)
         userEvent.type(searchField, "hei");
         expect(searchField).toHaveValue("hei")
+    })
+
+    test("Login button is showing", () => {
+        const {getByLabelText} =render(navbar)
+        const loginBtn = document.querySelector("#login-button-in-appbar");
+        expect(loginBtn).toBeInTheDocument()
     })
 })

@@ -5720,7 +5720,7 @@ cyclist@^1.0.1:
 
 cypress@^8.7.0:
   version "8.7.0"
-  resolved "https://registry.npmjs.org/cypress/-/cypress-8.7.0.tgz"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-8.7.0.tgz#2ee371f383d8f233d3425b6cc26ddeec2668b6da"
   integrity sha512-b1bMC3VQydC6sXzBMFnSqcvwc9dTZMgcaOzT0vpSD+Gq1yFc+72JDWi55sfUK5eIeNLAtWOGy1NNb6UlhMvB+Q==
   dependencies:
     "@cypress/request" "^2.88.6"
