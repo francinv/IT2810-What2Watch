@@ -1,4 +1,7 @@
-**Gruppe 29: what2watch**
+# MERK!!
+Av en eller annen grunn vises ikke én av komponentene våre i builden. Vi har prøvd å builde med både react scripts og med webpack uten hell. Når man trykker på "Sign in" vil modulen komme opp, men ikke være synlig. Det går fortsatt an å skrive inn på et usynlig tekstfelt som dere kan finne ved å hovre musa over. Dere kan logge inn ved å skrive et vilkårlig navn og så trykke på knappen under. Under ligger bilde av hvordan det ser ut på lokal server.
+![](https://i.imgur.com/L5aQ7eg.png)
+
 
 [[_TOC_]]
 
@@ -149,4 +152,4 @@ Ved kjøring som nevnt ovenfor vil GraphQL-endpoint kjøres på: `localhost:4000
 
 **MERKNAD: Husk å sette egne variabler i [.env](./backend/.env)**
 
-![](https://i.imgur.com/L5aQ7eg.png)
+
