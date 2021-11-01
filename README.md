@@ -148,3 +148,5 @@ For å kjøre backend må man:
 Ved kjøring som nevnt ovenfor vil GraphQL-endpoint kjøres på: `localhost:4000/graphql`, dersom annet ikke er spesifisert.
 
 **MERKNAD: Husk å sette egne variabler i [.env](./backend/.env)**
+
+![](https://i.imgur.com/L5aQ7eg.png)
