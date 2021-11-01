@@ -1,5 +1,6 @@
 import { searchMovies } from "./__generated__/searchMovies";
 
+/* Types for states for our slices */
 export interface IMoviesList {
   movies: searchMovies["getMoviesBySearch"];
   loading: boolean;

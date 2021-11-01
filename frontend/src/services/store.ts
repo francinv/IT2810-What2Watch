@@ -1,12 +1,10 @@
-import { configureStore, ThunkAction, Action,  getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import mainPageReducer from "../pages/mainPageSlice";
 import userReducer from "../components/login/loginslice"
-import ReduxLogger from "redux-logger"
 
-const middleware = (getDefaultMiddleware: any) => getDefaultMiddleware().concat(ReduxLogger)
+/* The redux store where the state is stored. Creates store with our reducers. Also provides types for state and dispatch  */
 
 export const store = configureStore({
-    middleware,
     reducer: {
         mainPage: mainPageReducer,
         userSlice: userReducer

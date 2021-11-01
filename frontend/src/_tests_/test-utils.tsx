@@ -1,15 +1,20 @@
-// test-utils.jsx
 import React, { ReactElement } from 'react'
 import { render as rtlRender, RenderOptions } from '@testing-library/react'
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import mainPageReducer from "../pages/mainPageSlice";
-import { Router } from '@mui/icons-material';
-import { store } from '../services/store';
+import userReducer from "../components/login/loginslice"
 
 
 
-const render = (ui: ReactElement, renderOptions?: RenderOptions, store = configureStore({ reducer: mainPageReducer })) => {
+/**
+ * A custom render method that includes data stores to be used in the components test
+ * @param ui Element to render
+ * @param renderOptions  optional renderoptions 
+ * @param store global store
+ * @returns 
+ */
+const render = (ui: ReactElement, renderOptions?: RenderOptions, store = configureStore({ reducer: {mainPageReducer, userReducer} })) => {
     const Wrapper : React.FC = ({ children }) => {
       return (
         <Provider store={store}>

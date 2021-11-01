@@ -24,6 +24,12 @@ interface MovieTableProps {
   isModalVisible: boolean;
 }
 
+/**
+ * This is a component displaying all the movies. 
+ * We are using MUI Card components and rendering 
+ * them based on movies fetched form the database.
+ */
+
 const MovieTable: React.FC<MovieTableProps> = ({
   isModalVisible,
   onBackDropClick,
@@ -47,7 +53,7 @@ const MovieTable: React.FC<MovieTableProps> = ({
       {
         movies?.map((movie: any) => (
           
-            <Card sx={{ maxWidth: 345, height:'100%'}}>
+            <Card key = {movie.id} sx={{ maxWidth: 345, height:'100%'}}>
               <CardActionArea className="movie-item-card" onClick={()=>{
                 setModalMovie(movie);
                 onBackDropClick();

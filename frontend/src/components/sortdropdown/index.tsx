@@ -17,18 +17,24 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setCriteria: (criteria: string) => dispatch(setSortByCriteria(criteria)),
 });
 
+/**
+ * This is a simple function for SelectComponent.
+ * The component gives the user possibility to sort the movies based on their wish.
+ * This component is a MUI component with custom css. 
+ * 
+ */
 export default function SortDropDown() {
   const [sortBy, setSortBy] = React.useState("");
 
   const handleSortBy = (event: SelectChangeEvent) => {
-    console.log("QWsortQuery", sortBy);
-    console.log("Eventvalue", event.target.value);
     setSortBy(event.target.value);
   };
   const { setCriteria } = actionDispatch(useAppDispatch());
 
   useEffect(() => {
     setCriteria(sortBy);
+    //setCriteria is not supposed to be in the dependency list, otherwise it will go in an endless loop
+    // eslint-disable-next-line
   }, [sortBy]);
 
   return (

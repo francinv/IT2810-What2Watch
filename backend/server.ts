@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 import cors = require("cors");
 import "dotenv/config";
 
+/* The server is ran from here. It connects to the mongodb database and sets up a graphql endpoint with Apolloserver middleware */
+
 const db_url:string = process.env.DB_URL ? process.env.DB_URL : "";
 const user: string = process.env.DB_USERNAME ? process.env.DB_USERNAME : "";
 const password:string = process.env.PASSWORD ? process.env.PASSWORD : ""
@@ -30,8 +32,6 @@ async function startServer() {
         useUnifiedTopology: true,
         useNewUrlParser: true
     })
-
-    console.log("Mongoose connected..")
 
     app.listen(4000, () => console.log("Server is running on port 4000"));
 }

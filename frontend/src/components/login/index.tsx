@@ -11,7 +11,6 @@ import { Dispatch } from "redux";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './index.css';
 import { useAppDispatch } from '../../services/hooks';
-import { letterSpacing } from '@mui/system';
 import { loginAsUser } from './loginslice';
 import { useState } from 'react';
 
@@ -26,6 +25,13 @@ interface SignInProps{
   onCloseClick: () => void;
 }
 
+/**
+ * This is the component for LogIn. The component will show a login form. And setUser based on username. 
+ * This component use redux to update state. 
+ * 
+ * @param isLoginModalVisible, onCloseClick
+ * @returns a login form if isLoginModalVisible = false, if not it will return nothing.
+ */
 const SignIn: React.FC<SignInProps> = ({isLoginModalVisible, onCloseClick}) => {
   const { setUser } = actionDispatch(useAppDispatch());
 
@@ -33,7 +39,6 @@ const SignIn: React.FC<SignInProps> = ({isLoginModalVisible, onCloseClick}) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(value);
     setUser(value);
     onCloseClick();
   };

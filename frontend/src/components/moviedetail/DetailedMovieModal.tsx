@@ -14,6 +14,13 @@ interface ModalProps {
     onCloseClick: () => void;
 }
 
+/**
+ * This is a component for displaying the selected movie. 
+ * There are also some functions for making the modal responsive.
+ * 
+ * @param movie to show, onCloseClick function to close/open the modal
+ * @returns a Modal with MovieDetal.
+ */
 const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
     let closeButton = document.body.querySelector(".closemenu");
     closeButton?.addEventListener("click", setClass);
@@ -28,7 +35,6 @@ const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
         ev.preventDefault();
         let prosidebar = document.querySelector(".pro-sidebar");
         let modalcont = document.querySelector(".modal-container");
-        console.log("This is run");
         if (prosidebar?.classList.contains('collapsed')){
             modalcont?.classList.add('extra-width');
         }
@@ -52,7 +58,6 @@ const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
         if (index > -1) {
             temp.splice(index, 1);
         }
-        console.log(temp)
         return temp;
         
     }

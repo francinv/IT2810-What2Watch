@@ -11,28 +11,35 @@ interface FavButtonProps {
     id: string;
 }
 
+/**
+ * This is a component for favoriting a movie. We take in three props. 
+ * This component is connected to the database.
+ * 
+ * @param isFavorited, userName, id 
+ * @returns a button with Heart. 
+ */
 const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
 
     const [favorited, setFavorited] = useState(isFavorited);
 
     const setFavorite = async () => {
         if (userName !== undefined) {
-          const response = await MovieService.setMovieAsFavorite(
+          await MovieService.setMovieAsFavorite(
             userName,
             id
           ).catch((error) => {
-            console.log("Error", error);
+            throw error;
           })
         }
       }
     
     const removeFavorite = async () => {
     if (userName !== undefined) {
-        const response = await MovieService.removeFavorite(
+        await MovieService.removeFavorite(
         userName,
         id
         ).catch((error) => {
-        console.log("Error", error);
+          throw error
         })
     }
     }
@@ -52,8 +59,7 @@ const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
     return(
         <>
             <button className="btn-fav" onClick={() => 
-                {clickFavorite(!favorited)
-                console.log("Set favorite as", !favorited)}}>
+                {clickFavorite(!favorited)}}>
                 <FontAwesomeIcon icon={faHeart} color={favorited ? 'red' : 'lightgray'}></FontAwesomeIcon>
             </button>
         </>

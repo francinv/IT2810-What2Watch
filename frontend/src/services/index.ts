@@ -1,11 +1,10 @@
 import { apolloClient } from "../graphql";
 import { searchMovies } from "./__generated__/searchMovies";
-import { removeMovieAsFavorite } from "./__generated__/removeMovieAsFavorite";
-import { setMovieAsFavorite } from "./__generated__/setMovieAsFavorite";
 import { GET_MOVIES_BY_SEARCH } from "./movieQueries";
 import { SET_FAVORITE_MOVIE } from "./movieQueries";
 import { REMOVE_MOVIE_AS_FAVORITE } from "./movieQueries";
 
+/* Class to send apollo queries and returns the response data */
 class MovieService {
   async getMoviesBySearch(
     page: number,

@@ -4,7 +4,7 @@ import SideBar from "../../components/sidebar/SideBar"
 
 describe("SideBar", ()=> {
     test("Sidebar is showing 'Filtering options'", () => {
-        const {debug} = render(<SideBar/>)
+        render(<SideBar/>)
         expect(screen.getByText("Filtering options")).toBeInTheDocument();
     })
     test("Sidebar is including FilterByYear and FilterByGenre components", () => {

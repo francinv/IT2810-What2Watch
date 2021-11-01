@@ -1,5 +1,7 @@
 import { RootState } from "../services/store";
 
+/* Selectors to select parts of state */
+
 export const selectMovies = (state: RootState) => 
   state.mainPage.movies;
 export const selectNextPage = (state: RootState) => 

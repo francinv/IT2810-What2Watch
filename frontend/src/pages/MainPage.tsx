@@ -28,6 +28,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
     dispatch(setMovies(movies)),
 });
 
+/**
+ * This is our main component. This is the page the user sees when they use our app.
+ * This component uses both redux and fetch from the database. We have functions for fetching
+ * and also setting states. 
+ */
+
 export const MainPage: FunctionComponent = () => {
   const nextPage = useSelector(selectNextPage);
   const filterSearchQuery = useSelector(selectFilterSearch);
@@ -47,22 +53,19 @@ export const MainPage: FunctionComponent = () => {
       filterDateEnd,
       sortBy
     ).catch((error) => {
-      console.log("Error", error);
+      throw error
     });
 
     if (movies) {
-      console.log("setmovies mainpage");
       setMovies(movies);
     }
   };
 
-  function fetchMore() {
-    console.log("bottomscroll fetchmovies");
-    fetchMovies();
-  }
 
   useEffect(() => {
     fetchMovies();
+    //fethMovies is not supposed to be in the dependency list, otherwise it will go in an endless loop
+    // eslint-disable-next-line
   }, [filterSearchQuery, filterGenre, filterDateStart, filterDateEnd, sortBy]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -102,7 +105,7 @@ export const MainPage: FunctionComponent = () => {
             <UserDisplay />
             <SortDropDown />
           </div>
-          <BottomScrollListener onBottom={fetchMore} />
+          <BottomScrollListener onBottom={fetchMovies} />
           <MovieTable
             onBackDropClick={toggleModal}
             isModalVisible={isModalVisible}
