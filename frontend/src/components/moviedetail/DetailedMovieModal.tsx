@@ -35,7 +35,6 @@ const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
         ev.preventDefault();
         let prosidebar = document.querySelector(".pro-sidebar");
         let modalcont = document.querySelector(".modal-container");
-        console.log("This is run");
         if (prosidebar?.classList.contains('collapsed')){
             modalcont?.classList.add('extra-width');
         }
@@ -59,7 +58,6 @@ const MovieModal: React.FC<ModalProps> = ({movie, onCloseClick}) => {
         if (index > -1) {
             temp.splice(index, 1);
         }
-        console.log(temp)
         return temp;
         
     }
