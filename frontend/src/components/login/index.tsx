@@ -40,7 +40,6 @@ const SignIn: React.FC<SignInProps> = ({isLoginModalVisible, onCloseClick}) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(value);
     setUser(value);
     onCloseClick();
   };

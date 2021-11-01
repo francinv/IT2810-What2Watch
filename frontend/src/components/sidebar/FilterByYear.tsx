@@ -55,7 +55,6 @@ export const FilterByYear: FunctionComponent = () => {
   function setFilters() {
     if (endDate > startDate) {
       setDates([startDate, endDate]);
-      console.log("HJ", startDate, endDate);
     }
   }
 

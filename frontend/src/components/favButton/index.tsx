@@ -28,7 +28,7 @@ const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
             userName,
             id
           ).catch((error) => {
-            console.log("Error", error);
+            throw error;
           })
         }
       }
@@ -39,7 +39,7 @@ const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
         userName,
         id
         ).catch((error) => {
-        console.log("Error", error);
+          throw error
         })
     }
     }
@@ -59,8 +59,7 @@ const FavButton: React.FC<FavButtonProps> =({isFavorited, userName, id}) => {
     return(
         <>
             <button className="btn-fav" onClick={() => 
-                {clickFavorite(!favorited)
-                console.log("Set favorite as", !favorited)}}>
+                {clickFavorite(!favorited)}}>
                 <FontAwesomeIcon icon={faHeart} color={favorited ? 'red' : 'lightgray'}></FontAwesomeIcon>
             </button>
         </>
