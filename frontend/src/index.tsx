@@ -16,7 +16,7 @@ ReactDOM.render(
       </ApolloProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root') || document.createElement('div')
+  document.getElementById('root')
 );
 
 serviceWorker.unregister();
